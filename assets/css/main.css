@@ -1,0 +1,116 @@
+/* Main Stylesheet - 導入所有樣式文件 */
+
+/* 1. 導入變數 */
+@import url('./variables.css');
+
+/* 2. 導入組件樣式 */
+@import url('./components/navigation.css');
+@import url('./components/hero.css');
+@import url('./components/sections.css');
+@import url('./components/gallery.css');
+@import url('./components/footer.css');
+
+/* ============================================
+   基礎樣式重置和通用樣式
+   ============================================ */
+
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* 標題樣式 */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: var(--spacing-sm);
+}
+
+h1 {
+    font-size: 3.5rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+h2 {
+    font-size: 2.5rem;
+}
+
+h3 {
+    font-size: 1.75rem;
+}
+
+/* 連結樣式 */
+a {
+    color: var(--primary-light);
+    text-decoration: none;
+    transition: color var(--transition-normal);
+}
+
+a:hover {
+    color: var(--primary-color);
+}
+
+/* 按鈕基礎樣式 */
+button {
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    transition: all var(--transition-normal);
+}
+
+button:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+/* 圖片樣式 */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* 列表樣式 */
+ul {
+    list-style: none;
+}
+
+/* 響應式字體大小 */
+@media (max-width: 768px) {
+    html {
+        font-size: 14px;
+    }
+    
+    h1 {
+        font-size: 2.5rem;
+    }
+    
+    h2 {
+        font-size: 2rem;
+    }
+    
+    h3 {
+        font-size: 1.5rem;
+    }
+}

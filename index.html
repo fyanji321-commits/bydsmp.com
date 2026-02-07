@@ -1,497 +1,138 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BYDSMP - 生存與PVP的極致體驗</title>
+    
+    <!-- Primary Meta Tags -->
+    <title>BYDSMP - 生存與PVP的極致體驗 | 台灣 Minecraft 伺服器</title>
+    <meta name="title" content="BYDSMP - 生存與PVP的極致體驗 | 台灣 Minecraft 伺服器">
+    <meta name="description" content="BYDSMP 是台灣優質 Minecraft 伺服器，提供 SMP 生存分流與 KitPVP 競技分流。防噴生存、領地系統、戰力排行，歡迎加入我們的社群！">
+    <meta name="keywords" content="BYDSMP, Minecraft, 台灣伺服器, SMP, PVP, 生存伺服器, KitPVP, 台灣Minecraft">
+    <meta name="author" content="BYDSMP">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="zh-TW">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bydsmp.com/">
+    <meta property="og:title" content="BYDSMP - 生存與PVP的極致體驗">
+    <meta property="og:description" content="台灣優質 Minecraft 伺服器，提供 SMP 生存分流與 KitPVP 競技分流">
+    <meta property="og:image" content="https://truth.bahamut.com.tw/s01/202602/forum/18673/a93d4588615c872f5128d334fdc166ea.JPG?w=1000">
+    <meta property="og:locale" content="zh_TW">
+    <meta property="og:site_name" content="BYDSMP">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://bydsmp.com/">
+    <meta property="twitter:title" content="BYDSMP - 生存與PVP的極致體驗">
+    <meta property="twitter:description" content="台灣優質 Minecraft 伺服器，提供 SMP 生存分流與 KitPVP 競技分流">
+    <meta property="twitter:image" content="https://truth.bahamut.com.tw/s01/202602/forum/18673/a93d4588615c872f5128d334fdc166ea.JPG?w=1000">
+    
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#FF79BC">
+    <meta name="msapplication-TileColor" content="#FF79BC">
+    
+    <!-- Preconnect for Performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://truth.bahamut.com.tw">
+    
+    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Noto+Sans+TC:wght@300;400;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary-color: #FF79BC;
-            --primary-light: #ffb3d9;
-            --bg-dark: #121212;
-            --bg-card: #1e1e1e;
-            --text-main: #ffffff;
-            --text-muted: #b0b0b0;
-            --neon-glow: 0 0 10px var(--primary-color), 0 0 20px var(--primary-color);
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="assets/css/main.css">
+    
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "BYDSMP",
+        "url": "https://bydsmp.com",
+        "logo": "https://truth.bahamut.com.tw/s01/202602/forum/18673/a93d4588615c872f5128d334fdc166ea.JPG?w=1000",
+        "description": "台灣優質 Minecraft 伺服器，提供 SMP 生存分流與 KitPVP 競技分流",
+        "email": "bydsmp@gmail.com",
+        "sameAs": [
+            "https://discord.gg/2EDqgeRKPs"
+        ],
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "email": "bydsmp@gmail.com",
+            "contactType": "customer service"
         }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "BYDSMP",
+        "url": "https://bydsmp.com",
+        "description": "BYDSMP 是台灣優質 Minecraft 伺服器，提供 SMP 生存分流與 KitPVP 競技分流",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://bydsmp.com/?q={search_term_string}",
+            "query-input": "required name=search_term_string"
         }
-
-        body {
-            font-family: 'Noto Sans TC', sans-serif;
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        h1, h2, h3, .brand {
-            font-family: 'Orbitron', sans-serif;
-            text-transform: uppercase;
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-            transition: 0.3s;
-        }
-
-        /* --- Navigation --- */
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 5%;
-            background: rgba(18, 18, 18, 0.95);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 1px solid rgba(255, 121, 188, 0.3);
-            backdrop-filter: blur(10px);
-        }
-
-        .brand-link {
-            display: flex;
-            align-items: center;
-        }
-
-        .brand-logo {
-            height: 45px; /* 調整 Logo 高度 */
-            width: auto;
-            filter: drop-shadow(0 0 8px rgba(255, 121, 188, 0.6));
-            transition: filter 0.3s;
-        }
-
-        .brand-logo:hover {
-            filter: drop-shadow(0 0 15px rgba(255, 121, 188, 0.8));
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 30px;
-        }
-
-        .nav-links a {
-            color: var(--text-main);
-            font-weight: 700;
-            position: relative;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary-color);
-            text-shadow: 0 0 8px var(--primary-color);
-        }
-
-        .btn-discord {
-            background: #5865F2;
-            padding: 8px 20px;
-            border-radius: 4px;
-            font-weight: bold;
-            box-shadow: 0 0 10px rgba(88, 101, 242, 0.5);
-        }
-
-        .btn-discord:hover {
-            background: #4752c4;
-            transform: translateY(-2px);
-        }
-
-        /* --- Hamburger Menu --- */
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            gap: 5px;
-        }
-
-        .hamburger span {
-            width: 25px;
-            height: 3px;
-            background-color: var(--text-main);
-            border-radius: 2px;
-            transition: 0.3s;
-        }
-
-        /* Hamburger Animation */
-        .hamburger.active span:nth-child(2) { opacity: 0; }
-        .hamburger.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
-        .hamburger.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
-
-        /* --- Hero Section --- */
-        .hero {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            transition: background-image 1s ease-in-out; /* 背景圖片轉換動畫 */
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed; /* 可選，製造視差效果 */
-            padding: 0 20px;
-            margin-top: 60px;
-        }
-
-        .hero h1 {
-            font-size: 4rem;
-            margin-bottom: 20px;
-            background: linear-gradient(90deg, var(--primary-color), #fff);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            color: transparent;
-            filter: drop-shadow(0 0 15px rgba(255, 121, 188, 0.6));
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            color: var(--text-muted);
-            max-width: 600px;
-            margin-bottom: 40px;
-        }
-
-        .ip-box {
-            background: rgba(255, 255, 255, 0.1);
-            border: 2px solid var(--primary-color);
-            padding: 15px 30px;
-            border-radius: 8px;
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.5rem;
-            cursor: pointer;
-            position: relative;
-            transition: 0.3s;
-            box-shadow: var(--neon-glow);
-        }
-
-        .ip-box:hover {
-            background: rgba(255, 121, 188, 0.2);
-            transform: scale(1.05);
-        }
-
-        .ip-box::after {
-            content: '點擊複製';
-            position: absolute;
-            bottom: -30px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 0.8rem;
-            color: var(--primary-light);
-            opacity: 0;
-            transition: 0.3s;
-            font-family: 'Noto Sans TC', sans-serif;
-        }
-
-        .ip-box:hover::after {
-            opacity: 1;
-            bottom: -25px;
-        }
-
-        /* --- Sections General --- */
-        section {
-            padding: 80px 10%;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 60px;
-            color: var(--primary-color);
-            text-shadow: 0 0 10px rgba(255, 121, 188, 0.5);
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 100px;
-            height: 3px;
-            background: var(--primary-color);
-            margin: 10px auto 0;
-            box-shadow: 0 0 10px var(--primary-color);
-        }
-
-        /* --- Game Modes --- */
-        .modes-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-        }
-
-        .mode-card {
-            background: var(--bg-card);
-            border: 1px solid #333;
-            border-radius: 10px;
-            padding: 30px;
-            transition: 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .mode-card:hover {
-            border-color: var(--primary-color);
-            box-shadow: 0 0 20px rgba(255, 121, 188, 0.2);
-            transform: translateY(-5px);
-        }
-
-        .mode-card h3 {
-            font-size: 1.8rem;
-            margin-bottom: 15px;
-            color: var(--primary-light);
-        }
-
-        .mode-card ul {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .mode-card li {
-            margin-bottom: 10px;
-            padding-left: 20px;
-            position: relative;
-        }
-
-        .mode-card li::before {
-            content: '>';
-            color: var(--primary-color);
-            position: absolute;
-            left: 0;
-        }
-
-        /* --- Gallery --- */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
-        }
-
-        .gallery-item {
-            height: 200px;
-            background-color: #333;
-            border-radius: 8px;
-            overflow: hidden;
-            position: relative;
-            border: 1px solid transparent;
-            transition: 0.3s;
-        }
-        
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s;
-        }
-
-        .gallery-item:hover {
-            border-color: var(--primary-color);
-            box-shadow: 0 0 15px rgba(255, 121, 188, 0.3);
-        }
-        
-        .gallery-item:hover img {
-            transform: scale(1.1);
-        }
-
-        /* --- Rules --- */
-        .rules-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 30px;
-        }
-
-        .rule-box {
-            background: rgba(30, 30, 30, 0.8);
-            border-left: 4px solid var(--primary-color);
-            padding: 20px;
-        }
-
-        .rule-box h3 {
-            color: var(--primary-light);
-            margin-bottom: 15px;
-            border-bottom: 1px solid #444;
-            padding-bottom: 10px;
-        }
-
-        .rule-list {
-            padding-left: 20px;
-        }
-
-        .rule-list li {
-            margin-bottom: 8px;
-            color: #ddd;
-        }
-        
-        .warning-text {
-            color: #ff4d4d;
-            font-weight: bold;
-            margin-top: 10px;
-        }
-
-        /* --- Sponsor --- */
-        .sponsor-section {
-            background: linear-gradient(180deg, var(--bg-dark) 0%, #2a1a25 100%);
-            text-align: center;
-        }
-
-        .vip-card {
-            background: rgba(255, 121, 188, 0.05);
-            border: 2px solid var(--primary-color);
-            border-radius: 15px;
-            padding: 40px;
-            max-width: 600px;
-            margin: 0 auto 40px;
-            box-shadow: var(--neon-glow);
-        }
-
-        .price-tag {
-            font-size: 2.5rem;
-            font-weight: bold;
-            color: var(--primary-light);
-            margin: 20px 0;
-            font-family: 'Orbitron';
-        }
-
-        .disclaimer {
-            text-align: left;
-            font-size: 0.9rem;
-            color: #888;
-            background: #151515;
-            padding: 20px;
-            border-radius: 8px;
-            margin-top: 40px;
-            border: 1px solid #333;
-        }
-
-        .disclaimer h4 {
-            color: #ff4d4d;
-            margin-bottom: 10px;
-        }
-
-        /* --- VIP List Styling --- */
-        .vip-benefits-list ul {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .vip-item {
-            display: flex;
-            align-items: center;
-            background: rgba(255, 255, 255, 0.03);
-            padding: 12px 15px;
-            border-radius: 6px;
-            transition: all 0.3s ease;
-            border: 1px solid transparent;
-        }
-
-        .vip-item:hover {
-            background: rgba(255, 121, 188, 0.1);
-            border-color: rgba(255, 121, 188, 0.3);
-            transform: translateX(5px);
-        }
-
-        .vip-level {
-            color: var(--primary-color);
-            font-weight: bold;
-            font-family: 'Orbitron', sans-serif;
-            min-width: 70px;
-            margin-right: 15px;
-            padding-right: 15px;
-            border-right: 1px solid rgba(255, 255, 255, 0.1);
-            text-align: right;
-            flex-shrink: 0;
-        }
-
-        .vip-content {
-            color: #e0e0e0;
-            font-size: 0.95rem;
-            line-height: 1.4;
-        }
-
-        /* --- Footer --- */
-        footer {
-            background: #0a0a0a;
-            padding: 40px 10%;
-            text-align: center;
-            border-top: 1px solid #333;
-        }
-
-        footer p {
-            color: #666;
-            font-size: 0.9rem;
-        }
-
-        /* Mobile Responsive */
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
-            
-            .hamburger { display: flex; }
-
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: rgba(18, 18, 18, 0.98);
-                flex-direction: column;
-                padding: 20px 0;
-                text-align: center;
-                border-bottom: 1px solid rgba(255, 121, 188, 0.3);
-            }
-
-            .nav-links.active { display: flex; }
-
-            .rules-grid { grid-template-columns: 1fr; }
-        }
-    </style>
+    }
+    </script>
 </head>
 <body>
-
     <!-- Navigation -->
-    <nav>
-        <a href="#home" class="brand-link">
-            <img src="https://truth.bahamut.com.tw/s01/202602/forum/18673/a93d4588615c872f5128d334fdc166ea.JPG?w=1000" alt="BYDSMP Logo" class="brand-logo">
+    <nav role="navigation" aria-label="主要導航">
+        <a href="#home" class="brand-link" aria-label="返回首頁">
+            <img src="https://truth.bahamut.com.tw/s01/202602/forum/18673/a93d4588615c872f5128d334fdc166ea.JPG?w=1000" 
+                 alt="BYDSMP Logo" 
+                 class="brand-logo"
+                 width="100"
+                 height="45"
+                 loading="eager">
         </a>
-        <div class="hamburger" onclick="toggleMenu()">
+        <button class="hamburger" 
+                onclick="toggleMenu()"
+                aria-label="開啟選單" 
+                aria-expanded="false"
+                aria-controls="nav-links">
             <span></span>
             <span></span>
             <span></span>
+        </button>
+        <div class="nav-links" id="nav-links" role="menubar">
+            <a href="#home" role="menuitem">首頁</a>
+            <a href="#modes" role="menuitem">遊戲分流</a>
+            <a href="#gallery" role="menuitem">相冊</a>
+            <a href="#rules" role="menuitem">規則</a>
+            <a href="#sponsor" role="menuitem">贊助</a>
         </div>
-        <div class="nav-links">
-            <a href="#home">首頁</a>
-            <a href="#modes">遊戲分流</a>
-            <a href="#gallery">相冊</a>
-            <a href="#rules">規則</a>
-            <a href="#sponsor">贊助</a>
-        </div>
-        <a href="https://discord.gg/2EDqgeRKPs" target="_blank" class="btn-discord">加入 Discord</a>
+        <a href="https://discord.gg/2EDqgeRKPs" 
+           target="_blank" 
+           rel="noopener noreferrer"
+           class="btn-discord"
+           aria-label="加入 Discord 社群">加入 Discord</a>
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="hero">
+    <section id="home" class="hero" role="banner">
         <h1>BYDSMP</h1>
         <p>生存與 PVP 的完美結合 | 台灣 Minecraft 伺服器</p>
         
-        <div class="ip-box" onclick="copyIP()">
+        <button class="ip-box" 
+                onclick="copyIP()"
+                aria-label="複製伺服器 IP 地址"
+                type="button">
             bydsmp.com
-        </div>
+        </button>
         <p style="margin-top: 15px; font-size: 0.9rem; color: var(--primary-light);">點擊上方 IP 複製並加入遊戲</p>
     </section>
 
     <!-- Game Modes -->
-    <section id="modes">
-        <h2 class="section-title">遊戲分流</h2>
+    <section id="modes" aria-labelledby="modes-title">
+        <h2 id="modes-title" class="section-title">遊戲分流</h2>
         <div class="modes-container">
             <!-- SMP Card -->
-            <div class="mode-card">
+            <article class="mode-card">
                 <h3>SMP 生存分流</h3>
                 <ul>
                     <li><strong>防噴生存：</strong>死亡不掉落，安心探索。</li>
@@ -500,10 +141,10 @@
                     <li><strong>友好社交：</strong>規則少，適合休閒與建築玩家。</li>
                     <li><strong>特色：</strong>擁有許多有趣的抽象玩家與造型系統。</li>
                 </ul>
-            </div>
+            </article>
 
             <!-- KitPVP Card -->
-            <div class="mode-card">
+            <article class="mode-card">
                 <h3>KitPVP 競技分流</h3>
                 <ul>
                     <li><strong>戰力系統：</strong>完整的等級與戰力排行。</li>
@@ -511,68 +152,128 @@
                     <li><strong>嚴格防掛：</strong>禁止外掛，維護公平競技。</li>
                     <li><strong>多種模式：</strong>水晶 PVP、Mace PVP 等多樣玩法。</li>
                 </ul>
-            </div>
+            </article>
         </div>
     </section>
 
     <!-- Gallery Section -->
-    <section id="gallery">
-        <h2 class="section-title">伺服器相冊</h2>
-        <div class="gallery-grid">
-            <div class="gallery-item">
-                <img src="https://truth.bahamut.com.tw/s01/202602/forum/18673/7e0ba506aad016c2e062c739d55baba6.JPG" alt="伺服器圖片 1">
+    <section id="gallery" aria-labelledby="gallery-title">
+        <h2 id="gallery-title" class="section-title">伺服器相冊</h2>
+        <div class="gallery-grid" role="list">
+            <div class="gallery-item" role="listitem">
+                <img src="https://truth.bahamut.com.tw/s01/202602/forum/18673/7e0ba506aad016c2e062c739d55baba6.JPG" 
+                     alt="伺服器圖片 1" 
+                     loading="lazy"
+                     width="250"
+                     height="200">
             </div>
-            <div class="gallery-item">
-                <img src="https://truth.bahamut.com.tw/s01/202602/forum/18673/cb68e0127c0709bc468f3a7a11e53e5b.JPG" alt="伺服器圖片 2">
+            <div class="gallery-item" role="listitem">
+                <img src="https://truth.bahamut.com.tw/s01/202602/forum/18673/cb68e0127c0709bc468f3a7a11e53e5b.JPG" 
+                     alt="伺服器圖片 2" 
+                     loading="lazy"
+                     width="250"
+                     height="200">
             </div>
-            <div class="gallery-item">
-                <img src="https://truth.bahamut.com.tw/s01/202602/forum/18673/93f140f5801510a996799ee754a77a86.JPG" alt="伺服器圖片 3">
+            <div class="gallery-item" role="listitem">
+                <img src="https://truth.bahamut.com.tw/s01/202602/forum/18673/93f140f5801510a996799ee754a77a86.JPG" 
+                     alt="伺服器圖片 3" 
+                     loading="lazy"
+                     width="250"
+                     height="200">
             </div>
-            <div class="gallery-item">
-                <img src="https://truth.bahamut.com.tw/s01/202602/forum/18673/88d2c98185a8c7629c3367b29efc2ae1.JPG" alt="伺服器圖片 4">
+            <div class="gallery-item" role="listitem">
+                <img src="https://truth.bahamut.com.tw/s01/202602/forum/18673/88d2c98185a8c7629c3367b29efc2ae1.JPG" 
+                     alt="伺服器圖片 4" 
+                     loading="lazy"
+                     width="250"
+                     height="200">
             </div>
-            <div class="gallery-item">
-                <img src="https://truth.bahamut.com.tw/s01/202602/forum/18673/7de0db575b34156ec596da8ce3c332a5.JPG" alt="伺服器圖片 5">
+            <div class="gallery-item" role="listitem">
+                <img src="https://truth.bahamut.com.tw/s01/202602/forum/18673/7de0db575b34156ec596da8ce3c332a5.JPG" 
+                     alt="伺服器圖片 5" 
+                     loading="lazy"
+                     width="250"
+                     height="200">
             </div>
-            <div class="gallery-item">
-                <img src="https://truth.bahamut.com.tw/s01/202602/forum/18673/7cc9cfee0a2a6e67a3bf266ce95ad6aa.JPG" alt="伺服器圖片 6">
+            <div class="gallery-item" role="listitem">
+                <img src="https://truth.bahamut.com.tw/s01/202602/forum/18673/7cc9cfee0a2a6e67a3bf266ce95ad6aa.JPG" 
+                     alt="伺服器圖片 6" 
+                     loading="lazy"
+                     width="250"
+                     height="200">
             </div>
-            <div class="gallery-item">
-                <img src="https://truth.bahamut.com.tw/s01/202602/forum/18673/636c53536e34e44e9afdb44f72f1a6f3.JPG" alt="伺服器圖片 7">
+            <div class="gallery-item" role="listitem">
+                <img src="https://truth.bahamut.com.tw/s01/202602/forum/18673/636c53536e34e44e9afdb44f72f1a6f3.JPG" 
+                     alt="伺服器圖片 7" 
+                     loading="lazy"
+                     width="250"
+                     height="200">
             </div>
-            <div class="gallery-item">
-                <img src="https://truth.bahamut.com.tw/s01/202602/forum/18673/e517e7a794e4af248dc39f2706769301.JPG" alt="伺服器圖片 8">
+            <div class="gallery-item" role="listitem">
+                <img src="https://truth.bahamut.com.tw/s01/202602/forum/18673/e517e7a794e4af248dc39f2706769301.JPG" 
+                     alt="伺服器圖片 8" 
+                     loading="lazy"
+                     width="250"
+                     height="200">
             </div>
-            <div class="gallery-item">
-                <img src="https://truth.bahamut.com.tw/s01/202602/forum/18673/9f4076989f0541b63c76e21213ebac2a.JPG" alt="伺服器圖片 9">
+            <div class="gallery-item" role="listitem">
+                <img src="https://truth.bahamut.com.tw/s01/202602/forum/18673/9f4076989f0541b63c76e21213ebac2a.JPG" 
+                     alt="伺服器圖片 9" 
+                     loading="lazy"
+                     width="250"
+                     height="200">
             </div>
-            <div class="gallery-item">
-                <img src="https://truth.bahamut.com.tw/s01/202602/forum/18673/367cbd307f7800d9fc43fb4d1c34ff3b.JPG" alt="伺服器圖片 10">
+            <div class="gallery-item" role="listitem">
+                <img src="https://truth.bahamut.com.tw/s01/202602/forum/18673/367cbd307f7800d9fc43fb4d1c34ff3b.JPG" 
+                     alt="伺服器圖片 10" 
+                     loading="lazy"
+                     width="250"
+                     height="200">
             </div>
-            <div class="gallery-item">
-                <img src="https://truth.bahamut.com.tw/s01/202602/forum/18673/2d149cbb1a19d0913d65c149acaacc43.JPG" alt="伺服器圖片 11">
+            <div class="gallery-item" role="listitem">
+                <img src="https://truth.bahamut.com.tw/s01/202602/forum/18673/2d149cbb1a19d0913d65c149acaacc43.JPG" 
+                     alt="伺服器圖片 11" 
+                     loading="lazy"
+                     width="250"
+                     height="200">
             </div>
-            <div class="gallery-item">
-                <img src="https://truth.bahamut.com.tw/s01/202602/forum/18673/bd6aab9c19716bf47b34467d2b603741.JPG" alt="伺服器圖片 12">
+            <div class="gallery-item" role="listitem">
+                <img src="https://truth.bahamut.com.tw/s01/202602/forum/18673/bd6aab9c19716bf47b34467d2b603741.JPG" 
+                     alt="伺服器圖片 12" 
+                     loading="lazy"
+                     width="250"
+                     height="200">
             </div>
-            <div class="gallery-item">
-                <img src="https://truth.bahamut.com.tw/s01/202602/forum/18673/ff628de87e6e8ddd4d1cb804a4af5e89.JPG" alt="伺服器圖片 13">
+            <div class="gallery-item" role="listitem">
+                <img src="https://truth.bahamut.com.tw/s01/202602/forum/18673/ff628de87e6e8ddd4d1cb804a4af5e89.JPG" 
+                     alt="伺服器圖片 13" 
+                     loading="lazy"
+                     width="250"
+                     height="200">
             </div>
-            <div class="gallery-item">
-                <img src="https://truth.bahamut.com.tw/s01/202510/forum/18673/e1201c71b2a1798ed7feee79b31dc2d6.JPG" alt="伺服器圖片 14">
+            <div class="gallery-item" role="listitem">
+                <img src="https://truth.bahamut.com.tw/s01/202510/forum/18673/e1201c71b2a1798ed7feee79b31dc2d6.JPG" 
+                     alt="伺服器圖片 14" 
+                     loading="lazy"
+                     width="250"
+                     height="200">
             </div>
-            <div class="gallery-item">
-                <img src="https://truth.bahamut.com.tw/s01/202510/forum/18673/1f27730a6b5348901c1597ef3b124413.JPG" alt="伺服器圖片 15">
+            <div class="gallery-item" role="listitem">
+                <img src="https://truth.bahamut.com.tw/s01/202510/forum/18673/1f27730a6b5348901c1597ef3b124413.JPG" 
+                     alt="伺服器圖片 15" 
+                     loading="lazy"
+                     width="250"
+                     height="200">
             </div>
         </div>
     </section>
 
     <!-- Rules Section -->
-    <section id="rules">
-        <h2 class="section-title">伺服器規則</h2>
+    <section id="rules" aria-labelledby="rules-title">
+        <h2 id="rules-title" class="section-title">伺服器規則</h2>
         <div class="rules-grid">
             
-            <div class="rule-box">
+            <article class="rule-box">
                 <h3>基本規則</h3>
                 <ul class="rule-list">
                     <li>禁止作弊與使用任何外掛。</li>
@@ -580,18 +281,18 @@
                     <li>禁止發表不當言論。</li>
                     <li>禁止利用影響平衡之漏洞。</li>
                 </ul>
-            </div>
+            </article>
 
-            <div class="rule-box">
+            <article class="rule-box">
                 <h3>世界規則</h3>
                 <ul class="rule-list">
                     <li>禁止澆注鵝卵石牆、液體牆。</li>
                     <li>禁止炸出生點附近。</li>
                     <li>中介主島為官方所有，不能設領地，且可能會清建築。</li>
                 </ul>
-            </div>
+            </article>
 
-            <div class="rule-box">
+            <article class="rule-box">
                 <h3>生電規則</h3>
                 <ul class="rule-list">
                     <li>允許：防噴、刷沙、破基岩、TNT複製。</li>
@@ -599,9 +300,9 @@
                     <li><strong>注意：</strong>卡服、大型機器須報備。</li>
                     <li>若造成伺服器卡頓，官方有權修整機器。</li>
                 </ul>
-            </div>
+            </article>
 
-            <div class="rule-box">
+            <article class="rule-box">
                 <h3>PVP 規則</h3>
                 <ul class="rule-list">
                     <li>允許：水晶、自動圖騰。</li>
@@ -609,9 +310,9 @@
                     <li>禁止：在建築和 Spawn 附近打水晶。</li>
                     <li><strong>提醒：</strong>打架記得關 Tweakeroo 自動補貨。</li>
                 </ul>
-            </div>
+            </article>
 
-            <div class="rule-box" style="border-color: #ff4d4d;">
+            <article class="rule-box" style="border-color: #ff4d4d;">
                 <h3 style="color: #ff4d4d;">違規處理</h3>
                 <p>違規者視情況處理：</p>
                 <ul class="rule-list">
@@ -619,14 +320,14 @@
                     <li>家被抄不負責。</li>
                     <li>若在領地內或周圍持續騷擾，將嚴懲。</li>
                 </ul>
-            </div>
+            </article>
 
         </div>
     </section>
 
     <!-- Sponsor Section -->
-    <section id="sponsor" class="sponsor-section">
-        <h2 class="section-title">贊助支持</h2>
+    <section id="sponsor" class="sponsor-section" aria-labelledby="sponsor-title">
+        <h2 id="sponsor-title" class="section-title">贊助支持</h2>
         
         <div class="vip-card">
             <h3>純贊助支持</h3>
@@ -648,69 +349,18 @@
     </section>
 
     <!-- Footer -->
-    <footer>
+    <footer role="contentinfo">
         <p>&copy; 2026 BYDSMP. All Rights Reserved.</p>
-        <p>Server IP: bydsmp.com</p>
+        <p>Server IP: <strong>bydsmp.com</strong></p>
         <p>聯絡信箱: <a href="mailto:bydsmp@gmail.com" style="color: var(--primary-light);">bydsmp@gmail.com</a></p>
         <p style="margin-top: 20px; font-size: 0.8rem;">本網站與 BYDSMP 伺服器為非官方粉絲創作，與 Mojang Studios 或 Microsoft 無關。NOT OFFICIAL MINECRAFT PRODUCT. NOT APPROVED BY OR ASSOCIATED WITH MOJANG OR MICROSOFT.</p>
     </footer>
 
-    <script>
-        function toggleMenu() {
-            const navLinks = document.querySelector('.nav-links');
-            const hamburger = document.querySelector('.hamburger');
-            navLinks.classList.toggle('active');
-            hamburger.classList.toggle('active');
-        }
-
-        // 點擊連結後自動收起選單
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                toggleMenu();
-            });
-        });
-
-        function copyIP() {
-            const ip = "bydsmp.com";
-            navigator.clipboard.writeText(ip).then(() => {
-                const box = document.querySelector('.ip-box');
-                const originalText = box.innerText;
-                box.innerText = "已複製 IP !";
-                box.style.borderColor = "#fff";
-                box.style.color = "#fff";
-                
-                setTimeout(() => {
-                    box.innerText = originalText;
-                    box.style.borderColor = "var(--primary-color)";
-                    box.style.color = "var(--text-main)";
-                }, 2000);
-            }).catch(err => {
-                console.error('無法複製文字: ', err);
-            });
-        }
-
-        // Hero Section 背景輪播
-        document.addEventListener('DOMContentLoaded', () => {
-            const hero = document.querySelector('.hero');
-            const bgImages = [
-                'https://truth.bahamut.com.tw/s01/202602/forum/18673/381d656c01f41bd49d7872448341f0d1.JPG',
-                'https://truth.bahamut.com.tw/s01/202601/forum/18673/20e458f89143949bee8cba081e7e929b.JPG'
-            ];
-            let currentBgIndex = 0;
-
-            // 預載圖片以確保流暢切換
-            bgImages.forEach(src => {
-                new Image().src = src;
-            });
-
-            function changeBackground() {
-                hero.style.backgroundImage = `linear-gradient(rgba(18, 18, 18, 0.7), rgba(18, 18, 18, 0.9)), url('${bgImages[currentBgIndex]}')`;
-                currentBgIndex = (currentBgIndex + 1) % bgImages.length;
-            }
-
-            changeBackground(); // 立即設定第一張背景
-            setInterval(changeBackground, 7000); // 每 7 秒更換一次
-        });
-    </script>
+    <!-- JavaScript -->
+    <script src="assets/js/config.js"></script>
+    <script src="assets/js/modules/navigation.js"></script>
+    <script src="assets/js/modules/copyIP.js"></script>
+    <script src="assets/js/modules/backgroundSlider.js"></script>
+    <script src="assets/js/main.js"></script>
 </body>
 </html>

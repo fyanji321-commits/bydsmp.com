@@ -1,0 +1,52 @@
+/* CSS Variables - 集中管理所有顏色和設計變數 */
+
+:root {
+    /* 主色調 - 霓虹粉色 */
+    --primary-color: #FF79BC;
+    --primary-light: #ffb3d9;
+    --primary-dark: #ff4da6;
+    
+    /* 背景色 */
+    --bg-dark: #121212;
+    --bg-card: #1e1e1e;
+    --bg-card-hover: #2a2a2a;
+    
+    /* 文字顏色 */
+    --text-main: #ffffff;
+    --text-muted: #b0b0b0;
+    --text-light: #e0e0e0;
+    
+    /* 邊框和陰影 */
+    --border-color: rgba(255, 121, 188, 0.3);
+    --border-color-hover: rgba(255, 121, 188, 0.6);
+    --glow-color: rgba(255, 121, 188, 0.5);
+    --shadow-glow: 0 0 20px rgba(255, 121, 188, 0.3);
+    
+    /* 字體 */
+    --font-heading: 'Orbitron', sans-serif;
+    --font-body: 'Noto Sans TC', sans-serif;
+    
+    /* 間距 */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 2rem;
+    --spacing-lg: 3rem;
+    --spacing-xl: 4rem;
+    
+    /* 過渡動畫 */
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+    --transition-slow: 0.5s ease;
+    
+    /* 斷點 */
+    --breakpoint-mobile: 768px;
+    --breakpoint-tablet: 1024px;
+    
+    /* 導航欄 */
+    --nav-height: 70px;
+    --nav-height-mobile: 60px;
+    
+    /* Z-index 層級 */
+    --z-nav: 1000;
+    --z-overlay: 999;
+}

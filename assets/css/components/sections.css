@@ -1,0 +1,277 @@
+/* Sections Component Styles - 通用 section 樣式 */
+
+/* 通用 Section 樣式 */
+section {
+    padding: var(--spacing-xl) var(--spacing-md);
+    position: relative;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: var(--spacing-lg);
+    color: var(--text-main);
+    position: relative;
+    padding-bottom: var(--spacing-sm);
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+}
+
+/* ============================================
+   遊戲分流 (Game Modes)
+   ============================================ */
+
+.modes-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-lg);
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.mode-card {
+    background-color: var(--bg-card);
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    padding: var(--spacing-lg);
+    transition: all var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+}
+
+.mode-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-color), var(--primary-light));
+    transform: scaleX(0);
+    transition: transform var(--transition-normal);
+}
+
+.mode-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary-color);
+    box-shadow: var(--shadow-glow);
+}
+
+.mode-card:hover::before {
+    transform: scaleX(1);
+}
+
+.mode-card h3 {
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-md);
+    font-size: 1.75rem;
+}
+
+.mode-card ul {
+    list-style: none;
+}
+
+.mode-card li {
+    padding: var(--spacing-xs) 0;
+    color: var(--text-light);
+    position: relative;
+    padding-left: var(--spacing-md);
+}
+
+.mode-card li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+.mode-card strong {
+    color: var(--primary-light);
+}
+
+/* ============================================
+   規則區域 (Rules)
+   ============================================ */
+
+.rules-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-md);
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.rule-box {
+    background-color: var(--bg-card);
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    padding: var(--spacing-md);
+    transition: all var(--transition-normal);
+}
+
+.rule-box:hover {
+    border-color: var(--primary-color);
+    box-shadow: var(--shadow-glow);
+    transform: translateY(-3px);
+}
+
+.rule-box h3 {
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-sm);
+    font-size: 1.5rem;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: var(--spacing-xs);
+}
+
+.rule-box p {
+    color: var(--text-light);
+    margin-bottom: var(--spacing-sm);
+}
+
+.rule-list {
+    list-style: none;
+}
+
+.rule-list li {
+    padding: var(--spacing-xs) 0;
+    color: var(--text-light);
+    position: relative;
+    padding-left: var(--spacing-md);
+    line-height: 1.8;
+}
+
+.rule-list li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.rule-box[style*="border-color: #ff4d4d"] {
+    border-color: #ff4d4d;
+}
+
+.rule-box[style*="border-color: #ff4d4d"] h3 {
+    color: #ff4d4d;
+}
+
+/* ============================================
+   贊助區域 (Sponsor)
+   ============================================ */
+
+.sponsor-section {
+    background: linear-gradient(
+        135deg,
+        rgba(255, 121, 188, 0.1) 0%,
+        rgba(18, 18, 18, 0.9) 50%,
+        rgba(255, 121, 188, 0.1) 100%
+    );
+}
+
+.vip-card {
+    background-color: var(--bg-card);
+    border: 2px solid var(--primary-color);
+    border-radius: 16px;
+    padding: var(--spacing-lg);
+    max-width: 800px;
+    margin: 0 auto var(--spacing-lg);
+    text-align: center;
+    box-shadow: var(--shadow-glow);
+}
+
+.vip-card h3 {
+    color: var(--primary-color);
+    font-size: 2rem;
+    margin-bottom: var(--spacing-md);
+}
+
+.vip-card p {
+    color: var(--text-light);
+    margin-bottom: var(--spacing-sm);
+    line-height: 1.8;
+}
+
+.price-tag {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    color: var(--text-main);
+    padding: var(--spacing-sm) var(--spacing-lg);
+    border-radius: 25px;
+    font-weight: 700;
+    font-size: 1.25rem;
+    margin: var(--spacing-md) 0;
+    box-shadow: var(--shadow-glow);
+}
+
+.disclaimer {
+    background-color: var(--bg-card);
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    padding: var(--spacing-md);
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.disclaimer h4 {
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-sm);
+    font-size: 1.25rem;
+}
+
+.disclaimer p {
+    color: var(--text-muted);
+    margin-bottom: var(--spacing-xs);
+    line-height: 1.8;
+    font-size: 0.95rem;
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+    section {
+        padding: var(--spacing-lg) var(--spacing-sm);
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .modes-container,
+    .rules-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+    
+    .mode-card,
+    .rule-box {
+        padding: var(--spacing-md);
+    }
+    
+    .vip-card {
+        padding: var(--spacing-md);
+    }
+    
+    .vip-card h3 {
+        font-size: 1.5rem;
+    }
+    
+    .disclaimer {
+        padding: var(--spacing-sm);
+    }
+    
+    .disclaimer p {
+        font-size: 0.9rem;
+    }
+}

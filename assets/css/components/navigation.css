@@ -1,0 +1,199 @@
+/* Navigation Component Styles */
+
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--nav-height);
+    background-color: rgba(18, 18, 18, 0.95);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 var(--spacing-md);
+    z-index: var(--z-nav);
+    border-bottom: 1px solid var(--border-color);
+    transition: all var(--transition-normal);
+}
+
+/* Logo/Brand Link */
+.brand-link {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding: var(--spacing-xs) 0;
+}
+
+.brand-logo {
+    height: 45px;
+    width: auto;
+    object-fit: contain;
+    transition: transform var(--transition-normal);
+}
+
+.brand-logo:hover {
+    transform: scale(1.05);
+}
+
+/* Navigation Links */
+.nav-links {
+    display: flex;
+    gap: var(--spacing-md);
+    align-items: center;
+}
+
+.nav-links a {
+    color: var(--text-main);
+    font-weight: 400;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: 4px;
+    transition: all var(--transition-normal);
+    position: relative;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-color);
+    transition: width var(--transition-normal);
+}
+
+.nav-links a:hover {
+    color: var(--primary-color);
+}
+
+.nav-links a:hover::after {
+    width: 80%;
+}
+
+/* Discord Button */
+.btn-discord {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    color: var(--text-main);
+    padding: var(--spacing-xs) var(--spacing-md);
+    border-radius: 25px;
+    font-weight: 700;
+    box-shadow: var(--shadow-glow);
+    transition: all var(--transition-normal);
+}
+
+.btn-discord:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 25px var(--glow-color);
+    color: var(--text-main);
+}
+
+/* Hamburger Menu */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: transparent;
+    padding: var(--spacing-xs);
+    width: 30px;
+    height: 30px;
+    justify-content: center;
+    align-items: center;
+}
+
+.hamburger span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: var(--text-main);
+    border-radius: 2px;
+    transition: all var(--transition-normal);
+}
+
+.hamburger:hover span {
+    background-color: var(--primary-color);
+}
+
+/* Hamburger Active State */
+.hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(7px, 7px);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
+}
+
+/* Mobile Navigation */
+@media (max-width: 768px) {
+    nav {
+        height: var(--nav-height-mobile);
+        padding: 0 var(--spacing-sm);
+    }
+    
+    .brand-logo {
+        height: 35px;
+    }
+    
+    .hamburger {
+        display: flex;
+    }
+    
+    .nav-links {
+        position: fixed;
+        top: var(--nav-height-mobile);
+        left: 0;
+        right: 0;
+        background-color: rgba(18, 18, 18, 0.98);
+        backdrop-filter: blur(10px);
+        flex-direction: column;
+        padding: var(--spacing-md);
+        gap: var(--spacing-sm);
+        transform: translateX(-100%);
+        transition: transform var(--transition-normal);
+        border-bottom: 1px solid var(--border-color);
+        max-height: calc(100vh - var(--nav-height-mobile));
+        overflow-y: auto;
+    }
+    
+    .nav-links.active {
+        transform: translateX(0);
+    }
+    
+    .nav-links a {
+        width: 100%;
+        text-align: center;
+        padding: var(--spacing-sm);
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+    }
+    
+    .nav-links a::after {
+        display: none;
+    }
+    
+    .nav-links a:hover {
+        background-color: var(--bg-card);
+        border-color: var(--primary-color);
+    }
+    
+    .btn-discord {
+        padding: var(--spacing-xs) var(--spacing-sm);
+        font-size: 0.9rem;
+    }
+}
+
+/* 確保內容不被導航欄遮擋 */
+body {
+    padding-top: var(--nav-height);
+}
+
+@media (max-width: 768px) {
+    body {
+        padding-top: var(--nav-height-mobile);
+    }
+}
