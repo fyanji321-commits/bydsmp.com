@@ -173,12 +173,7 @@ section {
    ============================================ */
 
 .sponsor-section {
-    background: linear-gradient(
-        135deg,
-        rgba(255, 121, 188, 0.1) 0%,
-        rgba(18, 18, 18, 0.9) 50%,
-        rgba(255, 121, 188, 0.1) 100%
-    );
+    background: transparent;
 }
 
 .vip-card {
@@ -222,11 +217,11 @@ section {
     border-radius: 12px;
     padding: var(--spacing-md);
     max-width: 900px;
-    margin: 0 auto;
+    margin: 0 auto var(--spacing-lg);
 }
 
 .disclaimer h4 {
-    color: var(--primary-color);
+    color: #ff4d4d;
     margin-bottom: var(--spacing-sm);
     font-size: 1.25rem;
 }

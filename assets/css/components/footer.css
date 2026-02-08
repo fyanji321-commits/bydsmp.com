@@ -1,45 +1,103 @@
 /* Footer Component Styles */
 
 footer {
-    background-color: var(--bg-card);
+    background: linear-gradient(
+        180deg,
+        transparent 0%,
+        rgba(18, 18, 18, 0.6) 20%,
+        rgba(30, 30, 30, 0.9) 100%
+    );
     border-top: 2px solid var(--border-color);
-    padding: var(--spacing-lg) var(--spacing-md);
+    padding: var(--spacing-xl) var(--spacing-md) var(--spacing-lg);
     text-align: center;
     margin-top: var(--spacing-xl);
+    position: relative;
+    overflow: hidden;
+}
+
+footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        var(--primary-color),
+        transparent
+    );
+    opacity: 0.5;
 }
 
 footer p {
-    color: var(--text-muted);
-    margin-bottom: var(--spacing-sm);
+    color: var(--text-light);
+    margin-bottom: var(--spacing-md);
     line-height: 1.8;
+    position: relative;
+    z-index: 1;
+}
+
+footer p:first-child {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-main);
+    margin-bottom: var(--spacing-md);
 }
 
 footer p:last-child {
     margin-bottom: 0;
+    margin-top: var(--spacing-lg);
+    padding-top: var(--spacing-md);
+    border-top: 1px solid rgba(255, 121, 188, 0.2);
 }
 
 footer strong {
     color: var(--primary-color);
     font-weight: 700;
+    font-size: 1.05em;
 }
 
 footer a {
     color: var(--primary-light);
-    text-decoration: underline;
-    transition: color var(--transition-normal);
+    text-decoration: none;
+    transition: all var(--transition-normal);
+    position: relative;
+    padding: 0 2px;
+}
+
+footer a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--primary-color);
+    transform: scaleX(0);
+    transition: transform var(--transition-normal);
 }
 
 footer a:hover {
     color: var(--primary-color);
 }
 
+footer a:hover::after {
+    transform: scaleX(1);
+}
+
 /* 響應式設計 */
 @media (max-width: 768px) {
     footer {
-        padding: var(--spacing-md) var(--spacing-sm);
+        padding: var(--spacing-lg) var(--spacing-sm) var(--spacing-md);
     }
     
     footer p {
         font-size: 0.9rem;
+    }
+    
+    footer p:first-child {
+        font-size: 1rem;
     }
 }

@@ -1,4 +1,4 @@
-/* Navigation Component Styles */
+/* Navigation Component Styles - 重新設計 */
 
 nav {
     position: fixed;
@@ -6,15 +6,55 @@ nav {
     left: 0;
     right: 0;
     height: var(--nav-height);
-    background-color: rgba(18, 18, 18, 0.95);
-    backdrop-filter: blur(10px);
+    background: linear-gradient(
+        180deg,
+        rgba(18, 18, 18, 0.98) 0%,
+        rgba(18, 18, 18, 0.95) 100%
+    );
+    backdrop-filter: blur(20px);
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: 0 var(--spacing-md);
+    justify-content: flex-end;
+    padding: 0 var(--spacing-lg);
     z-index: var(--z-nav);
-    border-bottom: 1px solid var(--border-color);
+    border-bottom: 2px solid transparent;
+    background-image: linear-gradient(
+        rgba(18, 18, 18, 0.98),
+        rgba(18, 18, 18, 0.98)
+    ),
+    linear-gradient(
+        90deg,
+        transparent,
+        var(--primary-color) 20%,
+        var(--primary-color) 80%,
+        transparent
+    );
+    background-size: 100% 100%, 100% 2px;
+    background-position: top, bottom;
+    background-repeat: no-repeat;
     transition: all var(--transition-normal);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+    gap: var(--spacing-md);
+}
+
+nav > .brand-link {
+    margin-right: auto;
+}
+
+nav::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 121, 188, 0.5),
+        transparent
+    );
+    opacity: 0.5;
 }
 
 /* Logo/Brand Link */
@@ -23,33 +63,56 @@ nav {
     align-items: center;
     height: 100%;
     padding: var(--spacing-xs) 0;
+    position: relative;
+    z-index: 1;
 }
 
 .brand-logo {
-    height: 45px;
+    height: 50px;
     width: auto;
     object-fit: contain;
-    transition: transform var(--transition-normal);
+    transition: all var(--transition-normal);
+    filter: drop-shadow(0 0 10px rgba(255, 121, 188, 0.3));
 }
 
 .brand-logo:hover {
-    transform: scale(1.05);
+    transform: scale(1.1) rotate(5deg);
+    filter: drop-shadow(0 0 15px rgba(255, 121, 188, 0.5));
 }
 
 /* Navigation Links */
 .nav-links {
     display: flex;
-    gap: var(--spacing-md);
+    gap: var(--spacing-sm);
     align-items: center;
+    position: relative;
 }
 
 .nav-links a {
-    color: var(--text-main);
-    font-weight: 400;
-    padding: var(--spacing-xs) var(--spacing-sm);
-    border-radius: 4px;
+    color: var(--text-light);
+    font-weight: 500;
+    padding: var(--spacing-xs) var(--spacing-md);
+    border-radius: 8px;
     transition: all var(--transition-normal);
     position: relative;
+    font-size: 1rem;
+    overflow: hidden;
+}
+
+.nav-links a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 121, 188, 0.1),
+        transparent
+    );
+    transition: left 0.5s ease;
 }
 
 .nav-links a::after {
@@ -60,12 +123,24 @@ nav {
     transform: translateX(-50%);
     width: 0;
     height: 2px;
-    background-color: var(--primary-color);
+    background: linear-gradient(
+        90deg,
+        var(--primary-color),
+        var(--primary-light)
+    );
+    border-radius: 2px;
     transition: width var(--transition-normal);
+    box-shadow: 0 0 10px var(--primary-color);
 }
 
 .nav-links a:hover {
-    color: var(--primary-color);
+    color: var(--primary-light);
+    background: rgba(255, 121, 188, 0.05);
+    transform: translateY(-2px);
+}
+
+.nav-links a:hover::before {
+    left: 100%;
 }
 
 .nav-links a:hover::after {
@@ -74,73 +149,179 @@ nav {
 
 /* Discord Button */
 .btn-discord {
-    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    background: linear-gradient(
+        135deg,
+        var(--primary-color),
+        var(--primary-dark)
+    );
     color: var(--text-main);
-    padding: var(--spacing-xs) var(--spacing-md);
-    border-radius: 25px;
-    font-weight: 700;
-    box-shadow: var(--shadow-glow);
+    padding: var(--spacing-sm);
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 
+        0 0 20px rgba(255, 121, 188, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    transition: all var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 121, 188, 0.3);
+    text-decoration: none;
+}
+
+.btn-discord i {
+    font-size: 1.5rem;
+    color: var(--text-main);
     transition: all var(--transition-normal);
 }
 
+.btn-discord::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+    );
+    transition: left 0.5s ease;
+}
+
 .btn-discord:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 0 25px var(--glow-color);
+    transform: translateY(-3px) scale(1.1) rotate(5deg);
+    box-shadow: 
+        0 5px 30px rgba(255, 121, 188, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    border-color: var(--primary-light);
+}
+
+.btn-discord:hover i {
+    transform: scale(1.1);
     color: var(--text-main);
+}
+
+.btn-discord:hover::before {
+    left: 100%;
+}
+
+.btn-discord:active {
+    transform: translateY(-1px) scale(1.02);
 }
 
 /* Hamburger Menu */
 .hamburger {
     display: none;
     flex-direction: column;
-    gap: 5px;
+    gap: 6px;
     background: transparent;
     padding: var(--spacing-xs);
-    width: 30px;
-    height: 30px;
+    width: 35px;
+    height: 35px;
     justify-content: center;
     align-items: center;
+    border-radius: 6px;
+    transition: all var(--transition-normal);
+    border: 1px solid transparent;
+}
+
+.hamburger:hover {
+    background: rgba(255, 121, 188, 0.1);
+    border-color: var(--primary-color);
 }
 
 .hamburger span {
     display: block;
     width: 25px;
     height: 3px;
-    background-color: var(--text-main);
-    border-radius: 2px;
+    background: linear-gradient(
+        90deg,
+        var(--primary-color),
+        var(--primary-light)
+    );
+    border-radius: 3px;
     transition: all var(--transition-normal);
+    box-shadow: 0 0 5px rgba(255, 121, 188, 0.3);
 }
 
 .hamburger:hover span {
-    background-color: var(--primary-color);
+    background: linear-gradient(
+        90deg,
+        var(--primary-light),
+        var(--primary-color)
+    );
+    box-shadow: 0 0 8px rgba(255, 121, 188, 0.5);
 }
 
 /* Hamburger Active State */
+.hamburger.active {
+    background: rgba(255, 121, 188, 0.15);
+    border-color: var(--primary-color);
+}
+
 .hamburger.active span:nth-child(1) {
-    transform: rotate(45deg) translate(7px, 7px);
+    transform: rotate(45deg) translate(8px, 8px);
+    background: var(--primary-color);
 }
 
 .hamburger.active span:nth-child(2) {
     opacity: 0;
+    transform: translateX(-10px);
 }
 
 .hamburger.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(7px, -7px);
+    transform: rotate(-45deg) translate(8px, -8px);
+    background: var(--primary-color);
 }
 
 /* Mobile Navigation */
 @media (max-width: 768px) {
     nav {
         height: var(--nav-height-mobile);
-        padding: 0 var(--spacing-sm);
+        padding: 0 var(--spacing-md);
+        background-image: linear-gradient(
+            rgba(18, 18, 18, 0.98),
+            rgba(18, 18, 18, 0.98)
+        ),
+        linear-gradient(
+            90deg,
+            transparent,
+            var(--primary-color) 30%,
+            var(--primary-color) 70%,
+            transparent
+        );
+        justify-content: flex-end;
+        gap: var(--spacing-sm);
+    }
+    
+    nav > .brand-link {
+        margin-right: auto;
     }
     
     .brand-logo {
-        height: 35px;
+        height: 40px;
     }
     
     .hamburger {
         display: flex;
+        order: 2;
+    }
+    
+    .btn-discord {
+        order: 1;
+        width: 40px;
+        height: 40px;
+        padding: var(--spacing-xs);
+    }
+    
+    .btn-discord i {
+        font-size: 1.3rem;
     }
     
     .nav-links {
@@ -148,16 +329,21 @@ nav {
         top: var(--nav-height-mobile);
         left: 0;
         right: 0;
-        background-color: rgba(18, 18, 18, 0.98);
-        backdrop-filter: blur(10px);
+        background: linear-gradient(
+            180deg,
+            rgba(18, 18, 18, 0.98) 0%,
+            rgba(18, 18, 18, 0.95) 100%
+        );
+        backdrop-filter: blur(20px);
         flex-direction: column;
         padding: var(--spacing-md);
-        gap: var(--spacing-sm);
+        gap: var(--spacing-xs);
         transform: translateX(-100%);
         transition: transform var(--transition-normal);
-        border-bottom: 1px solid var(--border-color);
+        border-bottom: 2px solid var(--primary-color);
         max-height: calc(100vh - var(--nav-height-mobile));
         overflow-y: auto;
+        box-shadow: 0 5px 30px rgba(0, 0, 0, 0.5);
     }
     
     .nav-links.active {
@@ -167,9 +353,10 @@ nav {
     .nav-links a {
         width: 100%;
         text-align: center;
-        padding: var(--spacing-sm);
+        padding: var(--spacing-md);
         border: 1px solid var(--border-color);
-        border-radius: 8px;
+        border-radius: 10px;
+        background: rgba(255, 121, 188, 0.05);
     }
     
     .nav-links a::after {
@@ -177,13 +364,9 @@ nav {
     }
     
     .nav-links a:hover {
-        background-color: var(--bg-card);
+        background: rgba(255, 121, 188, 0.15);
         border-color: var(--primary-color);
-    }
-    
-    .btn-discord {
-        padding: var(--spacing-xs) var(--spacing-sm);
-        font-size: 0.9rem;
+        transform: translateX(5px);
     }
 }
 

@@ -41,6 +41,9 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Noto+Sans+TC:wght@300;400;700&display=swap" rel="stylesheet">
     
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
     <!-- Stylesheets -->
     <link rel="stylesheet" href="assets/css/main.css">
     
@@ -110,21 +113,21 @@
            target="_blank" 
            rel="noopener noreferrer"
            class="btn-discord"
-           aria-label="加入 Discord 社群">加入 Discord</a>
+           aria-label="加入 Discord 社群">
+            <i class="fab fa-discord"></i>
+        </a>
     </nav>
 
     <!-- Hero Section -->
     <section id="home" class="hero" role="banner">
         <h1>BYDSMP</h1>
-        <p>生存與 PVP 的完美結合 | 台灣 Minecraft 伺服器</p>
+        <p id="hero-subtitle" class="hero-subtitle"></p>
         
         <button class="ip-box" 
-                onclick="copyIP()"
                 aria-label="複製伺服器 IP 地址"
                 type="button">
             bydsmp.com
         </button>
-        <p style="margin-top: 15px; font-size: 0.9rem; color: var(--primary-light);">點擊上方 IP 複製並加入遊戲</p>
     </section>
 
     <!-- Game Modes -->
@@ -159,111 +162,126 @@
     <!-- Gallery Section -->
     <section id="gallery" aria-labelledby="gallery-title">
         <h2 id="gallery-title" class="section-title">伺服器相冊</h2>
-        <div class="gallery-grid" role="list">
-            <div class="gallery-item" role="listitem">
-                <img src="https://truth.bahamut.com.tw/s01/202602/forum/18673/7e0ba506aad016c2e062c739d55baba6.JPG" 
-                     alt="伺服器圖片 1" 
-                     loading="lazy"
-                     width="250"
-                     height="200">
+        <div class="gallery-carousel-container">
+            <button class="gallery-nav-btn gallery-prev" aria-label="上一張" type="button">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M15 18l-6-6 6-6"/>
+                </svg>
+            </button>
+            <div class="gallery-carousel" role="list">
+                <div class="gallery-slide" role="listitem">
+                    <img src="https://truth.bahamut.com.tw/s01/202602/forum/18673/7e0ba506aad016c2e062c739d55baba6.JPG" 
+                         alt="伺服器圖片 1" 
+                         loading="eager"
+                         width="800"
+                         height="600">
+                </div>
+                <div class="gallery-slide" role="listitem">
+                    <img src="https://truth.bahamut.com.tw/s01/202602/forum/18673/cb68e0127c0709bc468f3a7a11e53e5b.JPG" 
+                         alt="伺服器圖片 2" 
+                         loading="lazy"
+                         width="800"
+                         height="600">
+                </div>
+                <div class="gallery-slide" role="listitem">
+                    <img src="https://truth.bahamut.com.tw/s01/202602/forum/18673/93f140f5801510a996799ee754a77a86.JPG" 
+                         alt="伺服器圖片 3" 
+                         loading="lazy"
+                         width="800"
+                         height="600">
+                </div>
+                <div class="gallery-slide" role="listitem">
+                    <img src="https://truth.bahamut.com.tw/s01/202602/forum/18673/88d2c98185a8c7629c3367b29efc2ae1.JPG" 
+                         alt="伺服器圖片 4" 
+                         loading="lazy"
+                         width="800"
+                         height="600">
+                </div>
+                <div class="gallery-slide" role="listitem">
+                    <img src="https://truth.bahamut.com.tw/s01/202602/forum/18673/7de0db575b34156ec596da8ce3c332a5.JPG" 
+                         alt="伺服器圖片 5" 
+                         loading="lazy"
+                         width="800"
+                         height="600">
+                </div>
+                <div class="gallery-slide" role="listitem">
+                    <img src="https://truth.bahamut.com.tw/s01/202602/forum/18673/7cc9cfee0a2a6e67a3bf266ce95ad6aa.JPG" 
+                         alt="伺服器圖片 6" 
+                         loading="lazy"
+                         width="800"
+                         height="600">
+                </div>
+                <div class="gallery-slide" role="listitem">
+                    <img src="https://truth.bahamut.com.tw/s01/202602/forum/18673/636c53536e34e44e9afdb44f72f1a6f3.JPG" 
+                         alt="伺服器圖片 7" 
+                         loading="lazy"
+                         width="800"
+                         height="600">
+                </div>
+                <div class="gallery-slide" role="listitem">
+                    <img src="https://truth.bahamut.com.tw/s01/202602/forum/18673/e517e7a794e4af248dc39f2706769301.JPG" 
+                         alt="伺服器圖片 8" 
+                         loading="lazy"
+                         width="800"
+                         height="600">
+                </div>
+                <div class="gallery-slide" role="listitem">
+                    <img src="https://truth.bahamut.com.tw/s01/202602/forum/18673/9f4076989f0541b63c76e21213ebac2a.JPG" 
+                         alt="伺服器圖片 9" 
+                         loading="lazy"
+                         width="800"
+                         height="600">
+                </div>
+                <div class="gallery-slide" role="listitem">
+                    <img src="https://truth.bahamut.com.tw/s01/202602/forum/18673/367cbd307f7800d9fc43fb4d1c34ff3b.JPG" 
+                         alt="伺服器圖片 10" 
+                         loading="lazy"
+                         width="800"
+                         height="600">
+                </div>
+                <div class="gallery-slide" role="listitem">
+                    <img src="https://truth.bahamut.com.tw/s01/202602/forum/18673/2d149cbb1a19d0913d65c149acaacc43.JPG" 
+                         alt="伺服器圖片 11" 
+                         loading="lazy"
+                         width="800"
+                         height="600">
+                </div>
+                <div class="gallery-slide" role="listitem">
+                    <img src="https://truth.bahamut.com.tw/s01/202602/forum/18673/bd6aab9c19716bf47b34467d2b603741.JPG" 
+                         alt="伺服器圖片 12" 
+                         loading="lazy"
+                         width="800"
+                         height="600">
+                </div>
+                <div class="gallery-slide" role="listitem">
+                    <img src="https://truth.bahamut.com.tw/s01/202602/forum/18673/ff628de87e6e8ddd4d1cb804a4af5e89.JPG" 
+                         alt="伺服器圖片 13" 
+                         loading="lazy"
+                         width="800"
+                         height="600">
+                </div>
+                <div class="gallery-slide" role="listitem">
+                    <img src="https://truth.bahamut.com.tw/s01/202510/forum/18673/e1201c71b2a1798ed7feee79b31dc2d6.JPG" 
+                         alt="伺服器圖片 14" 
+                         loading="lazy"
+                         width="800"
+                         height="600">
+                </div>
+                <div class="gallery-slide" role="listitem">
+                    <img src="https://truth.bahamut.com.tw/s01/202510/forum/18673/1f27730a6b5348901c1597ef3b124413.JPG" 
+                         alt="伺服器圖片 15" 
+                         loading="lazy"
+                         width="800"
+                         height="600">
+                </div>
             </div>
-            <div class="gallery-item" role="listitem">
-                <img src="https://truth.bahamut.com.tw/s01/202602/forum/18673/cb68e0127c0709bc468f3a7a11e53e5b.JPG" 
-                     alt="伺服器圖片 2" 
-                     loading="lazy"
-                     width="250"
-                     height="200">
-            </div>
-            <div class="gallery-item" role="listitem">
-                <img src="https://truth.bahamut.com.tw/s01/202602/forum/18673/93f140f5801510a996799ee754a77a86.JPG" 
-                     alt="伺服器圖片 3" 
-                     loading="lazy"
-                     width="250"
-                     height="200">
-            </div>
-            <div class="gallery-item" role="listitem">
-                <img src="https://truth.bahamut.com.tw/s01/202602/forum/18673/88d2c98185a8c7629c3367b29efc2ae1.JPG" 
-                     alt="伺服器圖片 4" 
-                     loading="lazy"
-                     width="250"
-                     height="200">
-            </div>
-            <div class="gallery-item" role="listitem">
-                <img src="https://truth.bahamut.com.tw/s01/202602/forum/18673/7de0db575b34156ec596da8ce3c332a5.JPG" 
-                     alt="伺服器圖片 5" 
-                     loading="lazy"
-                     width="250"
-                     height="200">
-            </div>
-            <div class="gallery-item" role="listitem">
-                <img src="https://truth.bahamut.com.tw/s01/202602/forum/18673/7cc9cfee0a2a6e67a3bf266ce95ad6aa.JPG" 
-                     alt="伺服器圖片 6" 
-                     loading="lazy"
-                     width="250"
-                     height="200">
-            </div>
-            <div class="gallery-item" role="listitem">
-                <img src="https://truth.bahamut.com.tw/s01/202602/forum/18673/636c53536e34e44e9afdb44f72f1a6f3.JPG" 
-                     alt="伺服器圖片 7" 
-                     loading="lazy"
-                     width="250"
-                     height="200">
-            </div>
-            <div class="gallery-item" role="listitem">
-                <img src="https://truth.bahamut.com.tw/s01/202602/forum/18673/e517e7a794e4af248dc39f2706769301.JPG" 
-                     alt="伺服器圖片 8" 
-                     loading="lazy"
-                     width="250"
-                     height="200">
-            </div>
-            <div class="gallery-item" role="listitem">
-                <img src="https://truth.bahamut.com.tw/s01/202602/forum/18673/9f4076989f0541b63c76e21213ebac2a.JPG" 
-                     alt="伺服器圖片 9" 
-                     loading="lazy"
-                     width="250"
-                     height="200">
-            </div>
-            <div class="gallery-item" role="listitem">
-                <img src="https://truth.bahamut.com.tw/s01/202602/forum/18673/367cbd307f7800d9fc43fb4d1c34ff3b.JPG" 
-                     alt="伺服器圖片 10" 
-                     loading="lazy"
-                     width="250"
-                     height="200">
-            </div>
-            <div class="gallery-item" role="listitem">
-                <img src="https://truth.bahamut.com.tw/s01/202602/forum/18673/2d149cbb1a19d0913d65c149acaacc43.JPG" 
-                     alt="伺服器圖片 11" 
-                     loading="lazy"
-                     width="250"
-                     height="200">
-            </div>
-            <div class="gallery-item" role="listitem">
-                <img src="https://truth.bahamut.com.tw/s01/202602/forum/18673/bd6aab9c19716bf47b34467d2b603741.JPG" 
-                     alt="伺服器圖片 12" 
-                     loading="lazy"
-                     width="250"
-                     height="200">
-            </div>
-            <div class="gallery-item" role="listitem">
-                <img src="https://truth.bahamut.com.tw/s01/202602/forum/18673/ff628de87e6e8ddd4d1cb804a4af5e89.JPG" 
-                     alt="伺服器圖片 13" 
-                     loading="lazy"
-                     width="250"
-                     height="200">
-            </div>
-            <div class="gallery-item" role="listitem">
-                <img src="https://truth.bahamut.com.tw/s01/202510/forum/18673/e1201c71b2a1798ed7feee79b31dc2d6.JPG" 
-                     alt="伺服器圖片 14" 
-                     loading="lazy"
-                     width="250"
-                     height="200">
-            </div>
-            <div class="gallery-item" role="listitem">
-                <img src="https://truth.bahamut.com.tw/s01/202510/forum/18673/1f27730a6b5348901c1597ef3b124413.JPG" 
-                     alt="伺服器圖片 15" 
-                     loading="lazy"
-                     width="250"
-                     height="200">
+            <button class="gallery-nav-btn gallery-next" aria-label="下一張" type="button">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 18l6-6-6-6"/>
+                </svg>
+            </button>
+            <div class="gallery-indicators" role="tablist" aria-label="相冊導航">
+                <!-- 指示器將由 JavaScript 動態生成 -->
             </div>
         </div>
     </section>
@@ -359,8 +377,10 @@
     <!-- JavaScript -->
     <script src="assets/js/config.js"></script>
     <script src="assets/js/modules/navigation.js"></script>
+    <script src="assets/js/modules/typewriter.js"></script>
+    <script src="assets/js/modules/particleBackground.js"></script>
+    <script src="assets/js/modules/galleryCarousel.js"></script>
     <script src="assets/js/modules/copyIP.js"></script>
-    <script src="assets/js/modules/backgroundSlider.js"></script>
     <script src="assets/js/main.js"></script>
 </body>
 </html>

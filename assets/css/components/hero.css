@@ -9,10 +9,7 @@
     justify-content: center;
     text-align: center;
     padding: var(--spacing-xl) var(--spacing-md);
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+    background-color: var(--bg-dark);
     overflow: hidden;
 }
 
@@ -31,6 +28,7 @@
         rgba(18, 18, 18, 0.85) 100%
     );
     z-index: 1;
+    pointer-events: none;
 }
 
 /* Hero 內容 */
@@ -40,25 +38,73 @@
 }
 
 .hero h1 {
-    font-size: 4rem;
+    font-size: 5rem;
     font-weight: 900;
-    background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+    background: linear-gradient(
+        135deg,
+        var(--primary-color) 0%,
+        var(--primary-light) 30%,
+        var(--primary-light) 70%,
+        var(--primary-color) 100%
+    );
+    background-size: 300% 300%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    text-shadow: 0 0 30px var(--glow-color);
     margin-bottom: var(--spacing-md);
-    animation: glow 2s ease-in-out infinite alternate;
+    animation: 
+        titleGradient 4s ease-in-out infinite,
+        titleFloat 6s ease-in-out infinite,
+        titleScale 8s ease-in-out infinite;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    position: relative;
+    display: inline-block;
+    transform-origin: center;
 }
 
-@keyframes glow {
-    from {
-        filter: drop-shadow(0 0 10px var(--glow-color));
+@keyframes titleGradient {
+    0% {
+        background-position: 0% 50%;
     }
-    to {
-        filter: drop-shadow(0 0 20px var(--primary-color));
+    25% {
+        background-position: 50% 0%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    75% {
+        background-position: 50% 100%;
+    }
+    100% {
+        background-position: 0% 50%;
     }
 }
+
+@keyframes titleFloat {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    25% {
+        transform: translateY(-8px) rotate(0.5deg);
+    }
+    50% {
+        transform: translateY(-12px) rotate(0deg);
+    }
+    75% {
+        transform: translateY(-8px) rotate(-0.5deg);
+    }
+}
+
+@keyframes titleScale {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.02);
+    }
+}
+
 
 .hero p {
     font-size: 1.25rem;
@@ -67,23 +113,63 @@
     font-weight: 300;
 }
 
-/* IP Box Button */
-.ip-box {
-    background: rgba(30, 30, 30, 0.8);
-    border: 2px solid var(--primary-color);
-    color: var(--text-main);
-    padding: var(--spacing-md) var(--spacing-lg);
-    font-size: 1.5rem;
-    font-weight: 700;
+/* 打字機效果副標 */
+.hero-subtitle {
+    font-size: 1.25rem;
+    color: var(--text-light);
+    margin-bottom: var(--spacing-lg);
+    font-weight: 300;
     font-family: var(--font-heading);
-    border-radius: 12px;
-    box-shadow: var(--shadow-glow);
-    cursor: pointer;
-    transition: all var(--transition-normal);
-    position: relative;
-    overflow: hidden;
+    min-height: 1.5em;
+    display: inline-block;
 }
 
+.hero-subtitle::after {
+    content: '|';
+    animation: blink 1s infinite;
+    margin-left: 2px;
+    color: var(--primary-color);
+}
+
+@keyframes blink {
+    0%, 50% {
+        opacity: 1;
+    }
+    51%, 100% {
+        opacity: 0;
+    }
+}
+
+/* IP Box Button - 現代化設計 */
+.ip-box {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 121, 188, 0.3);
+    color: var(--text-main);
+    padding: 1rem 2.5rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    font-family: var(--font-heading);
+    line-height: 1.5;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    white-space: nowrap;
+    min-width: 360px;
+    width: auto;
+    text-align: center;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    backdrop-filter: blur(10px);
+    box-shadow: 
+        0 4px 15px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* 背景光效 */
 .ip-box::before {
     content: '';
     position: absolute;
@@ -94,24 +180,68 @@
     background: linear-gradient(
         90deg,
         transparent,
-        rgba(255, 121, 188, 0.3),
+        rgba(255, 121, 188, 0.2),
         transparent
     );
     transition: left 0.5s ease;
 }
 
+/* 邊框光效 */
+.ip-box::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border-radius: 50px;
+    background: linear-gradient(
+        135deg,
+        var(--primary-color),
+        var(--primary-light),
+        var(--primary-color)
+    );
+    background-size: 200% 200%;
+    opacity: 0;
+    z-index: -1;
+    transition: opacity 0.3s ease, background-position 3s linear;
+}
+
 .ip-box:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 0 30px var(--glow-color);
-    border-color: var(--primary-light);
+    transform: translateY(-2px);
+    border-color: var(--primary-color);
+    background: rgba(255, 121, 188, 0.1);
+    box-shadow: 
+        0 8px 25px rgba(255, 121, 188, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 .ip-box:hover::before {
     left: 100%;
 }
 
+.ip-box:hover::after {
+    opacity: 1;
+    animation: borderGlow 3s linear infinite;
+}
+
+@keyframes borderGlow {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
 .ip-box:active {
-    transform: translateY(-1px);
+    transform: translateY(0);
+    box-shadow: 
+        0 4px 15px rgba(255, 121, 188, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 /* 響應式設計 */
@@ -123,8 +253,9 @@
     }
     
     .hero h1 {
-        font-size: 2.5rem;
+        font-size: 3rem;
         margin-bottom: var(--spacing-sm);
+        letter-spacing: 0.05em;
     }
     
     .hero p {
@@ -132,19 +263,29 @@
         margin-bottom: var(--spacing-md);
     }
     
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+    
     .ip-box {
-        padding: var(--spacing-sm) var(--spacing-md);
+        padding: 0.8rem var(--spacing-lg);
         font-size: 1.25rem;
+        min-width: 300px;
     }
 }
 
 @media (max-width: 480px) {
     .hero h1 {
-        font-size: 2rem;
+        font-size: 2.5rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 0.9rem;
     }
     
     .ip-box {
         font-size: 1.1rem;
-        padding: var(--spacing-xs) var(--spacing-sm);
+        padding: 0.7rem var(--spacing-md);
+        min-width: 280px;
     }
 }

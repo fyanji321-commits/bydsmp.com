@@ -1,84 +1,258 @@
-/* Gallery Component Styles */
+/* Gallery Component Styles - Carousel */
 
-.gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: var(--spacing-md);
-    max-width: 1400px;
+.gallery-carousel-container {
+    position: relative;
+    max-width: 1200px;
     margin: 0 auto;
-    padding: var(--spacing-md) 0;
+    padding: var(--spacing-lg) var(--spacing-md);
 }
 
-.gallery-item {
+.gallery-carousel {
     position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
     overflow: hidden;
     border-radius: 12px;
-    border: 2px solid var(--border-color);
     background-color: var(--bg-card);
-    aspect-ratio: 5 / 4;
-    transition: all var(--transition-normal);
-    cursor: pointer;
-}
-
-.gallery-item::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(
-        135deg,
-        rgba(255, 121, 188, 0) 0%,
-        rgba(255, 121, 188, 0.1) 100%
-    );
-    opacity: 0;
-    transition: opacity var(--transition-normal);
-    z-index: 1;
-}
-
-.gallery-item:hover {
-    transform: translateY(-5px) scale(1.02);
-    border-color: var(--primary-color);
+    border: 2px solid var(--border-color);
     box-shadow: var(--shadow-glow);
 }
 
-.gallery-item:hover::before {
-    opacity: 1;
+.gallery-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    display: none;
+    transition: opacity var(--transition-normal);
 }
 
-.gallery-item img {
+.gallery-slide.active {
+    opacity: 1;
+    display: block;
+}
+
+.gallery-slide img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform var(--transition-slow);
+    display: block;
 }
 
-.gallery-item:hover img {
-    transform: scale(1.1);
+/* 切換動畫 */
+.gallery-slide.slide-in-right {
+    animation: slideInRight 0.5s ease-out forwards;
+}
+
+.gallery-slide.slide-in-left {
+    animation: slideInLeft 0.5s ease-out forwards;
+}
+
+.gallery-slide.slide-out-right {
+    animation: slideOutRight 0.5s ease-out forwards;
+}
+
+.gallery-slide.slide-out-left {
+    animation: slideOutLeft 0.5s ease-out forwards;
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutRight {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+@keyframes slideOutLeft {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+}
+
+/* 導航按鈕 */
+.gallery-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: 2px solid var(--primary-color);
+    color: var(--text-main);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    transition: all var(--transition-normal);
+    backdrop-filter: blur(10px);
+}
+
+.gallery-nav-btn:hover {
+    background: rgba(255, 121, 188, 0.1);
+    border-color: var(--primary-light);
+    box-shadow: 0 0 20px var(--glow-color);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.gallery-nav-btn:active {
+    transform: translateY(-50%) scale(0.95);
+}
+
+.gallery-nav-btn svg {
+    width: 24px;
+    height: 24px;
+    stroke: var(--primary-color);
+    transition: stroke var(--transition-normal);
+}
+
+.gallery-nav-btn:hover svg {
+    stroke: var(--primary-light);
+}
+
+.gallery-prev {
+    left: var(--spacing-md);
+}
+
+.gallery-next {
+    right: var(--spacing-md);
+}
+
+/* 指示器 */
+.gallery-indicators {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-xs);
+    margin-top: var(--spacing-md);
+    flex-wrap: wrap;
+}
+
+.gallery-indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 2px solid var(--border-color);
+    background-color: transparent;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    padding: 0;
+    outline: none;
+}
+
+.gallery-indicator:hover {
+    border-color: var(--primary-light);
+    transform: scale(1.2);
+}
+
+.gallery-indicator.active {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    box-shadow: 0 0 10px var(--glow-color);
+}
+
+.gallery-indicator:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
 }
 
 /* 響應式設計 */
 @media (max-width: 1024px) {
-    .gallery-grid {
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-        gap: var(--spacing-sm);
+    .gallery-carousel {
+        aspect-ratio: 16 / 10;
+    }
+    
+    .gallery-nav-btn {
+        width: 45px;
+        height: 45px;
+    }
+    
+    .gallery-nav-btn svg {
+        width: 20px;
+        height: 20px;
     }
 }
 
 @media (max-width: 768px) {
-    .gallery-grid {
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-        gap: var(--spacing-xs);
+    .gallery-carousel-container {
+        padding: var(--spacing-md) var(--spacing-sm);
     }
     
-    .gallery-item {
+    .gallery-carousel {
+        aspect-ratio: 4 / 3;
         border-radius: 8px;
+    }
+    
+    .gallery-nav-btn {
+        width: 40px;
+        height: 40px;
+        padding: 0;
+    }
+    
+    .gallery-nav-btn svg {
+        width: 18px;
+        height: 18px;
+    }
+    
+    .gallery-prev {
+        left: var(--spacing-xs);
+    }
+    
+    .gallery-next {
+        right: var(--spacing-xs);
+    }
+    
+    .gallery-indicator {
+        width: 10px;
+        height: 10px;
     }
 }
 
 @media (max-width: 480px) {
-    .gallery-grid {
-        grid-template-columns: repeat(2, 1fr);
+    .gallery-carousel {
+        aspect-ratio: 1 / 1;
+    }
+    
+    .gallery-nav-btn {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .gallery-nav-btn svg {
+        width: 16px;
+        height: 16px;
     }
 }
