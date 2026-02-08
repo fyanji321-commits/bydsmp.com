@@ -23,6 +23,7 @@
 
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: 120px; /* 全局滾動偏移，確保錨點滾動時有空間 */
     font-size: 16px;
 }
 
@@ -100,6 +101,7 @@ ul {
 @media (max-width: 768px) {
     html {
         font-size: 14px;
+        scroll-padding-top: 100px; /* 移動端滾動偏移 */
     }
     
     h1 {

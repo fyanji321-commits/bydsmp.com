@@ -11,6 +11,7 @@
     padding: var(--spacing-xl) var(--spacing-md);
     background-color: var(--bg-dark);
     overflow: hidden;
+    scroll-margin-top: 0; /* Hero 區塊不需要偏移 */
 }
 
 /* Hero 背景遮罩 */
