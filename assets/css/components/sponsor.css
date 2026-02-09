@@ -1,0 +1,216 @@
+/* 贊助支持頁 - VIP 等級制、現代表格式設計 */
+
+.sponsor-page {
+    padding-top: max(160px, calc(var(--nav-height, 70px) + var(--spacing-lg) + var(--spacing-md)));
+    padding-left: clamp(var(--spacing-md), 6vw, var(--spacing-xl));
+    padding-right: clamp(var(--spacing-md), 6vw, var(--spacing-xl));
+    padding-bottom: var(--spacing-xl);
+    max-width: 920px;
+    margin: 0 auto;
+}
+
+.sponsor-page .section-title {
+    margin-top: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+    scroll-margin-top: calc(var(--nav-height, 70px) + 1rem);
+}
+
+.sponsor-intro {
+    color: var(--text-muted);
+    font-size: 1rem;
+    line-height: 1.75;
+    margin-bottom: var(--spacing-lg);
+}
+
+.sponsor-intro strong {
+    color: var(--primary-light);
+}
+
+/* VIP 福利表格 */
+.vip-table-wrap {
+    margin-bottom: var(--spacing-xl);
+    overflow-x: auto;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 121, 188, 0.2);
+    background: rgba(28, 28, 28, 0.6);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+}
+
+.vip-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+}
+
+.vip-table th,
+.vip-table td {
+    padding: var(--spacing-sm) var(--spacing-md);
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    vertical-align: middle;
+}
+
+.vip-table thead th {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    color: var(--primary-light);
+    background: rgba(255, 121, 188, 0.08);
+    padding: var(--spacing-md);
+    font-size: 0.9rem;
+    letter-spacing: 0.04em;
+}
+
+.vip-table thead th:nth-child(1) { width: 88px; text-align: center; }
+.vip-table thead th:nth-child(2) { width: 100px; text-align: center; }
+
+.vip-table tbody tr {
+    transition: background var(--transition-fast);
+}
+
+.vip-table tbody tr:hover {
+    background: rgba(255, 121, 188, 0.04);
+}
+
+.vip-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.vip-table td:nth-child(1),
+.vip-table td:nth-child(2) {
+    text-align: center;
+}
+
+.vip-table td:nth-child(2) {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+.vip-table td:nth-child(3) {
+    color: var(--text-light);
+    line-height: 1.6;
+}
+
+/* VIP 等級徽章 */
+.vip-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2.25rem;
+    height: 2.25rem;
+    padding: 0 0.5rem;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: #fff;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(255, 121, 188, 0.3);
+}
+
+.vip-badge--0 {
+    background: rgba(255, 255, 255, 0.12);
+    color: var(--text-muted);
+    box-shadow: none;
+}
+
+/* 前往贊助 CTA */
+.sponsor-cta-wrap {
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+}
+
+.sponsor-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.85rem 2rem;
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 700;
+    color: #fff;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    border-radius: 12px;
+    text-decoration: none;
+    transition: opacity var(--transition-normal), transform var(--transition-normal), box-shadow var(--transition-normal);
+    box-shadow: 0 4px 20px rgba(255, 121, 188, 0.35);
+}
+
+.sponsor-cta:hover {
+    opacity: 0.95;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(255, 121, 188, 0.45);
+}
+
+/* 重要說明區塊 */
+.sponsor-disclaimer {
+    background: rgba(28, 28, 28, 0.6);
+    border: 1px solid rgba(255, 77, 77, 0.2);
+    border-radius: 12px;
+    padding: var(--spacing-lg);
+}
+
+.sponsor-disclaimer__title {
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--color-violation);
+    margin: 0 0 var(--spacing-sm) 0;
+}
+
+.sponsor-disclaimer__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.sponsor-disclaimer__list li {
+    position: relative;
+    padding-left: 1.25rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    line-height: 1.7;
+}
+
+.sponsor-disclaimer__list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.6em;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--color-violation);
+}
+
+@media (max-width: 768px) {
+    .sponsor-page {
+        padding-top: max(140px, calc(var(--nav-height-mobile, 60px) + var(--spacing-lg) + var(--spacing-sm)));
+        padding-left: var(--spacing-sm);
+        padding-right: var(--spacing-sm);
+    }
+
+    .vip-table {
+        font-size: 0.85rem;
+    }
+
+    .vip-table th,
+    .vip-table td {
+        padding: var(--spacing-xs) var(--spacing-sm);
+    }
+
+    .vip-table thead th:nth-child(1) { width: 64px; }
+    .vip-table thead th:nth-child(2) { width: 72px; }
+
+    .vip-badge {
+        min-width: 1.85rem;
+        height: 1.85rem;
+        font-size: 0.85rem;
+    }
+
+    .sponsor-cta {
+        padding: 0.75rem 1.5rem;
+        font-size: 0.95rem;
+    }
+}

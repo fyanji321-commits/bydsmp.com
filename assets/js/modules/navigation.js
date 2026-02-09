@@ -5,18 +5,21 @@
     function initScrollHide() {
         const nav = document.querySelector('nav');
         if (!nav) return;
-        let lastScrollY = window.scrollY;
-        const scrollThreshold = 10;
+        const isSubPage = /rules\.html?$/.test(window.location.pathname) || window.location.pathname.endsWith('/rules')
+            || /sponsor\.html?$/.test(window.location.pathname) || window.location.pathname.endsWith('/sponsor');
+        if (isSubPage) {
+            return;
+        }
+        nav.classList.add('nav-hidden');
+        const showThreshold = 50;
         
         function onScroll() {
             const currentScrollY = window.scrollY;
-            if (Math.abs(currentScrollY - lastScrollY) < scrollThreshold) return;
-            if (currentScrollY > lastScrollY) {
-                nav.classList.add('nav-hidden');
-            } else {
+            if (currentScrollY > showThreshold) {
                 nav.classList.remove('nav-hidden');
+            } else {
+                nav.classList.add('nav-hidden');
             }
-            lastScrollY = currentScrollY;
         }
         
         window.addEventListener('scroll', onScroll, { passive: true });

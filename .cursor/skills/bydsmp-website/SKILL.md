@@ -7,43 +7,59 @@ description: Maintains and updates the BYDSMP Minecraft server website. Use when
 
 ## Project Overview
 
-This is a modular single-page HTML website for the BYDSMP Minecraft server. The project uses a modern architecture with separated CSS and JavaScript modules.
+This is a modular multi-page HTML website for the BYDSMP Minecraft server. The project uses a modern architecture with separated CSS and JavaScript modules.
 
 ## File Structure
 
 ```
 bydsmp.com/
-├── index.html                      # Main HTML file
+├── index.html                      # Home page
+├── rules.html                      # Rules page (tabs)
+├── sponsor.html                    # Sponsor / VIP page
+├── sitemap.xml
+├── robots.txt
 ├── assets/
 │   ├── css/
 │   │   ├── main.css               # Main stylesheet (imports all)
 │   │   ├── variables.css          # CSS variables
-│   │   └── components/            # Component styles
+│   │   └── components/
 │   │       ├── navigation.css
 │   │       ├── hero.css
 │   │       ├── sections.css
 │   │       ├── gallery.css
-│   │       └── footer.css
+│   │       ├── footer.css
+│   │       ├── rules.css
+│   │       └── sponsor.css
 │   ├── js/
 │   │   ├── main.js                # Main entry point
 │   │   ├── config.js              # Configuration file
-│   │   └── modules/               # JavaScript modules
+│   │   └── modules/
 │   │       ├── navigation.js
 │   │       ├── copyIP.js
-│   │       └── backgroundSlider.js
-│   └── images/                    # Local images (if needed)
+│   │       ├── galleryCarousel.js
+│   │       ├── modesScroll.js
+│   │       └── rulesTabs.js
+│   └── images/
 └── .cursor/skills/bydsmp-website/  # This skill directory
 ```
 
 ## Key Sections
 
-The website contains these main sections (identified by `id` attributes):
-
+### index.html
 1. **#home** - Hero section with server IP and title
 2. **#modes** - Game modes (SMP and KitPVP)
-3. **#gallery** - Server screenshot gallery
-4. **#rules** - Server rules (basic, world, redstone, PVP, violations)
-5. **#sponsor** - Sponsorship information
+3. **#gallery** - Server screenshot gallery (carousel)
+
+### rules.html
+- Server rules with tabs: 基本規則、世界規則、生電規則、PVP 規則、違規處理
+
+### sponsor.html
+- VIP 等級贊助說明、福利表格、贊助 CTA 與重要說明
+
+### Navigation
+- Header: Brand (BYDSMP)、規則、贊助支持、Discord 按鈕
+- Home page: Header hidden by default, shows on scroll (frosted glass)
+- Rules / Sponsor page: Header always visible
 
 ## Common Update Tasks
 
@@ -62,35 +78,27 @@ The config is used throughout the site, so updating it here will update all refe
 
 ### Updating Gallery Images
 
-Gallery images are in `#gallery` section of `index.html` (around line ~200). Each image is in a `.gallery-item` div:
+Gallery images are in `#gallery` section of `index.html`. Each image is in a `.gallery-slide` div:
 
 ```html
-<div class="gallery-item" role="listitem">
-    <img src="圖片網址" 
-         alt="伺服器圖片 X" 
-         loading="lazy"
-         width="250"
-         height="200">
+<div class="gallery-slide" role="listitem">
+    <img src="圖片網址" alt="描述" loading="lazy" width="800" height="600">
 </div>
 ```
 
-To add/remove images:
-- Add new `.gallery-item` divs before the closing `</div>` of `.gallery-grid`
-- Update alt text for accessibility
-- Ensure images are hosted externally (currently using Bahamut forum links)
-- Always include `loading="lazy"` for performance
+To add/remove images: Add new `.gallery-slide` divs inside `.gallery-carousel`. Use `loading="lazy"` for images after the first.
 
 ### Updating Rules
 
-Rules are organized in `.rule-box` elements within `#rules` section of `index.html`. Each rule category has its own `<article>` box:
+Rules are in `rules.html`. Each rule category has its own tab panel with `.rule-box`:
 
-- Basic rules (基本規則)
-- World rules (世界規則)
-- Redstone rules (生電規則)
-- PVP rules (PVP 規則)
-- Violations (違規處理)
+- 基本規則 (tab-basic)
+- 世界規則 (tab-world)
+- 生電規則 (tab-redstone)
+- PVP 規則 (tab-pvp)
+- 違規處理 (tab-violation)
 
-Update the `<ul class="rule-list">` content within each box.
+Update the `<ul class="rule-list">` content within each `.rules-panel` article.
 
 ### Updating Game Modes
 
@@ -115,38 +123,26 @@ CSS variables are defined in `assets/css/variables.css`:
 
 Modify these to change the color scheme globally.
 
-### Updating Background Images
+### Updating Hero Background
 
-Hero section background images are defined in `assets/js/config.js`:
+Hero background image is set in `assets/css/components/hero.css`:
+`background-image: url("../../images/hero_background.png");`
+Replace the image file to update.
 
-```javascript
-backgroundImages: [
-    '圖片網址 1',
-    '圖片網址 2'
-],
-```
+### Updating Navigation
 
-Change interval timing in `config.js`:
-```javascript
-sliderInterval: 7000, // milliseconds
-```
-
-### Updating Navigation Links
-
-Navigation links are in `<nav>` element of `index.html`. Update:
-- Link text
-- Anchor targets (`href="#section-id"`)
-- Discord link URL (preferably in `config.js`)
+Navigation is in both `index.html` and `rules.html`. Currently shows:
+- Brand link (to index)
+- Rules link (to rules.html)
+- Discord button (in config.js)
 
 ### Updating Meta Tags
 
-SEO meta tags are in `<head>` section of `index.html`:
-- `description`: Page description
-- `keywords`: SEO keywords
-- Open Graph tags (og:title, og:description, og:image)
-- Twitter Card tags
+SEO meta tags are in `<head>` of each page:
+- **index.html**: Full set (description, keywords, og, twitter, theme-color)
+- **rules.html** / **sponsor.html**: description, keywords, og, twitter, theme-color, language
 
-Update these when changing site content or adding new features.
+Update when changing site content or adding new features.
 
 ## Design Guidelines
 
@@ -190,12 +186,12 @@ Update these when changing site content or adding new features.
 ## Testing Checklist
 
 After making changes:
-- [ ] Test IP copy functionality
+- [ ] Test IP copy functionality (index)
 - [ ] Verify all images load correctly
 - [ ] Check responsive design on mobile (< 768px)
-- [ ] Test navigation menu (especially hamburger menu)
-- [ ] Verify background image rotation works
-- [ ] Check all anchor links scroll correctly
+- [ ] Test navigation (規則、贊助支持、Discord、hamburger on mobile)
+- [ ] Test rules page tabs and URL hash
+- [ ] Test sponsor page table and CTA link
 - [ ] Validate HTML structure
 - [ ] Test keyboard navigation
 - [ ] Verify ARIA labels are correct

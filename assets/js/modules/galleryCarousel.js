@@ -13,7 +13,6 @@
         const prevBtn = document.querySelector('.gallery-prev');
         const nextBtn = document.querySelector('.gallery-next');
         const indicatorsContainer = document.querySelector('.gallery-indicators');
-        
         if (!carousel || !prevBtn || !nextBtn) return;
         
         slides = Array.from(carousel.querySelectorAll('.gallery-slide'));
@@ -167,7 +166,7 @@
             }
         }
         
-        // 初始化指示器
+        // 初始化指示器與說明
         updateIndicators();
         
         // 開始自動播放

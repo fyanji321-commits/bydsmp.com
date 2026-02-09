@@ -102,9 +102,13 @@
     </script>
 </head>
 <body>
-    <!-- Navigation -->
+    <!-- Navigation：規則 | BYDSMP | 贊助支持 置中，Discord 右側 -->
     <nav role="navigation" aria-label="主要導航">
-        <a href="#home" class="brand-link brand-text" aria-label="返回首頁">BYDSMP</a>
+        <div class="nav-center-group">
+            <a href="rules.html" class="nav-center-link" role="menuitem">規則</a>
+            <a href="#home" class="brand-link brand-text" aria-label="返回首頁">BYDSMP</a>
+            <a href="sponsor.html" class="nav-center-link" role="menuitem">贊助支持</a>
+        </div>
         <button class="hamburger" 
                 onclick="toggleMenu()"
                 aria-label="開啟選單" 
@@ -114,13 +118,6 @@
             <span></span>
             <span></span>
         </button>
-        <div class="nav-links" id="nav-links" role="menubar">
-            <a href="#home" role="menuitem">首頁</a>
-            <a href="#modes" role="menuitem">遊戲分流</a>
-            <a href="#gallery" role="menuitem">相冊</a>
-            <a href="#rules" role="menuitem">規則</a>
-            <a href="#sponsor" role="menuitem">贊助</a>
-        </div>
         <a href="https://discord.gg/2EDqgeRKPs" 
            target="_blank" 
            rel="noopener noreferrer"
@@ -128,6 +125,10 @@
            aria-label="加入 Discord 社群">
             <i class="fab fa-discord"></i>
         </a>
+        <div class="nav-links" id="nav-links" role="menubar">
+            <a href="rules.html" role="menuitem">規則</a>
+            <a href="sponsor.html" role="menuitem">贊助支持</a>
+        </div>
     </nav>
 
     <!-- Hero Section -->
@@ -160,26 +161,36 @@
         <h2 id="modes-title" class="section-title">遊戲分流</h2>
         <div class="modes-container">
             <!-- SMP Card -->
-            <article class="mode-card">
-                <h3>SMP 生存分流</h3>
-                <ul>
-                    <li><strong>防噴生存：</strong>死亡不掉落，安心探索。</li>
-                    <li><strong>全新地形：</strong>獨特的遺跡與地形生成。</li>
-                    <li><strong>領地系統：</strong>保護你的建築與財產。</li>
-                    <li><strong>友好社交：</strong>規則少，適合休閒與建築玩家。</li>
-                    <li><strong>特色：</strong>擁有許多有趣的抽象玩家與造型系統。</li>
-                </ul>
+            <article class="mode-card mode-card--smp">
+                <div class="mode-card__content">
+                    <div class="mode-card__title-wrap">
+                        <img src="assets/images/Iron_Pickaxe.png" alt="" class="mode-card__icon" width="56" height="56" loading="lazy">
+                        <h3>SMP 生存分流</h3>
+                    </div>
+                    <ul>
+                        <li><strong>防噴生存：</strong>死亡不掉落，安心探索。</li>
+                        <li><strong>全新地形：</strong>獨特的遺跡與地形生成。</li>
+                        <li><strong>領地系統：</strong>保護你的建築與財產。</li>
+                        <li><strong>友好社交：</strong>規則少，適合休閒與建築玩家。</li>
+                        <li><strong>特色：</strong>擁有許多有趣的抽象玩家與造型系統。</li>
+                    </ul>
+                </div>
             </article>
 
             <!-- KitPVP Card -->
-            <article class="mode-card">
-                <h3>KitPVP 競技分流</h3>
-                <ul>
-                    <li><strong>戰力系統：</strong>完整的等級與戰力排行。</li>
-                    <li><strong>沙箱場地：</strong>專為戰鬥設計的地圖。</li>
-                    <li><strong>嚴格防掛：</strong>禁止外掛，維護公平競技。</li>
-                    <li><strong>多種模式：</strong>水晶 PVP、Mace PVP 等多樣玩法。</li>
-                </ul>
+            <article class="mode-card mode-card--kitpvp">
+                <div class="mode-card__content">
+                    <div class="mode-card__title-wrap">
+                        <img src="assets/images/Netherite_Sword.png" alt="" class="mode-card__icon" width="56" height="56" loading="lazy">
+                        <h3>KitPVP 競技分流</h3>
+                    </div>
+                    <ul>
+                        <li><strong>戰力系統：</strong>完整的等級與戰力排行。</li>
+                        <li><strong>沙箱場地：</strong>專為戰鬥設計的地圖。</li>
+                        <li><strong>嚴格防掛：</strong>禁止外掛，維護公平競技。</li>
+                        <li><strong>多種模式：</strong>水晶 PVP、Mace PVP 等多樣玩法。</li>
+                    </ul>
+                </div>
             </article>
         </div>
     </section>
@@ -311,91 +322,13 @@
         </div>
     </section>
 
-    <!-- Rules Section -->
-    <section id="rules" aria-labelledby="rules-title">
-        <h2 id="rules-title" class="section-title">伺服器規則</h2>
-        <div class="rules-grid">
-            
-            <article class="rule-box">
-                <h3>基本規則</h3>
-                <ul class="rule-list">
-                    <li>禁止作弊與使用任何外掛。</li>
-                    <li>禁止宣傳其他伺服器。</li>
-                    <li>禁止發表不當言論。</li>
-                    <li>禁止利用影響平衡之漏洞。</li>
-                </ul>
-            </article>
-
-            <article class="rule-box">
-                <h3>世界規則</h3>
-                <ul class="rule-list">
-                    <li>禁止澆注鵝卵石牆、液體牆。</li>
-                    <li>禁止炸出生點附近。</li>
-                    <li>中介主島為官方所有，不能設領地，且可能會清建築。</li>
-                </ul>
-            </article>
-
-            <article class="rule-box">
-                <h3>生電規則</h3>
-                <ul class="rule-list">
-                    <li>允許：防噴、刷沙、破基岩、TNT複製。</li>
-                    <li>允許：打印機、複製物品。</li>
-                    <li><strong>注意：</strong>卡服、大型機器須報備。</li>
-                    <li>若造成伺服器卡頓，官方有權修整機器。</li>
-                </ul>
-            </article>
-
-            <article class="rule-box">
-                <h3>PVP 規則</h3>
-                <ul class="rule-list">
-                    <li>允許：水晶、自動圖騰。</li>
-                    <li>禁止：任何外掛 (PVP中開掛嚴抓)。</li>
-                    <li>禁止：在建築和 Spawn 附近打水晶。</li>
-                    <li><strong>提醒：</strong>打架記得關 Tweakeroo 自動補貨。</li>
-                </ul>
-            </article>
-
-            <article class="rule-box rule-box--violation">
-                <h3>違規處理</h3>
-                <p>違規者視情況處理：</p>
-                <ul class="rule-list">
-                    <li>要是被發現開掛，直接裝反掛處理。</li>
-                    <li>家被抄不負責。</li>
-                    <li>若在領地內或周圍持續騷擾，將嚴懲。</li>
-                </ul>
-            </article>
-
-        </div>
-    </section>
-
-    <!-- Sponsor Section -->
-    <section id="sponsor" class="sponsor-section" aria-labelledby="sponsor-title">
-        <h2 id="sponsor-title" class="section-title">贊助支持</h2>
-        
-        <div class="vip-card">
-            <h3>純贊助支持</h3>
-            <p>您的贊助將全數用於伺服器營運支出，感謝您的無私支持！</p>
-            <div class="price-tag">自由贊助金額</div>
-            <p>本贊助為無償性質，不包含任何遊戲內特權或回饋。</p>
-            <br>
-            <p style="color: var(--primary-light);">贊助後請在訂單留言註明「遊戲 ID」(僅供紀錄感謝)</p>
-        </div>
-
-        <div class="disclaimer">
-            <h4>【重要免責聲明】</h4>
-            <p>1. 本款項屬於「無償贊助」性質，旨在支持伺服器長期營運與維護，並非購買商品或服務。贊助者不會獲得任何遊戲內特殊待遇、物品或權限。</p>
-            <p>2. 贊助款項將用於伺服器硬體租賃與維護費用。</p>
-            <p>3. 贊助者若違反伺服器規則，將一視同仁處理，無任何豁免權。</p>
-            <p>4. 贊助款項一旦支付即視為確認支持，不接受退款或取消。若有疑問，請聯絡 Discord 管理員。</p>
-            <p>5. 本頁面受綠界科技規範，嚴禁非法交易。若有爭議，以綠界後台紀錄為準。</p>
-        </div>
-    </section>
-
     <!-- Footer -->
     <footer role="contentinfo">
         <p>&copy; 2026 BYDSMP. All Rights Reserved.</p>
-        <p>Server IP: <strong>bydsmp.com</strong></p>
-        <p>聯絡信箱: <a href="mailto:bydsmp@gmail.com">bydsmp@gmail.com</a></p>
+        <div class="footer-contact">
+            <span>Server IP: <strong>bydsmp.com</strong></span>
+            <span>聯絡信箱: <a href="mailto:bydsmp@gmail.com">bydsmp@gmail.com</a></span>
+        </div>
         <p class="footer-disclaimer">本網站與 BYDSMP 伺服器為非官方粉絲創作，與 Mojang Studios 或 Microsoft 無關。NOT OFFICIAL MINECRAFT PRODUCT. NOT APPROVED BY OR ASSOCIATED WITH MOJANG OR MICROSOFT.</p>
     </footer>
 
@@ -404,9 +337,9 @@
     <!-- JavaScript -->
     <script src="assets/js/config.js"></script>
     <script src="assets/js/modules/navigation.js"></script>
-    <script src="assets/js/modules/particleBackground.js"></script>
     <script src="assets/js/modules/galleryCarousel.js"></script>
     <script src="assets/js/modules/copyIP.js"></script>
+    <script src="assets/js/modules/modesScroll.js"></script>
     <script src="assets/js/main.js"></script>
 </body>
 </html>

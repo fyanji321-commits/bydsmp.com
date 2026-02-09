@@ -7,23 +7,12 @@
     align-items: center;
     justify-content: center;
     padding: var(--spacing-xl) clamp(var(--spacing-md), 5vw, var(--spacing-xl));
-    background-color: #0a0a0a;
+    background-color: var(--bg-dark);
+    background-image: url("../../images/hero_background.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     overflow: hidden;
-    scroll-margin-top: 0;
-}
-
-/* Hero 深色背景 */
-.hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(255, 121, 188, 0.04) 0%, transparent 50%),
-                linear-gradient(180deg, rgba(10, 10, 10, 0.98) 0%, #0a0a0a 100%);
-    z-index: 1;
-    pointer-events: none;
 }
 
 /* Hero 內容區：Logo 左 | 文字右，水平置中對齊（512×512 方形 Logo） */
