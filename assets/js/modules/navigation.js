@@ -2,6 +2,26 @@
 (function() {
     'use strict';
     
+    function initScrollHide() {
+        const nav = document.querySelector('nav');
+        if (!nav) return;
+        let lastScrollY = window.scrollY;
+        const scrollThreshold = 10;
+        
+        function onScroll() {
+            const currentScrollY = window.scrollY;
+            if (Math.abs(currentScrollY - lastScrollY) < scrollThreshold) return;
+            if (currentScrollY > lastScrollY) {
+                nav.classList.add('nav-hidden');
+            } else {
+                nav.classList.remove('nav-hidden');
+            }
+            lastScrollY = currentScrollY;
+        }
+        
+        window.addEventListener('scroll', onScroll, { passive: true });
+    }
+    
     function initNavigation() {
         const navLinks = document.querySelector('.nav-links');
         const hamburger = document.querySelector('.hamburger');
@@ -37,11 +57,16 @@
         });
     }
     
+    function init() {
+        initScrollHide();
+        initNavigation();
+    }
+    
     // Initialize on DOM ready
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initNavigation);
+        document.addEventListener('DOMContentLoaded', init);
     } else {
-        initNavigation();
+        init();
     }
     
     // Export for global use (backward compatibility)

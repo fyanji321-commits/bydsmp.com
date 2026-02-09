@@ -104,14 +104,7 @@
 <body>
     <!-- Navigation -->
     <nav role="navigation" aria-label="主要導航">
-        <a href="#home" class="brand-link" aria-label="返回首頁">
-            <img src="https://truth.bahamut.com.tw/s01/202602/forum/18673/a93d4588615c872f5128d334fdc166ea.JPG?w=1000" 
-                 alt="BYDSMP Logo" 
-                 class="brand-logo"
-                 width="100"
-                 height="45"
-                 loading="eager">
-        </a>
+        <a href="#home" class="brand-link brand-text" aria-label="返回首頁">BYDSMP</a>
         <button class="hamburger" 
                 onclick="toggleMenu()"
                 aria-label="開啟選單" 
@@ -139,14 +132,27 @@
 
     <!-- Hero Section -->
     <section id="home" class="hero" role="banner">
-        <h1>BYDSMP - 台灣 Minecraft 生存與 PVP 伺服器</h1>
-        <p id="hero-subtitle" class="hero-subtitle"></p>
-        
-        <button class="ip-box" 
-                aria-label="複製伺服器 IP 地址"
-                type="button">
-            bydsmp.com
-        </button>
+        <div class="hero-content">
+            <h1 class="hero-logo-wrap">
+                <img src="assets/images/logo.png" 
+                     alt="BYDSMP" 
+                     class="hero-logo"
+                     width="512"
+                     height="512"
+                     loading="eager">
+            </h1>
+            <div class="hero-right">
+                <h2 class="hero-title">生存與 PVP 的完美結合</h2>
+                <p class="hero-desc">本服提供 賞金、PVP、防噴機制，同時保留原版探索體驗。</p>
+                <div class="ip-box-wrap">
+                    <button class="ip-box" 
+                            aria-label="複製伺服器 IP 地址"
+                            type="button">
+                        立即遊玩
+                    </button>
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- Game Modes -->
@@ -399,6 +405,7 @@
     <script src="assets/js/modules/typewriter.js"></script>
     <script src="assets/js/modules/particleBackground.js"></script>
     <script src="assets/js/modules/galleryCarousel.js"></script>
+    <div id="copy-toast" class="copy-toast" aria-live="polite" role="status"></div>
     <script src="assets/js/modules/copyIP.js"></script>
     <script src="assets/js/main.js"></script>
 </body>

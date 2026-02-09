@@ -6,6 +6,8 @@ nav {
     left: 0;
     right: 0;
     height: var(--nav-height);
+    transform: translateY(0);
+    transition: transform var(--transition-normal);
     background: linear-gradient(
         180deg,
         rgba(18, 18, 18, 0.98) 0%,
@@ -35,6 +37,11 @@ nav {
     transition: all var(--transition-normal);
     box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
     gap: var(--spacing-md);
+}
+
+/* 下滑時隱藏、上滑時顯示 */
+nav.nav-hidden {
+    transform: translateY(-100%);
 }
 
 nav > .brand-link {
@@ -67,16 +74,22 @@ nav::before {
     z-index: 1;
 }
 
-.brand-logo {
-    height: 50px;
-    width: auto;
-    object-fit: contain;
+/* 導航 Logo 文字 */
+.brand-text {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-main);
+    text-decoration: none;
     transition: all var(--transition-normal);
     filter: drop-shadow(0 0 10px rgba(255, 121, 188, 0.3));
 }
 
-.brand-logo:hover {
-    transform: scale(1.1) rotate(5deg);
+.brand-text:hover {
+    color: var(--primary-light);
+    transform: scale(1.05);
     filter: drop-shadow(0 0 15px rgba(255, 121, 188, 0.5));
 }
 
@@ -304,8 +317,9 @@ nav::before {
         margin-right: auto;
     }
     
-    .brand-logo {
-        height: 40px;
+    .brand-text {
+        font-size: 1.25rem;
+        letter-spacing: 0.1em;
     }
     
     .hamburger {

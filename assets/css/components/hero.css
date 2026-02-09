@@ -1,20 +1,18 @@
-/* Hero Section Styles */
+/* Hero Section - 現代化美學：Logo 左、主標語右、IP 與 Logo 底對齊 */
 
 .hero {
     position: relative;
     min-height: 100vh;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    text-align: center;
-    padding: var(--spacing-xl) var(--spacing-md);
-    background-color: var(--bg-dark);
+    padding: var(--spacing-xl) clamp(var(--spacing-md), 5vw, var(--spacing-xl));
+    background-color: #0a0a0a;
     overflow: hidden;
-    scroll-margin-top: 0; /* Hero 區塊不需要偏移 */
+    scroll-margin-top: 0;
 }
 
-/* Hero 背景遮罩 */
+/* Hero 深色背景 */
 .hero::before {
     content: '';
     position: absolute;
@@ -22,271 +20,238 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(
-        135deg,
-        rgba(18, 18, 18, 0.85) 0%,
-        rgba(18, 18, 18, 0.75) 50%,
-        rgba(18, 18, 18, 0.85) 100%
-    );
+    background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(255, 121, 188, 0.04) 0%, transparent 50%),
+                linear-gradient(180deg, rgba(10, 10, 10, 0.98) 0%, #0a0a0a 100%);
     z-index: 1;
     pointer-events: none;
 }
 
-/* Hero 內容 */
-.hero > * {
+/* Hero 內容區：Logo 左 | 文字右，水平置中對齊（512×512 方形 Logo） */
+.hero-content {
     position: relative;
     z-index: 2;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: clamp(var(--spacing-lg), 5vw, var(--spacing-xl) * 1.25);
+    max-width: 1100px;
+    margin: 0 auto;
+    width: 100%;
+    flex-wrap: nowrap;
 }
 
-.hero h1 {
-    font-size: 5rem;
-    font-weight: 900;
-    background: linear-gradient(
-        135deg,
-        var(--primary-color) 0%,
-        var(--primary-light) 30%,
-        var(--primary-light) 70%,
-        var(--primary-color) 100%
-    );
-    background-size: 300% 300%;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    margin-bottom: var(--spacing-md);
-    animation: 
-        titleGradient 4s ease-in-out infinite,
-        titleFloat 6s ease-in-out infinite,
-        titleScale 8s ease-in-out infinite;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    position: relative;
-    display: inline-block;
-    transform-origin: center;
+/* Hero Logo 區 - 512×512 方形、固定比例、載入動畫 */
+.hero-logo-wrap {
+    line-height: 0;
+    flex-shrink: 0;
+    opacity: 0;
+    transform: translateX(-24px);
+    animation: heroLogoIn 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.1s forwards;
 }
 
-@keyframes titleGradient {
-    0% {
-        background-position: 0% 50%;
-    }
-    25% {
-        background-position: 50% 0%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    75% {
-        background-position: 50% 100%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
+.hero-logo {
+    width: min(420px, 52vw);
+    height: auto;
+    aspect-ratio: 1;
+    object-fit: contain;
+    display: block;
 }
 
-@keyframes titleFloat {
-    0%, 100% {
-        transform: translateY(0) rotate(0deg);
-    }
-    25% {
-        transform: translateY(-8px) rotate(0.5deg);
-    }
-    50% {
-        transform: translateY(-12px) rotate(0deg);
-    }
-    75% {
-        transform: translateY(-8px) rotate(-0.5deg);
-    }
-}
-
-@keyframes titleScale {
-    0%, 100% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.02);
-    }
-}
-
-
-.hero p {
-    font-size: 1.25rem;
-    color: var(--text-light);
-    margin-bottom: var(--spacing-lg);
-    font-weight: 300;
-}
-
-/* 打字機效果副標 */
-.hero-subtitle {
-    font-size: 1.25rem;
-    color: var(--text-light);
-    margin-bottom: var(--spacing-lg);
-    font-weight: 300;
-    font-family: var(--font-heading);
-    min-height: 1.5em;
-    display: inline-block;
-}
-
-.hero-subtitle::after {
-    content: '|';
-    animation: blink 1s infinite;
-    margin-left: 2px;
-    color: var(--primary-color);
-}
-
-@keyframes blink {
-    0%, 50% {
-        opacity: 1;
-    }
-    51%, 100% {
+@keyframes heroLogoIn {
+    from {
         opacity: 0;
+        transform: translateX(-24px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
     }
 }
 
-/* IP Box Button - 現代化設計 */
-.ip-box {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 121, 188, 0.3);
+.hero h1.hero-logo-wrap {
+    font-size: inherit;
+    font-weight: inherit;
+    text-transform: none;
+    letter-spacing: 0;
+    background: none;
+    -webkit-text-fill-color: unset;
+    background-clip: unset;
+    margin: 0;
+}
+
+/* Hero 右側：主標語、內文、按鈕，與 Logo 垂直置中對齊 */
+.hero-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: var(--spacing-md);
+    min-height: 0;
+}
+
+.hero-title {
+    font-family: var(--font-heading);
+    font-size: clamp(1.6rem, 3.2vw, 2.5rem);
+    font-weight: 700;
     color: var(--text-main);
-    padding: 1rem 2.5rem;
-    font-size: 1.5rem;
+    margin: 0;
+    line-height: 1.35;
+    letter-spacing: 0.06em;
+    max-width: 20ch;
+    opacity: 0;
+    transform: translateY(16px);
+    animation: heroTextIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.35s forwards;
+}
+
+/* 標語內文 */
+.hero-desc {
+    font-family: var(--font-body);
+    font-size: clamp(0.95rem, 1.8vw, 1.1rem);
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin: 0;
+    max-width: 28ch;
+    opacity: 0;
+    transform: translateY(12px);
+    animation: heroTextIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.5s forwards;
+}
+
+/* 立即遊玩按鈕載入動畫與容器 */
+.hero-right .ip-box-wrap {
+    position: relative;
+    opacity: 0;
+    transform: translateY(12px);
+    animation: heroTextIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.65s forwards;
+}
+
+@keyframes heroTextIn {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* IP Box - 懸停與點擊動畫 */
+.ip-box {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 121, 188, 0.4);
+    color: var(--text-main);
+    padding: 0.9rem 2rem;
+    font-size: 1.2rem;
     font-weight: 600;
     font-family: var(--font-heading);
     line-height: 1.5;
-    border-radius: 50px;
+    border-radius: 12px;
     cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
-    overflow: hidden;
     white-space: nowrap;
-    min-width: 360px;
+    min-width: 160px;
     width: auto;
     text-align: center;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     height: auto;
-    backdrop-filter: blur(10px);
-    box-shadow: 
-        0 4px 15px rgba(0, 0, 0, 0.2),
-        inset 0 1px 0 rgba(255, 255, 255, 0.1);
-}
-
-/* 背景光效 */
-.ip-box::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(255, 121, 188, 0.2),
-        transparent
-    );
-    transition: left 0.5s ease;
-}
-
-/* 邊框光效 */
-.ip-box::after {
-    content: '';
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    right: -2px;
-    bottom: -2px;
-    border-radius: 50px;
-    background: linear-gradient(
-        135deg,
-        var(--primary-color),
-        var(--primary-light),
-        var(--primary-color)
-    );
-    background-size: 200% 200%;
-    opacity: 0;
-    z-index: -1;
-    transition: opacity 0.3s ease, background-position 3s linear;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
 }
 
 .ip-box:hover {
-    transform: translateY(-2px);
+    transform: translateY(-3px) scale(1.02);
     border-color: var(--primary-color);
-    background: rgba(255, 121, 188, 0.1);
-    box-shadow: 
-        0 8px 25px rgba(255, 121, 188, 0.3),
-        inset 0 1px 0 rgba(255, 255, 255, 0.2);
-}
-
-.ip-box:hover::before {
-    left: 100%;
-}
-
-.ip-box:hover::after {
-    opacity: 1;
-    animation: borderGlow 3s linear infinite;
-}
-
-@keyframes borderGlow {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
+    background: rgba(255, 121, 188, 0.12);
+    box-shadow: 0 6px 20px rgba(255, 121, 188, 0.25);
 }
 
 .ip-box:active {
-    transform: translateY(0);
-    box-shadow: 
-        0 4px 15px rgba(255, 121, 188, 0.2),
-        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transform: translateY(0) scale(0.98);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* 響應式設計 */
+/* 按鈕容器 */
+/* 複製成功 Toast - 固定於畫面底部中央 */
+.copy-toast {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(1rem);
+    padding: 0.65rem 1.25rem;
+    font-size: 0.9rem;
+    font-family: var(--font-body);
+    color: var(--text-main);
+    background: rgba(30, 30, 30, 0.95);
+    border: 1px solid rgba(255, 121, 188, 0.4);
+    border-radius: 999px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 9999;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.copy-toast.is-visible {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* 響應式：小螢幕改為上下排列，主標語仍在視覺上與 Logo 同一區塊 */
+@media (max-width: 900px) {
+    .hero-content {
+        flex-wrap: wrap;
+    }
+}
+
 @media (max-width: 768px) {
     .hero {
         min-height: 90vh;
-        padding: var(--spacing-lg) var(--spacing-sm);
-        background-attachment: scroll;
+        padding: var(--spacing-lg) var(--spacing-md);
     }
     
-    .hero h1 {
-        font-size: 3rem;
-        margin-bottom: var(--spacing-sm);
-        letter-spacing: 0.05em;
+    .hero-content {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-lg);
     }
     
-    .hero p {
-        font-size: 1rem;
-        margin-bottom: var(--spacing-md);
+    .hero-logo {
+        width: min(340px, 72vw);
     }
     
-    .hero-subtitle {
-        font-size: 1rem;
+    .hero-right {
+        width: 100%;
+    }
+    
+    .hero-title {
+        max-width: none;
+    }
+    
+    .hero-desc {
+        max-width: none;
     }
     
     .ip-box {
-        padding: 0.8rem var(--spacing-lg);
-        font-size: 1.25rem;
-        min-width: 300px;
+        padding: 0.85rem 1.5rem;
+        font-size: 1.2rem;
+        min-width: 200px;
     }
 }
 
 @media (max-width: 480px) {
-    .hero h1 {
-        font-size: 2.5rem;
+    .hero-logo {
+        width: min(280px, 85vw);
     }
     
-    .hero-subtitle {
-        font-size: 0.9rem;
+    .hero-title {
+        font-size: 1.4rem;
     }
     
     .ip-box {
-        font-size: 1.1rem;
-        padding: 0.7rem var(--spacing-md);
-        min-width: 280px;
+        font-size: 1.05rem;
+        padding: 0.75rem var(--spacing-md);
     }
 }
