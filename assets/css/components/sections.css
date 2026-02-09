@@ -179,12 +179,12 @@ section {
     font-size: 1.2rem;
 }
 
-.rule-box[style*="border-color: #ff4d4d"] {
-    border-color: #ff4d4d;
+.rule-box--violation {
+    border-color: var(--color-violation);
 }
 
-.rule-box[style*="border-color: #ff4d4d"] h3 {
-    color: #ff4d4d;
+.rule-box--violation h3 {
+    color: var(--color-violation);
 }
 
 /* ============================================
@@ -240,7 +240,7 @@ section {
 }
 
 .disclaimer h4 {
-    color: #ff4d4d;
+    color: var(--color-violation);
     margin-bottom: var(--spacing-sm);
     font-size: 1.25rem;
 }

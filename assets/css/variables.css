@@ -16,6 +16,9 @@
     --text-muted: #b0b0b0;
     --text-light: #e0e0e0;
     
+    /* 語意色 */
+    --color-violation: #ff4d4d;
+    
     /* 邊框和陰影 */
     --border-color: rgba(255, 121, 188, 0.3);
     --border-color-hover: rgba(255, 121, 188, 0.6);
