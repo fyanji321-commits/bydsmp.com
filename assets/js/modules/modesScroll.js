@@ -2,13 +2,13 @@
 (function() {
     'use strict';
 
-    var ANIMATION_END_MS = 1200;
+    const ANIMATION_END_MS = 1200;
 
     function init() {
-        var section = document.getElementById('modes');
+        const section = document.getElementById('modes');
         if (!section) return;
 
-        var observer = new IntersectionObserver(
+        const observer = new IntersectionObserver(
             function(entries) {
                 entries.forEach(function(entry) {
                     if (entry.isIntersecting) {

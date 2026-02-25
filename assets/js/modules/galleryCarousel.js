@@ -13,7 +13,7 @@
         const prevBtn = document.querySelector('.gallery-prev');
         const nextBtn = document.querySelector('.gallery-next');
         const indicatorsContainer = document.querySelector('.gallery-indicators');
-        if (!carousel || !prevBtn || !nextBtn) return;
+        if (!carousel || !prevBtn || !nextBtn || !indicatorsContainer) return;
         
         slides = Array.from(carousel.querySelectorAll('.gallery-slide'));
         if (slides.length === 0) return;
@@ -81,6 +81,9 @@
             
             // 重置自動播放
             resetAutoPlay();
+
+            // 預加載下一張圖片（切換完成後）
+            preloadNextImage();
         }
         
         // 下一張
@@ -181,16 +184,6 @@
                 img.src = nextImg.src;
             }
         }
-        
-        // 監聽切換事件以預加載
-        const observer = new MutationObserver(() => {
-            preloadNextImage();
-        });
-        
-        observer.observe(carousel, {
-            attributes: true,
-            attributeFilter: ['class']
-        });
         
         // 初始預加載
         preloadNextImage();

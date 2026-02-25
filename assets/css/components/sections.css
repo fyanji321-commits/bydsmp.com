@@ -176,7 +176,7 @@ section:not(.hero) {
 }
 
 .mode-card__title-wrap h3 {
-    color: #ffffff;
+    color: var(--text-main);
     margin: 0;
     font-size: 1.75rem;
 }
@@ -187,7 +187,7 @@ section:not(.hero) {
 
 .mode-card li {
     padding: var(--spacing-xs) 0;
-    color: #ffffff;
+    color: var(--text-main);
     position: relative;
     padding-left: var(--spacing-md);
 }
@@ -201,21 +201,12 @@ section:not(.hero) {
 }
 
 .mode-card strong {
-    color: #ffffff;
+    color: var(--text-main);
 }
 
 /* ============================================
    規則區域 (Rules)
    ============================================ */
-
-.rules-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: var(--spacing-md);
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 var(--spacing-sm);
-}
 
 .rule-box {
     background-color: var(--bg-card);
@@ -278,8 +269,7 @@ section:not(.hero) {
         font-size: 2rem;
     }
     
-    .modes-container,
-    .rules-grid {
+    .modes-container {
         grid-template-columns: 1fr;
         gap: var(--spacing-md);
     }

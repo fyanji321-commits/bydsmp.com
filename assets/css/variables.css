@@ -18,6 +18,7 @@
     
     /* 語意色 */
     --color-violation: #ff4d4d;
+    --border-violation: rgba(255, 77, 77, 0.2);
     
     /* 邊框和陰影 */
     --border-color: rgba(255, 121, 188, 0.3);
@@ -42,6 +43,7 @@
     --transition-slow: 0.5s ease;
     
     /* 斷點 */
+    --breakpoint-xs: 480px;
     --breakpoint-mobile: 768px;
     --breakpoint-tablet: 1024px;
     

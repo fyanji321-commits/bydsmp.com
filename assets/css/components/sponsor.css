@@ -102,7 +102,7 @@
     font-family: var(--font-heading);
     font-weight: 700;
     font-size: 0.95rem;
-    color: #fff;
+    color: var(--text-main);
     background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(255, 121, 188, 0.3);
@@ -128,7 +128,7 @@
     font-family: var(--font-heading);
     font-size: 1rem;
     font-weight: 700;
-    color: #fff;
+    color: var(--text-main);
     background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
     border-radius: 12px;
     text-decoration: none;
@@ -145,7 +145,7 @@
 /* 重要說明區塊 */
 .sponsor-disclaimer {
     background: rgba(28, 28, 28, 0.6);
-    border: 1px solid rgba(255, 77, 77, 0.2);
+    border: 1px solid var(--border-violation);
     border-radius: 12px;
     padding: var(--spacing-lg);
 }
