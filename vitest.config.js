@@ -5,7 +5,7 @@ export default defineConfig({
     environment: 'jsdom',
     include: [
       'tests/unit/**/*.test.js',
-      'tests/integration/rulesTabs.test.js',
+      'tests/integration/**/*.test.js',
     ],
     coverage: {
       provider: 'v8',
