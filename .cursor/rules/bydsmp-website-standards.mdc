@@ -1,0 +1,54 @@
+---
+description: BYDSMP 網站編碼標準與架構規範
+alwaysApply: true
+---
+
+# BYDSMP 網站編碼標準
+
+## 專案架構
+
+- **HTML**: 語義化 HTML5，所有頁面使用 `zh-TW` 語言屬性
+- **CSS**: 模組化，每個元件對應 `assets/css/components/` 下的獨立檔案
+- **JS**: 使用 IIFE 模式，每個功能為 `assets/js/modules/` 下的獨立模組
+- **設定集中**: 伺服器 IP、Discord 連結、Email 統一在 `assets/js/config.js`
+
+## CSS 規範
+
+- 全域變數定義在 `assets/css/variables.css`，勿在其他檔案寫死顏色/字型
+- 新增元件時，建立新 CSS 檔並在 `assets/css/main.css` import
+- 主色調: `--primary-color: #FF79BC`（粉紅霓虹主題）
+
+```css
+/* ❌ BAD - 寫死顏色 */
+.btn { color: #FF79BC; }
+
+/* ✅ GOOD - 使用變數 */
+.btn { color: var(--primary-color); }
+```
+
+## JavaScript 規範
+
+- 使用 IIFE 模式，避免污染全域命名空間
+- 模組自動初始化，不需手動呼叫
+
+```js
+// ✅ GOOD - IIFE 模式
+(function() {
+  'use strict';
+  // 模組邏輯
+})();
+```
+
+## HTML 規範
+
+- 圖片必須加 `loading="lazy"`（第一張除外）、`width`、`height` 屬性
+- 維持 ARIA 標籤與語義化結構
+- 所有文字內容使用**繁體中文**
+
+## 新增功能流程
+
+1. HTML 結構加入對應頁面
+2. 在 `assets/css/components/` 建立對應 CSS 檔
+3. 在 `assets/css/main.css` import 新 CSS
+4. 在 `assets/js/modules/` 建立 JS 模組（如需要）
+5. 更新相關頁面的 `<script>` 標籤
