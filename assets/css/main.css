@@ -11,6 +11,7 @@
 @import url('./components/footer.css');
 @import url('./components/rules.css');
 @import url('./components/sponsor.css');
+@import url('./components/serverStatus.css');
 
 /* ============================================
    基礎樣式重置和通用樣式

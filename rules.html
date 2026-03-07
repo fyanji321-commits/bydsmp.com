@@ -46,100 +46,211 @@
 </head>
 <body>
     <nav role="navigation" aria-label="主要導航" data-nav="always-visible">
-        <div class="nav-center-group">
-            <a href="rules.html" class="nav-center-link" role="menuitem">規則</a>
-            <a href="index.html" class="brand-link brand-text" aria-label="返回首頁">BYDSMP</a>
-            <a href="sponsor.html" class="nav-center-link" role="menuitem">贊助支持</a>
-        </div>
-        <button class="hamburger" 
-                onclick="toggleMenu()"
-                aria-label="開啟選單" 
-                aria-expanded="false"
-                aria-controls="nav-links">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-        <a id="nav-discord-btn"
-           href="#"
-           target="_blank" 
-           rel="noopener noreferrer"
-           class="btn-discord"
-           aria-label="加入 Discord 社群">
-            <i class="fab fa-discord"></i>
+        <a href="index.html" class="brand-link" aria-label="返回首頁">
+            <span class="brand-text">BYDSMP</span>
         </a>
-        <div class="nav-links" id="nav-links" role="menubar">
-            <a href="rules.html" role="menuitem">規則</a>
-            <a href="sponsor.html" role="menuitem">贊助支持</a>
+        <div class="nav-right">
+            <div class="nav-links" id="nav-links" role="menubar">
+                <a href="rules.html" role="menuitem">規則</a>
+                <a href="sponsor.html" role="menuitem">贊助支持</a>
+            </div>
+            <button class="hamburger" 
+                    onclick="toggleMenu()"
+                    aria-label="開啟選單" 
+                    aria-expanded="false"
+                    aria-controls="nav-links">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </nav>
 
     <main class="subpage rules-page" role="main">
         <h1 id="rules-title" class="section-title">伺服器規則</h1>
+        <p class="section-title-sub">請詳閱以下規則，保持良好的遊戲環境</p>
         
         <div class="rules-tabs" role="tablist" aria-label="規則分類">
-            <button class="rules-tab-btn active" data-tab="tab-basic" role="tab" aria-selected="true" aria-controls="tab-basic">基本規則</button>
-            <button class="rules-tab-btn" data-tab="tab-world" role="tab" aria-selected="false" aria-controls="tab-world">世界規則</button>
-            <button class="rules-tab-btn" data-tab="tab-redstone" role="tab" aria-selected="false" aria-controls="tab-redstone">生電規則</button>
-            <button class="rules-tab-btn" data-tab="tab-pvp" role="tab" aria-selected="false" aria-controls="tab-pvp">PVP 規則</button>
-            <button class="rules-tab-btn" data-tab="tab-violation" role="tab" aria-selected="false" aria-controls="tab-violation">違規處理</button>
+            <button class="rules-tab-btn active" data-tab="tab-basic" role="tab" aria-selected="true" aria-controls="tab-basic">
+                <i class="fas fa-shield-alt tab-icon" aria-hidden="true"></i>基本規則
+            </button>
+            <button class="rules-tab-btn" data-tab="tab-world" role="tab" aria-selected="false" aria-controls="tab-world">
+                <i class="fas fa-globe tab-icon" aria-hidden="true"></i>世界規則
+            </button>
+            <button class="rules-tab-btn" data-tab="tab-redstone" role="tab" aria-selected="false" aria-controls="tab-redstone">
+                <i class="fas fa-bolt tab-icon" aria-hidden="true"></i>生電規則
+            </button>
+            <button class="rules-tab-btn" data-tab="tab-pvp" role="tab" aria-selected="false" aria-controls="tab-pvp">
+                <i class="fas fa-crosshairs tab-icon" aria-hidden="true"></i>PVP 規則
+            </button>
+            <button class="rules-tab-btn" data-tab="tab-violation" role="tab" aria-selected="false" aria-controls="tab-violation">
+                <i class="fas fa-gavel tab-icon" aria-hidden="true"></i>違規處理
+            </button>
         </div>
 
+        <!-- 基本規則 -->
         <div id="tab-basic" class="rules-panel active" role="tabpanel" aria-labelledby="rules-title">
             <article class="rule-box">
-                <h3>基本規則</h3>
-                <ul class="rule-list">
-                    <li>禁止作弊與使用任何外掛。</li>
-                    <li>禁止宣傳其他伺服器。</li>
-                    <li>禁止發表不當言論。</li>
-                    <li>禁止利用影響平衡之漏洞。</li>
+                <div class="rule-box-header">
+                    <div class="rule-box-icon" aria-hidden="true">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>基本規則</h3>
+                </div>
+                <ul class="rule-list" aria-label="基本規則清單">
+                    <li class="rule-item">
+                        <span class="rule-item-icon deny" aria-label="禁止"><i class="fas fa-ban"></i></span>
+                        <span class="rule-item-text">禁止作弊與使用任何外掛。</span>
+                    </li>
+                    <li class="rule-item">
+                        <span class="rule-item-icon deny" aria-label="禁止"><i class="fas fa-ban"></i></span>
+                        <span class="rule-item-text">禁止宣傳其他伺服器。</span>
+                    </li>
+                    <li class="rule-item">
+                        <span class="rule-item-icon deny" aria-label="禁止"><i class="fas fa-ban"></i></span>
+                        <span class="rule-item-text">禁止發表不當言論。</span>
+                    </li>
+                    <li class="rule-item">
+                        <span class="rule-item-icon deny" aria-label="禁止"><i class="fas fa-ban"></i></span>
+                        <span class="rule-item-text">禁止利用影響平衡之漏洞。</span>
+                    </li>
                 </ul>
             </article>
         </div>
 
+        <!-- 世界規則 -->
         <div id="tab-world" class="rules-panel" role="tabpanel" aria-labelledby="rules-title" aria-hidden="true">
             <article class="rule-box">
-                <h3>世界規則</h3>
-                <ul class="rule-list">
-                    <li>禁止澆注鵝卵石牆、液體牆。</li>
-                    <li>禁止炸出生點附近。</li>
-                    <li>中介主島為官方所有，不能設領地，且可能會清建築。</li>
+                <div class="rule-box-header">
+                    <div class="rule-box-icon" aria-hidden="true">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3>世界規則</h3>
+                </div>
+                <ul class="rule-list" aria-label="世界規則清單">
+                    <li class="rule-item">
+                        <span class="rule-item-icon deny" aria-label="禁止"><i class="fas fa-ban"></i></span>
+                        <span class="rule-item-text">禁止澆注鵝卵石牆、液體牆。</span>
+                    </li>
+                    <li class="rule-item">
+                        <span class="rule-item-icon deny" aria-label="禁止"><i class="fas fa-ban"></i></span>
+                        <span class="rule-item-text">禁止炸出生點附近。</span>
+                    </li>
+                    <li class="rule-item">
+                        <span class="rule-item-icon info" aria-label="注意"><i class="fas fa-info-circle"></i></span>
+                        <span class="rule-item-text">中介主島為官方所有，不能設領地，且可能會清建築。</span>
+                    </li>
                 </ul>
             </article>
         </div>
 
+        <!-- 生電規則 -->
         <div id="tab-redstone" class="rules-panel" role="tabpanel" aria-labelledby="rules-title" aria-hidden="true">
             <article class="rule-box">
-                <h3>生電規則</h3>
-                <ul class="rule-list">
-                    <li>允許：防噴、刷沙、破基岩、TNT複製。</li>
-                    <li>允許：打印機、複製物品。</li>
-                    <li><strong>注意：</strong>卡服、大型機器須報備。</li>
-                    <li>若造成伺服器卡頓，官方有權修整機器。</li>
-                </ul>
+                <div class="rule-box-header">
+                    <div class="rule-box-icon" aria-hidden="true">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>生電規則</h3>
+                </div>
+                <div class="rule-group">
+                    <p class="rule-group-label allow" aria-hidden="true"><i class="fas fa-check-circle"></i> 允許項目</p>
+                    <ul class="rule-list" aria-label="生電允許項目">
+                        <li class="rule-item">
+                            <span class="rule-item-icon allow" aria-label="允許"><i class="fas fa-check-circle"></i></span>
+                            <span class="rule-item-text">防噴、刷沙、破基岩、TNT 複製。</span>
+                        </li>
+                        <li class="rule-item">
+                            <span class="rule-item-icon allow" aria-label="允許"><i class="fas fa-check-circle"></i></span>
+                            <span class="rule-item-text">打印機、複製物品。</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="rule-divider" role="separator"></div>
+                <div class="rule-group">
+                    <p class="rule-group-label warn" aria-hidden="true"><i class="fas fa-exclamation-triangle"></i> 注意事項</p>
+                    <ul class="rule-list" aria-label="生電注意事項">
+                        <li class="rule-item">
+                            <span class="rule-item-icon warn" aria-label="注意"><i class="fas fa-exclamation-triangle"></i></span>
+                            <span class="rule-item-text"><strong>注意：</strong>卡服、大型機器須報備。</span>
+                        </li>
+                        <li class="rule-item">
+                            <span class="rule-item-icon warn" aria-label="注意"><i class="fas fa-exclamation-triangle"></i></span>
+                            <span class="rule-item-text">若造成伺服器卡頓，官方有權修整機器。</span>
+                        </li>
+                    </ul>
+                </div>
             </article>
         </div>
 
+        <!-- PVP 規則 -->
         <div id="tab-pvp" class="rules-panel" role="tabpanel" aria-labelledby="rules-title" aria-hidden="true">
             <article class="rule-box">
-                <h3>PVP 規則</h3>
-                <ul class="rule-list">
-                    <li>允許：水晶、自動圖騰。</li>
-                    <li>禁止：任何外掛 (PVP中開掛嚴抓)。</li>
-                    <li>禁止：在建築和 Spawn 附近打水晶。</li>
-                    <li><strong>提醒：</strong>打架記得關 Tweakeroo 自動補貨。</li>
-                </ul>
+                <div class="rule-box-header">
+                    <div class="rule-box-icon" aria-hidden="true">
+                        <i class="fas fa-crosshairs"></i>
+                    </div>
+                    <h3>PVP 規則</h3>
+                </div>
+                <div class="rule-group">
+                    <p class="rule-group-label allow" aria-hidden="true"><i class="fas fa-check-circle"></i> 允許項目</p>
+                    <ul class="rule-list" aria-label="PVP 允許項目">
+                        <li class="rule-item">
+                            <span class="rule-item-icon allow" aria-label="允許"><i class="fas fa-check-circle"></i></span>
+                            <span class="rule-item-text">水晶、自動圖騰。</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="rule-divider" role="separator"></div>
+                <div class="rule-group">
+                    <p class="rule-group-label deny" aria-hidden="true"><i class="fas fa-ban"></i> 禁止項目</p>
+                    <ul class="rule-list" aria-label="PVP 禁止項目">
+                        <li class="rule-item">
+                            <span class="rule-item-icon deny" aria-label="禁止"><i class="fas fa-ban"></i></span>
+                            <span class="rule-item-text">任何外掛 <span class="rule-badge deny">PVP 中開掛嚴抓</span></span>
+                        </li>
+                        <li class="rule-item">
+                            <span class="rule-item-icon deny" aria-label="禁止"><i class="fas fa-ban"></i></span>
+                            <span class="rule-item-text">在建築和 Spawn 附近打水晶。</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="rule-divider" role="separator"></div>
+                <div class="rule-group">
+                    <p class="rule-group-label info" aria-hidden="true"><i class="fas fa-info-circle"></i> 提醒</p>
+                    <ul class="rule-list" aria-label="PVP 提醒">
+                        <li class="rule-item">
+                            <span class="rule-item-icon info" aria-label="提醒"><i class="fas fa-info-circle"></i></span>
+                            <span class="rule-item-text"><strong>提醒：</strong>打架記得關 Tweakeroo 自動補貨。</span>
+                        </li>
+                    </ul>
+                </div>
             </article>
         </div>
 
+        <!-- 違規處理 -->
         <div id="tab-violation" class="rules-panel" role="tabpanel" aria-labelledby="rules-title" aria-hidden="true">
             <article class="rule-box rule-box--violation">
-                <h3>違規處理</h3>
+                <div class="rule-box-header">
+                    <div class="rule-box-icon" aria-hidden="true">
+                        <i class="fas fa-gavel"></i>
+                    </div>
+                    <h3>違規處理</h3>
+                </div>
                 <p>違規者視情況處理：</p>
-                <ul class="rule-list">
-                    <li>要是被發現開掛，直接裝反掛處理。</li>
-                    <li>家被抄不負責。</li>
-                    <li>若在領地內或周圍持續騷擾，將嚴懲。</li>
+                <ul class="rule-list" aria-label="違規處理清單">
+                    <li class="rule-item">
+                        <span class="rule-item-num" aria-label="第一條">1</span>
+                        <span class="rule-item-text">要是被發現開掛，直接裝反掛處理。</span>
+                    </li>
+                    <li class="rule-item">
+                        <span class="rule-item-num" aria-label="第二條">2</span>
+                        <span class="rule-item-text">家被抄不負責。</span>
+                    </li>
+                    <li class="rule-item">
+                        <span class="rule-item-num" aria-label="第三條">3</span>
+                        <span class="rule-item-text">若在領地內或周圍持續騷擾，將嚴懲。</span>
+                    </li>
                 </ul>
             </article>
         </div>

@@ -1,34 +1,47 @@
 /* CSS Variables - 集中管理所有顏色和設計變數 */
 
 :root {
-    /* 主色調 - 現代紫羅蘭 */
-    --primary-color: #A78BFA;
-    --primary-light: #C4B5FD;
-    --primary-dark: #7C3AED;
+    /* 主色調 - 霓虹粉紫漸層系 */
+    --primary-color: #E879F9;
+    --primary-light: #F0ABFC;
+    --primary-dark: #A21CAF;
+    --primary-glow: rgba(232, 121, 249, 0.35);
+    --primary-glow-soft: rgba(232, 121, 249, 0.12);
 
-    /* 強調色 - 翠綠（成功狀態、特殊強調） */
-    --accent-color: #34D399;
+    /* 強調色 - 電藍 */
+    --accent-color: #38BDF8;
+    --accent-glow: rgba(56, 189, 248, 0.3);
 
-    /* 背景色 */
-    --bg-dark: #0F0F0F;
-    --bg-card: #18181B;
-    --bg-card-hover: #27272A;
+    /* 背景色 - 深邃星夜 */
+    --bg-dark: #070711;
+    --bg-mid: #0D0D1A;
+    --bg-card: #12121F;
+    --bg-card-hover: #1A1A2E;
+    --bg-section: #0A0A16;
 
     /* 文字顏色 */
-    --text-main: #FAFAFA;
-    --text-light: #E4E4E7;
-    --text-muted: #A1A1AA;
-    --text-subtle: #71717A;
+    --text-main: #F5F3FF;
+    --text-light: #DDD6FE;
+    --text-muted: #9CA3AF;
+    --text-subtle: #6B7280;
 
     /* 語意色 */
     --color-violation: #F87171;
     --border-violation: rgba(248, 113, 113, 0.2);
 
     /* 邊框和陰影 */
-    --border-color: rgba(255, 255, 255, 0.08);
-    --border-color-hover: rgba(167, 139, 250, 0.3);
-    --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.3), 0 4px 16px rgba(0, 0, 0, 0.2);
-    --shadow-card-hover: 0 4px 24px rgba(0, 0, 0, 0.4);
+    --border-color: rgba(232, 121, 249, 0.1);
+    --border-color-hover: rgba(232, 121, 249, 0.4);
+    --border-glass: rgba(255, 255, 255, 0.06);
+    --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(232, 121, 249, 0.06);
+    --shadow-card-hover: 0 8px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(232, 121, 249, 0.15);
+    --shadow-glow: 0 0 60px rgba(232, 121, 249, 0.2), 0 0 120px rgba(232, 121, 249, 0.08);
+
+    /* 漸層 */
+    --gradient-primary: linear-gradient(135deg, #E879F9 0%, #A78BFA 50%, #38BDF8 100%);
+    --gradient-primary-soft: linear-gradient(135deg, rgba(232, 121, 249, 0.15) 0%, rgba(167, 139, 250, 0.1) 100%);
+    --gradient-card: linear-gradient(145deg, rgba(232, 121, 249, 0.08) 0%, rgba(56, 189, 248, 0.04) 100%);
+    --gradient-text: linear-gradient(135deg, #F0ABFC 0%, #A78BFA 50%, #7DD3FC 100%);
 
     /* 字體 */
     --font-heading: 'Orbitron', sans-serif;
@@ -59,21 +72,10 @@
     /* Z-index 層級 */
     --z-nav: 1000;
     --z-overlay: 999;
-}
 
-/* 淺色模式 */
-@media (prefers-color-scheme: light) {
-    :root {
-        --bg-dark: #FAFAFA;
-        --bg-card: #FFFFFF;
-        --bg-card-hover: #F4F4F5;
-        --text-main: #18181B;
-        --text-light: #27272A;
-        --text-muted: #52525B;
-        --text-subtle: #71717A;
-        --border-color: rgba(0, 0, 0, 0.08);
-        --border-color-hover: rgba(124, 58, 237, 0.3);
-        --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.08), 0 4px 16px rgba(0, 0, 0, 0.06);
-        --shadow-card-hover: 0 4px 24px rgba(0, 0, 0, 0.12);
-    }
+    /* 圓角 */
+    --radius-sm: 8px;
+    --radius-md: 16px;
+    --radius-lg: 24px;
+    --radius-xl: 32px;
 }

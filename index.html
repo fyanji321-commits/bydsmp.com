@@ -101,33 +101,25 @@
     </script>
 </head>
 <body>
-    <!-- Navigation：規則 | BYDSMP | 贊助支持 置中，Discord 右側 -->
+    <!-- Navigation：BYDSMP 左側，導航連結右側 -->
     <nav role="navigation" aria-label="主要導航">
-        <div class="nav-center-group">
-            <a href="rules.html" class="nav-center-link" role="menuitem">規則</a>
-            <a href="#home" class="brand-link brand-text" aria-label="返回首頁">BYDSMP</a>
-            <a href="sponsor.html" class="nav-center-link" role="menuitem">贊助支持</a>
-        </div>
-        <button class="hamburger" 
-                onclick="toggleMenu()"
-                aria-label="開啟選單" 
-                aria-expanded="false"
-                aria-controls="nav-links">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-        <a id="nav-discord-btn"
-           href="#"
-           target="_blank" 
-           rel="noopener noreferrer"
-           class="btn-discord"
-           aria-label="加入 Discord 社群">
-            <i class="fab fa-discord"></i>
+        <a href="#home" class="brand-link" aria-label="返回首頁">
+            <span class="brand-text">BYDSMP</span>
         </a>
-        <div class="nav-links" id="nav-links" role="menubar">
-            <a href="rules.html" role="menuitem">規則</a>
-            <a href="sponsor.html" role="menuitem">贊助支持</a>
+        <div class="nav-right">
+            <div class="nav-links" id="nav-links" role="menubar">
+                <a href="rules.html" role="menuitem">規則</a>
+                <a href="sponsor.html" role="menuitem">贊助支持</a>
+            </div>
+            <button class="hamburger" 
+                    onclick="toggleMenu()"
+                    aria-label="開啟選單" 
+                    aria-expanded="false"
+                    aria-controls="nav-links">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </nav>
 
@@ -144,14 +136,64 @@
                      loading="eager">
             </h1>
             <div class="hero-right">
+                <span class="hero-badge">台灣 Minecraft 伺服器</span>
                 <h2 class="hero-title">生存與 PVP 的完美結合</h2>
-                <p class="hero-desc">本服提供 賞金、PVP、防噴機制，同時保留原版探索體驗。</p>
-                <div class="ip-box-wrap">
-                    <button class="ip-box" 
+                <div class="hero-divider" aria-hidden="true"></div>
+                <p class="hero-desc">本服提供賞金、PVP、防噴機制，同時保留原版探索體驗。SMP 與 KitPVP 雙分流，找到最適合你的玩法。</p>
+
+                <!-- CTA 按鈕群組 -->
+                <div class="hero-actions">
+                    <button class="ip-box"
                             aria-label="複製伺服器 IP 地址"
                             type="button">
                         立即遊玩
                     </button>
+                    <a id="nav-discord-btn-hero"
+                       href="#"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="btn-hero-secondary"
+                       aria-label="加入 Discord 社群">
+                        <i class="fab fa-discord" aria-hidden="true"></i>
+                        加入 Discord
+                    </a>
+                </div>
+
+                <!-- Stats 列：線上人數 + 分流資訊 -->
+                <div class="hero-stats" aria-label="伺服器即時資訊">
+
+                    <!-- 即時線上人數 -->
+                    <div class="hero-stat hero-stat--live"
+                         id="server-status-widget"
+                         role="status"
+                         aria-live="polite"
+                         aria-label="查詢伺服器狀態中">
+                        <div class="hero-stat__live-header">
+                            <span class="status-dot status-dot--loading" id="server-status-dot" aria-hidden="true"></span>
+                            <span id="server-status-label" class="hero-stat__live-status">查詢中…</span>
+                        </div>
+                        <span class="hero-stat__value">
+                            <span id="server-online-count">—</span><span id="server-max-count" class="hero-stat__max"></span>
+                        </span>
+                        <span class="hero-stat__label">線上人數</span>
+                    </div>
+
+                    <div class="hero-stat-sep" aria-hidden="true"></div>
+
+                    <div class="hero-stat">
+                        <span class="hero-stat__value">SMP</span>
+                        <span class="hero-stat__label">生存分流</span>
+                    </div>
+                    <div class="hero-stat-sep" aria-hidden="true"></div>
+                    <div class="hero-stat">
+                        <span class="hero-stat__value">KitPVP</span>
+                        <span class="hero-stat__label">競技分流</span>
+                    </div>
+                    <div class="hero-stat-sep" aria-hidden="true"></div>
+                    <div class="hero-stat">
+                        <span class="hero-stat__value">Java</span>
+                        <span class="hero-stat__label">版本支援</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -164,6 +206,7 @@
             <!-- SMP Card -->
             <article class="mode-card mode-card--smp">
                 <div class="mode-card__content">
+                    <span class="mode-card__tag">生存模式</span>
                     <div class="mode-card__title-wrap">
                         <img src="assets/images/Iron_Pickaxe.png" alt="" class="mode-card__icon" width="56" height="56" loading="lazy">
                         <h3>SMP 生存分流</h3>
@@ -181,6 +224,7 @@
             <!-- KitPVP Card -->
             <article class="mode-card mode-card--kitpvp">
                 <div class="mode-card__content">
+                    <span class="mode-card__tag">競技模式</span>
                     <div class="mode-card__title-wrap">
                         <img src="assets/images/Netherite_Sword.png" alt="" class="mode-card__icon" width="56" height="56" loading="lazy">
                         <h3>KitPVP 競技分流</h3>
@@ -342,6 +386,7 @@
     <script src="assets/js/modules/galleryCarousel.js"></script>
     <script src="assets/js/modules/copyIP.js"></script>
     <script src="assets/js/modules/modesScroll.js"></script>
+    <script src="assets/js/modules/serverStatus.js"></script>
     <script src="assets/js/main.js"></script>
 </body>
 </html>

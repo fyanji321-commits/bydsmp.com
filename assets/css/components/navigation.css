@@ -7,21 +7,19 @@ nav {
     right: 0;
     height: var(--nav-height);
     transform: translateY(-100%);
-    transition: transform var(--transition-normal);
-    background: rgba(15, 15, 15, 0.75);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    background: rgba(7, 7, 17, 0.75);
+    backdrop-filter: blur(24px) saturate(1.4);
+    -webkit-backdrop-filter: blur(24px) saturate(1.4);
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     padding: 0 var(--spacing-lg);
     z-index: var(--z-nav);
-    border-bottom: 1px solid var(--border-color);
-    box-shadow: 0 1px 12px rgba(0, 0, 0, 0.25);
-    transition: all var(--transition-normal);
+    border-bottom: 1px solid rgba(232, 121, 249, 0.1);
+    box-shadow: 0 1px 40px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(232, 121, 249, 0.04);
+    transition: transform var(--transition-normal), background var(--transition-normal);
 }
 
-/* 預設隱藏，滑動頁面後顯示 */
 nav.nav-hidden {
     transform: translateY(-100%);
 }
@@ -30,112 +28,86 @@ nav:not(.nav-hidden) {
     transform: translateY(0);
 }
 
-/* 置中群組：規則 | BYDSMP | 贊助支持 */
-.nav-center-group {
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-md);
-}
-
-.nav-center-link {
-    color: var(--text-muted);
-    font-weight: 500;
-    padding: var(--spacing-xs) var(--spacing-md);
-    border-radius: 8px;
-    transition: color var(--transition-fast), background var(--transition-fast);
-    text-decoration: none;
-    font-size: 1rem;
-    min-height: 44px;
-    display: inline-flex;
-    align-items: center;
-}
-
-.nav-center-link:hover {
-    color: var(--primary-light);
-    background: rgba(167, 139, 250, 0.06);
-}
-
-.nav-center-link:focus-visible {
-    outline: 2px solid var(--primary-color);
-    outline-offset: 2px;
-}
-
-/* Discord 固定右側 */
-nav .btn-discord {
-    position: absolute;
-    right: var(--spacing-lg);
-}
-
-/* Logo/Brand Link */
+/* ── Brand（左側） ── */
 .brand-link {
     display: flex;
     align-items: center;
     height: 100%;
     padding: var(--spacing-xs) 0;
-    position: relative;
-    z-index: 1;
+    flex-shrink: 0;
+    text-decoration: none;
 }
 
-/* 導航 Logo 文字 */
 .brand-text {
     font-family: var(--font-heading);
-    font-size: 1.5rem;
-    font-weight: 700;
-    letter-spacing: 0.15em;
+    font-size: 1.35rem;
+    font-weight: 900;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--text-main);
-    text-decoration: none;
-    transition: color var(--transition-fast);
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    transition: filter var(--transition-fast), opacity var(--transition-fast);
+    filter: drop-shadow(0 0 8px rgba(232, 121, 249, 0.3));
 }
 
-.brand-text:hover {
-    color: var(--primary-light);
+.brand-link:hover .brand-text {
+    filter: drop-shadow(0 0 14px rgba(232, 121, 249, 0.55));
+    opacity: 0.9;
 }
 
-.brand-text:focus-visible {
+.brand-link:focus-visible {
     outline: 2px solid var(--primary-color);
     outline-offset: 4px;
     border-radius: 4px;
 }
 
-/* 手機選單（漢堡展開的連結） */
-.nav-links {
-    display: none;
-    gap: var(--spacing-sm);
+/* ── 右側容器 ── */
+.nav-right {
+    display: flex;
     align-items: center;
-    position: relative;
+    gap: var(--spacing-xs);
+}
+
+/* ── 導航連結群組（桌面版顯示） ── */
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
 }
 
 .nav-links a {
     color: var(--text-muted);
     font-weight: 500;
-    padding: var(--spacing-xs) var(--spacing-md);
-    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-sm);
     transition: color var(--transition-fast), background var(--transition-fast);
-    position: relative;
-    font-size: 1rem;
     text-decoration: none;
+    font-size: 0.9rem;
     min-height: 44px;
     display: inline-flex;
     align-items: center;
+    letter-spacing: 0.02em;
+    position: relative;
 }
 
 .nav-links a::after {
     content: '';
     position: absolute;
-    bottom: 4px;
+    bottom: 6px;
     left: 50%;
     transform: translateX(-50%);
     width: 0;
     height: 2px;
-    background: var(--primary-color);
+    background: var(--gradient-primary);
     border-radius: 2px;
     transition: width var(--transition-normal);
 }
 
 .nav-links a:hover {
     color: var(--primary-light);
-    background: rgba(167, 139, 250, 0.06);
+    background: rgba(232, 121, 249, 0.07);
 }
 
 .nav-links a:hover::after {
@@ -147,47 +119,7 @@ nav .btn-discord {
     outline-offset: 2px;
 }
 
-/* Discord Button */
-.btn-discord {
-    background: transparent;
-    color: var(--primary-color);
-    padding: var(--spacing-sm);
-    border-radius: 50%;
-    width: 44px;
-    height: 44px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: color var(--transition-fast), border-color var(--transition-fast), background var(--transition-fast);
-    border: 1.5px solid var(--border-color-hover);
-    text-decoration: none;
-}
-
-.btn-discord i {
-    font-size: 1.4rem;
-    color: var(--primary-color);
-    transition: color var(--transition-fast);
-}
-
-.btn-discord:hover {
-    border-color: var(--primary-color);
-    background: rgba(167, 139, 250, 0.08);
-}
-
-.btn-discord:hover i {
-    color: var(--primary-light);
-}
-
-.btn-discord:active {
-    opacity: 0.8;
-}
-
-.btn-discord:focus-visible {
-    outline: 2px solid var(--primary-color);
-    outline-offset: 2px;
-}
-
-/* Hamburger Menu */
+/* ── 漢堡選單按鈕 ── */
 .hamburger {
     display: none;
     flex-direction: column;
@@ -198,15 +130,15 @@ nav .btn-discord {
     height: 44px;
     justify-content: center;
     align-items: center;
-    border-radius: 8px;
+    border-radius: var(--radius-sm);
     transition: background var(--transition-fast);
     border: 1px solid transparent;
     cursor: pointer;
 }
 
 .hamburger:hover {
-    background: rgba(167, 139, 250, 0.08);
-    border-color: var(--border-color-hover);
+    background: rgba(232, 121, 249, 0.07);
+    border-color: rgba(232, 121, 249, 0.15);
 }
 
 .hamburger:focus-visible {
@@ -227,10 +159,9 @@ nav .btn-discord {
     background: var(--primary-light);
 }
 
-/* Hamburger Active State */
 .hamburger.active {
-    background: rgba(167, 139, 250, 0.1);
-    border-color: var(--border-color-hover);
+    background: rgba(232, 121, 249, 0.1);
+    border-color: rgba(232, 121, 249, 0.2);
 }
 
 .hamburger.active span:nth-child(1) {
@@ -248,68 +179,41 @@ nav .btn-discord {
     background: var(--primary-color);
 }
 
-/* Mobile Navigation */
+/* ── 行動版 ── */
 @media (max-width: 768px) {
     nav {
         height: var(--nav-height-mobile);
         padding: 0 var(--spacing-md);
-        justify-content: flex-start;
     }
 
-    .nav-center-group {
-        margin-right: auto;
-    }
-
-    .nav-center-group .nav-center-link {
-        display: none;
-    }
-
-    .brand-link {
-        margin-right: 0;
+    .brand-text {
+        font-size: 1.2rem;
+        letter-spacing: 0.15em;
     }
 
     .hamburger {
         display: flex;
     }
 
-    nav .btn-discord {
-        position: static;
-        margin-left: auto;
-    }
-
-    .brand-text {
-        font-size: 1.25rem;
-        letter-spacing: 0.1em;
-    }
-
-    .btn-discord {
-        width: 44px;
-        height: 44px;
-        padding: var(--spacing-xs);
-    }
-
-    .btn-discord i {
-        font-size: 1.3rem;
-    }
-
+    /* 桌面連結在行動版隱藏，改為展開式選單 */
     .nav-links {
         display: flex;
         position: fixed;
         top: var(--nav-height-mobile);
         left: 0;
         right: 0;
-        background: rgba(15, 15, 15, 0.95);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
+        background: rgba(7, 7, 17, 0.96);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
         flex-direction: column;
         padding: var(--spacing-md);
         gap: var(--spacing-xs);
         transform: translateX(-100%);
         transition: transform var(--transition-normal);
-        border-bottom: 1px solid var(--border-color);
+        border-bottom: 1px solid rgba(232, 121, 249, 0.1);
         max-height: calc(100vh - var(--nav-height-mobile));
         overflow-y: auto;
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
     }
 
     .nav-links.active {
@@ -320,8 +224,8 @@ nav .btn-discord {
         width: 100%;
         text-align: center;
         padding: var(--spacing-md);
-        border: 1px solid var(--border-color);
-        border-radius: 10px;
+        border: 1px solid rgba(232, 121, 249, 0.1);
+        border-radius: var(--radius-sm);
         justify-content: center;
     }
 
@@ -330,7 +234,7 @@ nav .btn-discord {
     }
 
     .nav-links a:hover {
-        background: rgba(167, 139, 250, 0.08);
-        border-color: var(--border-color-hover);
+        background: rgba(232, 121, 249, 0.07);
+        border-color: rgba(232, 121, 249, 0.2);
     }
 }
