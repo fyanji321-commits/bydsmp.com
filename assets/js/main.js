@@ -16,9 +16,9 @@
             emailEl.href = 'mailto:' + CONFIG.email;
         }
 
-        // Navigation: Discord button
-        const discordBtn = document.getElementById('nav-discord-btn');
-        if (discordBtn) discordBtn.href = CONFIG.discordLink;
+        // Hero: Discord CTA button
+        const discordHeroBtn = document.getElementById('nav-discord-btn-hero');
+        if (discordHeroBtn) discordHeroBtn.href = CONFIG.discordLink;
 
         // Sponsor page: CTA link
         const sponsorCta = document.getElementById('sponsor-cta-link');

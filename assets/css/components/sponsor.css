@@ -1,90 +1,181 @@
-/* 贊助支持頁 - VIP 等級制、現代表格式設計 */
+/* 贊助支持頁 - 卡片式 VIP 等級設計 */
 
+/* ─── 頁面容器 ─────────────────────────────────── */
 .sponsor-page {
+    padding-top: var(--nav-height, 70px);
     padding-bottom: var(--spacing-xl);
-    max-width: 920px;
+    padding-left: clamp(var(--spacing-md), 6vw, var(--spacing-xl));
+    padding-right: clamp(var(--spacing-md), 6vw, var(--spacing-xl));
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* ─── Hero 標題區 ──────────────────────────────── */
+.sponsor-hero {
+    text-align: center;
+    padding: 2rem 0 1.5rem;
+    position: relative;
+}
+
+.sponsor-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(232, 121, 249, 0.12) 0%, transparent 70%);
+    pointer-events: none;
 }
 
 .sponsor-page .section-title {
-    margin-bottom: var(--spacing-md);
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+.sponsor-tagline {
+    font-family: var(--font-heading);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-xs);
+    display: block;
 }
 
 .sponsor-intro {
     color: var(--text-muted);
     font-size: 1rem;
     line-height: 1.75;
-    margin-bottom: var(--spacing-lg);
+    max-width: 600px;
+    margin: 0 auto 1rem;
 }
 
 .sponsor-intro strong {
     color: var(--primary-light);
-    font-weight: 600;
-}
-
-/* VIP 福利表格 */
-.vip-table-wrap {
-    margin-bottom: var(--spacing-xl);
-    overflow-x: auto;
-    border-radius: 12px;
-    border: 1px solid var(--border-color);
-    background: var(--bg-card);
-    box-shadow: var(--shadow-card);
-}
-
-.vip-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 0.95rem;
-}
-
-.vip-table th,
-.vip-table td {
-    padding: var(--spacing-sm) var(--spacing-md);
-    text-align: left;
-    border-bottom: 1px solid var(--border-color);
-    vertical-align: middle;
-}
-
-.vip-table thead th {
-    font-family: var(--font-heading);
     font-weight: 700;
-    color: var(--text-muted);
-    background: var(--bg-card-hover);
-    padding: var(--spacing-md);
-    font-size: 0.85rem;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
 }
 
-.vip-table thead th:nth-child(1) { width: 88px; text-align: center; }
-.vip-table thead th:nth-child(2) { width: 100px; text-align: center; }
-
-.vip-table tbody tr {
-    transition: background var(--transition-fast);
+/* 價格標示 */
+.sponsor-price-badge {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.25rem;
+    background: linear-gradient(135deg, rgba(232, 121, 249, 0.15), rgba(167, 139, 250, 0.1));
+    border: 1px solid rgba(232, 121, 249, 0.3);
+    border-radius: 100px;
+    padding: 0.5rem 1.25rem;
+    margin-bottom: 1.5rem;
 }
 
-.vip-table tbody tr:hover {
-    background: rgba(167, 139, 250, 0.04);
-}
-
-.vip-table tbody tr:last-child td {
-    border-bottom: none;
-}
-
-.vip-table td:nth-child(1),
-.vip-table td:nth-child(2) {
-    text-align: center;
-}
-
-.vip-table td:nth-child(2) {
+.sponsor-price-badge .price-amount {
     font-family: var(--font-heading);
-    font-weight: 600;
-    color: var(--text-main);
+    font-size: 1.5rem;
+    font-weight: 900;
+    background: var(--gradient-text);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
-.vip-table td:nth-child(3) {
+.sponsor-price-badge .price-unit {
+    font-size: 0.85rem;
     color: var(--text-muted);
-    line-height: 1.6;
+}
+
+/* ─── VIP 卡片網格 ─────────────────────────────── */
+.vip-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+    margin-bottom: var(--spacing-lg);
+}
+
+/* VIP 卡片 */
+.vip-card {
+    position: relative;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+    overflow: hidden;
+    transition: transform var(--transition-normal), border-color var(--transition-normal), box-shadow var(--transition-normal);
+    cursor: default;
+}
+
+.vip-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--gradient-card);
+    opacity: 0;
+    transition: opacity var(--transition-normal);
+    pointer-events: none;
+}
+
+.vip-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--border-color-hover);
+    box-shadow: var(--shadow-card-hover);
+}
+
+.vip-card:hover::before {
+    opacity: 1;
+}
+
+/* 卡片右上角裝飾光點 */
+.vip-card::after {
+    content: '';
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: var(--primary-glow-soft);
+    filter: blur(20px);
+    transition: opacity var(--transition-normal);
+    opacity: 0;
+}
+
+.vip-card:hover::after {
+    opacity: 1;
+}
+
+/* 免費等級（VIP 0）特殊樣式 */
+.vip-card--free {
+    border-style: dashed;
+    border-color: rgba(107, 114, 128, 0.3);
+}
+
+.vip-card--free:hover {
+    border-color: rgba(107, 114, 128, 0.6);
+}
+
+.vip-card--free::after {
+    background: rgba(107, 114, 128, 0.1);
+}
+
+/* 頂級（VIP 10）特殊樣式 */
+.vip-card--top {
+    border-color: rgba(232, 121, 249, 0.4);
+    background: linear-gradient(145deg, rgba(232, 121, 249, 0.07), rgba(56, 189, 248, 0.04));
+    grid-column: 1 / -1;
+    max-width: 480px;
+    justify-self: center;
+    width: 100%;
+}
+
+.vip-card--top::after {
+    width: 120px;
+    height: 120px;
+    opacity: 0.4;
+}
+
+/* ─── 卡片 Header ──────────────────────────────── */
+.vip-card__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
 }
 
 /* VIP 等級徽章 */
@@ -92,88 +183,283 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-width: 2.25rem;
-    height: 2.25rem;
-    padding: 0 0.5rem;
+    width: 2.75rem;
+    height: 2.75rem;
     font-family: var(--font-heading);
-    font-weight: 700;
-    font-size: 0.9rem;
-    color: #0F0F0F;
-    background: var(--primary-color);
-    border-radius: 8px;
+    font-weight: 900;
+    font-size: 1rem;
+    border-radius: var(--radius-sm);
+    position: relative;
+    flex-shrink: 0;
 }
 
 .vip-badge--0 {
-    background: var(--bg-card-hover);
+    background: rgba(107, 114, 128, 0.2);
+    color: var(--text-subtle);
+    border: 1px solid rgba(107, 114, 128, 0.2);
+}
+
+.vip-badge--1,
+.vip-badge--2,
+.vip-badge--3 {
+    background: linear-gradient(135deg, #C084FC, #A78BFA);
+    color: #0F0F0F;
+    box-shadow: 0 2px 12px rgba(167, 139, 250, 0.4);
+}
+
+.vip-badge--4,
+.vip-badge--5,
+.vip-badge--6 {
+    background: linear-gradient(135deg, #E879F9, #C084FC);
+    color: #0F0F0F;
+    box-shadow: 0 2px 16px rgba(232, 121, 249, 0.45);
+}
+
+.vip-badge--7,
+.vip-badge--8,
+.vip-badge--9 {
+    background: linear-gradient(135deg, #F0ABFC, #E879F9);
+    color: #0F0F0F;
+    box-shadow: 0 2px 20px rgba(232, 121, 249, 0.55);
+}
+
+.vip-badge--10 {
+    background: var(--gradient-primary);
+    color: #0F0F0F;
+    box-shadow: 0 2px 24px rgba(232, 121, 249, 0.6), 0 0 0 2px rgba(232, 121, 249, 0.2);
+}
+
+/* 累計金額 */
+.vip-card__price {
+    text-align: right;
+}
+
+.vip-card__price-label {
+    display: block;
+    font-size: 0.7rem;
+    color: var(--text-subtle);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 0.15rem;
+}
+
+.vip-card__price-amount {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.vip-card__price-amount--free {
+    color: var(--text-subtle);
+    font-size: 0.95rem;
+}
+
+.vip-card__price-unit {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-family: var(--font-body);
+    font-weight: 400;
+    margin-left: 0.15rem;
+}
+
+/* VIP 標題 */
+.vip-card__title {
+    font-family: var(--font-heading);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 0.65rem;
+}
+
+/* ─── 福利列表 ─────────────────────────────────── */
+.vip-card__perks {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.vip-card__perk {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+.vip-card__perk-icon {
+    flex-shrink: 0;
+    width: 1.1rem;
+    height: 1.1rem;
+    margin-top: 0.15rem;
+    color: var(--primary-color);
+    opacity: 0.7;
+}
+
+.vip-card--free .vip-card__perk-icon {
     color: var(--text-subtle);
 }
 
-/* 前往贊助 CTA */
-.sponsor-cta-wrap {
+/* 特殊福利高亮 */
+.vip-card__perk--highlight {
+    color: var(--text-light);
+}
+
+.vip-card__perk--highlight .vip-card__perk-icon {
+    opacity: 1;
+}
+
+/* ─── 分隔線 ───────────────────────────────────── */
+.vip-card__divider {
+    height: 1px;
+    background: var(--border-color);
+    margin: 0.85rem 0;
+}
+
+/* ─── CTA 區塊 ─────────────────────────────────── */
+.sponsor-cta-section {
     text-align: center;
-    margin-bottom: var(--spacing-xl);
+    padding: var(--spacing-md) 0;
+    margin-bottom: var(--spacing-md);
+    position: relative;
+}
+
+.sponsor-cta-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 100% at 50% 50%, rgba(232, 121, 249, 0.06), transparent 70%);
+    pointer-events: none;
+}
+
+.sponsor-cta-wrap {
+    position: relative;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
 }
 
 .sponsor-cta {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 0.85rem 2.5rem;
+    gap: 0.6rem;
+    padding: 1rem 2.75rem;
     font-family: var(--font-heading);
     font-size: 1rem;
     font-weight: 700;
     color: #0F0F0F;
-    background: var(--primary-color);
-    border-radius: 10px;
+    background: var(--gradient-primary);
+    border-radius: 100px;
     text-decoration: none;
-    min-height: 44px;
-    transition: opacity var(--transition-fast), transform var(--transition-fast);
-    letter-spacing: 0.02em;
+    min-height: 52px;
+    transition: opacity var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+    letter-spacing: 0.03em;
+    box-shadow: 0 4px 24px rgba(232, 121, 249, 0.4), 0 0 0 0 rgba(232, 121, 249, 0);
+    position: relative;
+    overflow: hidden;
+}
+
+.sponsor-cta::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.15), rgba(255,255,255,0));
+    opacity: 0;
+    transition: opacity var(--transition-fast);
 }
 
 .sponsor-cta:hover {
-    opacity: 0.85;
-    transform: translateY(-2px);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 40px rgba(232, 121, 249, 0.55), 0 0 0 4px rgba(232, 121, 249, 0.15);
+}
+
+.sponsor-cta:hover::before {
+    opacity: 1;
 }
 
 .sponsor-cta:active {
-    opacity: 0.95;
-    transform: translateY(0) scale(0.98);
+    transform: translateY(-1px) scale(0.98);
+    box-shadow: 0 4px 20px rgba(232, 121, 249, 0.4);
 }
 
 .sponsor-cta:focus-visible {
     outline: 2px solid var(--primary-light);
-    outline-offset: 3px;
+    outline-offset: 4px;
 }
 
-/* 重要說明區塊 */
+.sponsor-cta-hint {
+    font-size: 0.8rem;
+    color: var(--text-subtle);
+}
+
+/* ─── 重要說明區塊 ─────────────────────────────── */
 .sponsor-disclaimer {
-    background: var(--bg-card);
+    background: linear-gradient(145deg, rgba(248, 113, 113, 0.04), rgba(248, 113, 113, 0.02));
     border: 1px solid var(--border-violation);
-    border-radius: 12px;
-    padding: var(--spacing-lg);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-md);
+    position: relative;
+    overflow: hidden;
+}
+
+.sponsor-disclaimer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(248, 113, 113, 0.5), transparent);
 }
 
 .sponsor-disclaimer__title {
     font-family: var(--font-heading);
-    font-size: 0.95rem;
+    font-size: 0.85rem;
     font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
     color: var(--color-violation);
-    margin: 0 0 var(--spacing-sm) 0;
+    margin: 0 0 0.85rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.sponsor-disclaimer__title::before {
+    content: '!';
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.25rem;
+    height: 1.25rem;
+    border-radius: 50%;
+    border: 1.5px solid var(--color-violation);
+    font-size: 0.75rem;
+    flex-shrink: 0;
 }
 
 .sponsor-disclaimer__list {
     list-style: none;
     margin: 0;
     padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
 
 .sponsor-disclaimer__list li {
     position: relative;
-    padding-left: 1.25rem;
-    margin-bottom: 0.5rem;
+    padding-left: 1.1rem;
     color: var(--text-muted);
-    font-size: 0.9rem;
+    font-size: 0.875rem;
     line-height: 1.7;
 }
 
@@ -186,35 +472,43 @@
     height: 4px;
     border-radius: 50%;
     background: var(--color-violation);
-    opacity: 0.7;
+    opacity: 0.6;
 }
 
+/* ─── RWD ──────────────────────────────────────── */
 @media (max-width: 768px) {
     .sponsor-page {
         padding-left: var(--spacing-sm);
         padding-right: var(--spacing-sm);
     }
 
-    .vip-table {
-        font-size: 0.85rem;
+    .vip-grid {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
     }
 
-    .vip-table th,
-    .vip-table td {
-        padding: var(--spacing-xs) var(--spacing-sm);
-    }
-
-    .vip-table thead th:nth-child(1) { width: 64px; }
-    .vip-table thead th:nth-child(2) { width: 72px; }
-
-    .vip-badge {
-        min-width: 1.85rem;
-        height: 1.85rem;
-        font-size: 0.85rem;
+    .vip-card {
+        padding: 1.25rem;
     }
 
     .sponsor-cta {
-        padding: 0.85rem 1.5rem;
+        padding: 0.9rem 2rem;
         font-size: 0.95rem;
+    }
+
+    .sponsor-price-badge .price-amount {
+        font-size: 1.25rem;
+    }
+}
+
+@media (min-width: 600px) and (max-width: 768px) {
+    .vip-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .vip-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
 }

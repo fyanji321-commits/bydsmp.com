@@ -46,113 +46,325 @@
 </head>
 <body>
     <nav role="navigation" aria-label="主要導航" data-nav="always-visible">
-        <div class="nav-center-group">
-            <a href="rules.html" class="nav-center-link" role="menuitem">規則</a>
-            <a href="index.html" class="brand-link brand-text" aria-label="返回首頁">BYDSMP</a>
-            <a href="sponsor.html" class="nav-center-link" role="menuitem">贊助支持</a>
-        </div>
-        <button class="hamburger" 
-                onclick="toggleMenu()"
-                aria-label="開啟選單" 
-                aria-expanded="false"
-                aria-controls="nav-links">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-        <a id="nav-discord-btn"
-           href="#"
-           target="_blank" 
-           rel="noopener noreferrer"
-           class="btn-discord"
-           aria-label="加入 Discord 社群">
-            <i class="fab fa-discord"></i>
+        <a href="index.html" class="brand-link" aria-label="返回首頁">
+            <span class="brand-text">BYDSMP</span>
         </a>
-        <div class="nav-links" id="nav-links" role="menubar">
-            <a href="rules.html" role="menuitem">規則</a>
-            <a href="sponsor.html" role="menuitem">贊助支持</a>
+        <div class="nav-right">
+            <div class="nav-links" id="nav-links" role="menubar">
+                <a href="rules.html" role="menuitem">規則</a>
+                <a href="sponsor.html" role="menuitem">贊助支持</a>
+            </div>
+            <button class="hamburger" 
+                    onclick="toggleMenu()"
+                    aria-label="開啟選單" 
+                    aria-expanded="false"
+                    aria-controls="nav-links">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </nav>
 
-    <main class="subpage sponsor-page" role="main">
-        <h1 id="sponsor-title" class="section-title">贊助支持</h1>
-        <p class="sponsor-intro">VIP 以等級計算，每提升 1 級需贊助 <strong>200 TWD</strong>（例：贊助 600 TWD = VIP 3）。贊助後請在訂單留言註明「遊戲 ID」以便發放福利。</p>
+    <main class="sponsor-page" role="main">
 
-        <section class="vip-table-wrap" aria-label="VIP 福利一覽">
-            <table class="vip-table">
-                <thead>
-                    <tr>
-                        <th>VIP</th>
-                        <th>累計金額</th>
-                        <th>福利內容</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><span class="vip-badge vip-badge--0">0</span></td>
-                        <td>—</td>
-                        <td>5 領地 / 5 Home / 領地 150 格 / 每日 1 鑰匙</td>
-                    </tr>
-                    <tr>
-                        <td><span class="vip-badge">1</span></td>
-                        <td>200</td>
-                        <td>6 領地 / 6 Home / 領地 200 格 / 限領一次 10 鑰匙、/wb 隨身工作臺</td>
-                    </tr>
-                    <tr>
-                        <td><span class="vip-badge">2</span></td>
-                        <td>400</td>
-                        <td>7 領地 / 7 Home / 領地 250 格 / TP 無冷卻</td>
-                    </tr>
-                    <tr>
-                        <td><span class="vip-badge">3</span></td>
-                        <td>600</td>
-                        <td>8 領地 / 8 Home / 領地 300 格</td>
-                    </tr>
-                    <tr>
-                        <td><span class="vip-badge">4</span></td>
-                        <td>800</td>
-                        <td>每日 2 鑰匙 / 隨身終界箱</td>
-                    </tr>
-                    <tr>
-                        <td><span class="vip-badge">5</span></td>
-                        <td>1,000</td>
-                        <td>9 領地 / 9 Home / 領地 350 格 / 自選小怪生怪磚</td>
-                    </tr>
-                    <tr>
-                        <td><span class="vip-badge">6</span></td>
-                        <td>1,200</td>
-                        <td>獲得自訂稱號權限</td>
-                    </tr>
-                    <tr>
-                        <td><span class="vip-badge">7</span></td>
-                        <td>1,400</td>
-                        <td>10 領地 / 10 Home / 領地 400 格 / 限領一次 30 鑰匙</td>
-                    </tr>
-                    <tr>
-                        <td><span class="vip-badge">8</span></td>
-                        <td>1,600</td>
-                        <td>自選小怪生怪磚 × 2</td>
-                    </tr>
-                    <tr>
-                        <td><span class="vip-badge">9</span></td>
-                        <td>1,800</td>
-                        <td>11 領地 / 11 Home / 領地 450 格</td>
-                    </tr>
-                    <tr>
-                        <td><span class="vip-badge">10</span></td>
-                        <td>2,000</td>
-                        <td>12 領地 / 12 Home / 領地 500 格 / 每日 4 鑰匙</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-
-        <div class="sponsor-cta-wrap">
-            <a id="sponsor-cta-link" href="#" target="_blank" rel="noopener noreferrer" class="sponsor-cta">前往贊助 / 洽詢 Discord</a>
+        <!-- Hero 標題區 -->
+        <div class="sponsor-hero">
+            <span class="sponsor-tagline">Support BYDSMP</span>
+            <h1 id="sponsor-title" class="section-title">贊助支持</h1>
+            <p class="sponsor-intro">VIP 以等級計算，每提升 1 級需贊助 <strong>200 TWD</strong>（例：贊助 600 TWD = VIP 3）。贊助後請在訂單留言註明「遊戲 ID」以便發放福利。</p>
+            <div class="sponsor-price-badge" aria-label="每級 200 TWD">
+                <span class="price-amount">200</span>
+                <span class="price-unit">TWD / 級</span>
+            </div>
         </div>
 
-        <div class="sponsor-disclaimer">
-            <h3 class="sponsor-disclaimer__title">【重要說明】</h3>
+        <!-- VIP 卡片網格 -->
+        <div class="vip-grid" role="list" aria-label="VIP 福利一覽">
+
+            <!-- VIP 0 -->
+            <article class="vip-card vip-card--free" aria-label="VIP 0 免費">
+                <div class="vip-card__header">
+                    <span class="vip-badge vip-badge--0" aria-label="VIP 等級 0">0</span>
+                    <div class="vip-card__price">
+                        <span class="vip-card__price-label">累計金額</span>
+                        <span class="vip-card__price-amount vip-card__price-amount--free">免費</span>
+                    </div>
+                </div>
+                <p class="vip-card__title">基礎玩家</p>
+                <ul class="vip-card__perks">
+                    <li class="vip-card__perk">
+                        <svg class="vip-card__perk-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1" y="1" width="14" height="14" rx="3" stroke="currentColor" stroke-width="1.5"/><path d="M5 8h6M8 5v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                        5 領地 / 5 Home
+                    </li>
+                    <li class="vip-card__perk">
+                        <svg class="vip-card__perk-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.5"/><path d="M8 5v3l2 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                        領地範圍 150 格
+                    </li>
+                    <li class="vip-card__perk">
+                        <svg class="vip-card__perk-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 2l1.5 3.5L13 6l-2.5 2.5.5 3.5L8 10.5 5 12l.5-3.5L3 6l3.5-.5L8 2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                        每日 1 鑰匙
+                    </li>
+                </ul>
+            </article>
+
+            <!-- VIP 1 -->
+            <article class="vip-card" aria-label="VIP 1">
+                <div class="vip-card__header">
+                    <span class="vip-badge vip-badge--1" aria-label="VIP 等級 1">1</span>
+                    <div class="vip-card__price">
+                        <span class="vip-card__price-label">累計金額</span>
+                        <span class="vip-card__price-amount">200<span class="vip-card__price-unit">TWD</span></span>
+                    </div>
+                </div>
+                <p class="vip-card__title">VIP I</p>
+                <ul class="vip-card__perks">
+                    <li class="vip-card__perk">
+                        <svg class="vip-card__perk-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1" y="1" width="14" height="14" rx="3" stroke="currentColor" stroke-width="1.5"/><path d="M5 8h6M8 5v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                        6 領地 / 6 Home
+                    </li>
+                    <li class="vip-card__perk">
+                        <svg class="vip-card__perk-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.5"/><path d="M8 5v3l2 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                        領地範圍 200 格
+                    </li>
+                    <li class="vip-card__perk vip-card__perk--highlight">
+                        <svg class="vip-card__perk-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 2l1.5 3.5L13 6l-2.5 2.5.5 3.5L8 10.5 5 12l.5-3.5L3 6l3.5-.5L8 2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                        限領一次 10 鑰匙
+                    </li>
+                    <li class="vip-card__perk vip-card__perk--highlight">
+                        <svg class="vip-card__perk-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 5h10v7a1 1 0 01-1 1H4a1 1 0 01-1-1V5zM1 5h14M6 5V3h4v2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        /wb 隨身工作臺
+                    </li>
+                </ul>
+            </article>
+
+            <!-- VIP 2 -->
+            <article class="vip-card" aria-label="VIP 2">
+                <div class="vip-card__header">
+                    <span class="vip-badge vip-badge--2" aria-label="VIP 等級 2">2</span>
+                    <div class="vip-card__price">
+                        <span class="vip-card__price-label">累計金額</span>
+                        <span class="vip-card__price-amount">400<span class="vip-card__price-unit">TWD</span></span>
+                    </div>
+                </div>
+                <p class="vip-card__title">VIP II</p>
+                <ul class="vip-card__perks">
+                    <li class="vip-card__perk">
+                        <svg class="vip-card__perk-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1" y="1" width="14" height="14" rx="3" stroke="currentColor" stroke-width="1.5"/><path d="M5 8h6M8 5v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                        7 領地 / 7 Home
+                    </li>
+                    <li class="vip-card__perk">
+                        <svg class="vip-card__perk-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.5"/><path d="M8 5v3l2 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                        領地範圍 250 格
+                    </li>
+                    <li class="vip-card__perk vip-card__perk--highlight">
+                        <svg class="vip-card__perk-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8l4 4 8-8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        TP 無冷卻
+                    </li>
+                </ul>
+            </article>
+
+            <!-- VIP 3 -->
+            <article class="vip-card" aria-label="VIP 3">
+                <div class="vip-card__header">
+                    <span class="vip-badge vip-badge--3" aria-label="VIP 等級 3">3</span>
+                    <div class="vip-card__price">
+                        <span class="vip-card__price-label">累計金額</span>
+                        <span class="vip-card__price-amount">600<span class="vip-card__price-unit">TWD</span></span>
+                    </div>
+                </div>
+                <p class="vip-card__title">VIP III</p>
+                <ul class="vip-card__perks">
+                    <li class="vip-card__perk">
+                        <svg class="vip-card__perk-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1" y="1" width="14" height="14" rx="3" stroke="currentColor" stroke-width="1.5"/><path d="M5 8h6M8 5v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                        8 領地 / 8 Home
+                    </li>
+                    <li class="vip-card__perk">
+                        <svg class="vip-card__perk-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.5"/><path d="M8 5v3l2 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                        領地範圍 300 格
+                    </li>
+                </ul>
+            </article>
+
+            <!-- VIP 4 -->
+            <article class="vip-card" aria-label="VIP 4">
+                <div class="vip-card__header">
+                    <span class="vip-badge vip-badge--4" aria-label="VIP 等級 4">4</span>
+                    <div class="vip-card__price">
+                        <span class="vip-card__price-label">累計金額</span>
+                        <span class="vip-card__price-amount">800<span class="vip-card__price-unit">TWD</span></span>
+                    </div>
+                </div>
+                <p class="vip-card__title">VIP IV</p>
+                <ul class="vip-card__perks">
+                    <li class="vip-card__perk vip-card__perk--highlight">
+                        <svg class="vip-card__perk-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 2l1.5 3.5L13 6l-2.5 2.5.5 3.5L8 10.5 5 12l.5-3.5L3 6l3.5-.5L8 2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                        每日 2 鑰匙
+                    </li>
+                    <li class="vip-card__perk vip-card__perk--highlight">
+                        <svg class="vip-card__perk-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 5h10v7a1 1 0 01-1 1H4a1 1 0 01-1-1V5zM1 5h14M6 5V3h4v2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        隨身終界箱
+                    </li>
+                </ul>
+            </article>
+
+            <!-- VIP 5 -->
+            <article class="vip-card" aria-label="VIP 5">
+                <div class="vip-card__header">
+                    <span class="vip-badge vip-badge--5" aria-label="VIP 等級 5">5</span>
+                    <div class="vip-card__price">
+                        <span class="vip-card__price-label">累計金額</span>
+                        <span class="vip-card__price-amount">1,000<span class="vip-card__price-unit">TWD</span></span>
+                    </div>
+                </div>
+                <p class="vip-card__title">VIP V</p>
+                <ul class="vip-card__perks">
+                    <li class="vip-card__perk">
+                        <svg class="vip-card__perk-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1" y="1" width="14" height="14" rx="3" stroke="currentColor" stroke-width="1.5"/><path d="M5 8h6M8 5v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                        9 領地 / 9 Home
+                    </li>
+                    <li class="vip-card__perk">
+                        <svg class="vip-card__perk-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.5"/><path d="M8 5v3l2 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                        領地範圍 350 格
+                    </li>
+                    <li class="vip-card__perk vip-card__perk--highlight">
+                        <svg class="vip-card__perk-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 2l1.5 3.5L13 6l-2.5 2.5.5 3.5L8 10.5 5 12l.5-3.5L3 6l3.5-.5L8 2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                        自選小怪生怪磚
+                    </li>
+                </ul>
+            </article>
+
+            <!-- VIP 6 -->
+            <article class="vip-card" aria-label="VIP 6">
+                <div class="vip-card__header">
+                    <span class="vip-badge vip-badge--6" aria-label="VIP 等級 6">6</span>
+                    <div class="vip-card__price">
+                        <span class="vip-card__price-label">累計金額</span>
+                        <span class="vip-card__price-amount">1,200<span class="vip-card__price-unit">TWD</span></span>
+                    </div>
+                </div>
+                <p class="vip-card__title">VIP VI</p>
+                <ul class="vip-card__perks">
+                    <li class="vip-card__perk vip-card__perk--highlight">
+                        <svg class="vip-card__perk-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 2C5.791 2 4 3.791 4 6c0 1.416.74 2.658 1.856 3.373L5 13h6l-.856-3.627A3.978 3.978 0 0012 6c0-2.209-1.791-4-4-4z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M6 13h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                        獲得自訂稱號權限
+                    </li>
+                </ul>
+            </article>
+
+            <!-- VIP 7 -->
+            <article class="vip-card" aria-label="VIP 7">
+                <div class="vip-card__header">
+                    <span class="vip-badge vip-badge--7" aria-label="VIP 等級 7">7</span>
+                    <div class="vip-card__price">
+                        <span class="vip-card__price-label">累計金額</span>
+                        <span class="vip-card__price-amount">1,400<span class="vip-card__price-unit">TWD</span></span>
+                    </div>
+                </div>
+                <p class="vip-card__title">VIP VII</p>
+                <ul class="vip-card__perks">
+                    <li class="vip-card__perk">
+                        <svg class="vip-card__perk-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1" y="1" width="14" height="14" rx="3" stroke="currentColor" stroke-width="1.5"/><path d="M5 8h6M8 5v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                        10 領地 / 10 Home
+                    </li>
+                    <li class="vip-card__perk">
+                        <svg class="vip-card__perk-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.5"/><path d="M8 5v3l2 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                        領地範圍 400 格
+                    </li>
+                    <li class="vip-card__perk vip-card__perk--highlight">
+                        <svg class="vip-card__perk-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 2l1.5 3.5L13 6l-2.5 2.5.5 3.5L8 10.5 5 12l.5-3.5L3 6l3.5-.5L8 2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                        限領一次 30 鑰匙
+                    </li>
+                </ul>
+            </article>
+
+            <!-- VIP 8 -->
+            <article class="vip-card" aria-label="VIP 8">
+                <div class="vip-card__header">
+                    <span class="vip-badge vip-badge--8" aria-label="VIP 等級 8">8</span>
+                    <div class="vip-card__price">
+                        <span class="vip-card__price-label">累計金額</span>
+                        <span class="vip-card__price-amount">1,600<span class="vip-card__price-unit">TWD</span></span>
+                    </div>
+                </div>
+                <p class="vip-card__title">VIP VIII</p>
+                <ul class="vip-card__perks">
+                    <li class="vip-card__perk vip-card__perk--highlight">
+                        <svg class="vip-card__perk-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 2l1.5 3.5L13 6l-2.5 2.5.5 3.5L8 10.5 5 12l.5-3.5L3 6l3.5-.5L8 2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                        自選小怪生怪磚 × 2
+                    </li>
+                </ul>
+            </article>
+
+            <!-- VIP 9 -->
+            <article class="vip-card" aria-label="VIP 9">
+                <div class="vip-card__header">
+                    <span class="vip-badge vip-badge--9" aria-label="VIP 等級 9">9</span>
+                    <div class="vip-card__price">
+                        <span class="vip-card__price-label">累計金額</span>
+                        <span class="vip-card__price-amount">1,800<span class="vip-card__price-unit">TWD</span></span>
+                    </div>
+                </div>
+                <p class="vip-card__title">VIP IX</p>
+                <ul class="vip-card__perks">
+                    <li class="vip-card__perk">
+                        <svg class="vip-card__perk-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1" y="1" width="14" height="14" rx="3" stroke="currentColor" stroke-width="1.5"/><path d="M5 8h6M8 5v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                        11 領地 / 11 Home
+                    </li>
+                    <li class="vip-card__perk">
+                        <svg class="vip-card__perk-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.5"/><path d="M8 5v3l2 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                        領地範圍 450 格
+                    </li>
+                </ul>
+            </article>
+
+            <!-- VIP 10 -->
+            <article class="vip-card vip-card--top" aria-label="VIP 10 頂級">
+                <div class="vip-card__header">
+                    <span class="vip-badge vip-badge--10" aria-label="VIP 等級 10">10</span>
+                    <div class="vip-card__price">
+                        <span class="vip-card__price-label">累計金額</span>
+                        <span class="vip-card__price-amount">2,000<span class="vip-card__price-unit">TWD</span></span>
+                    </div>
+                </div>
+                <p class="vip-card__title">VIP X · 頂級</p>
+                <ul class="vip-card__perks">
+                    <li class="vip-card__perk">
+                        <svg class="vip-card__perk-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1" y="1" width="14" height="14" rx="3" stroke="currentColor" stroke-width="1.5"/><path d="M5 8h6M8 5v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                        12 領地 / 12 Home
+                    </li>
+                    <li class="vip-card__perk">
+                        <svg class="vip-card__perk-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.5"/><path d="M8 5v3l2 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                        領地範圍 500 格
+                    </li>
+                    <li class="vip-card__perk vip-card__perk--highlight">
+                        <svg class="vip-card__perk-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 2l1.5 3.5L13 6l-2.5 2.5.5 3.5L8 10.5 5 12l.5-3.5L3 6l3.5-.5L8 2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                        每日 4 鑰匙
+                    </li>
+                </ul>
+            </article>
+
+        </div>
+
+        <!-- CTA 區塊 -->
+        <div class="sponsor-cta-section">
+            <div class="sponsor-cta-wrap">
+                <a id="sponsor-cta-link"
+                   href="#"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="sponsor-cta"
+                   aria-label="前往贊助或洽詢 Discord">
+                    <i class="fab fa-discord" aria-hidden="true"></i>
+                    前往贊助 / 洽詢 Discord
+                </a>
+                <span class="sponsor-cta-hint">點擊後將前往贊助頁面或 Discord 洽詢</span>
+            </div>
+        </div>
+
+        <!-- 重要說明 -->
+        <div class="sponsor-disclaimer" role="note" aria-label="重要說明">
+            <h3 class="sponsor-disclaimer__title">重要說明</h3>
             <ul class="sponsor-disclaimer__list">
                 <li>贊助款項將用於伺服器硬體租賃與維護，感謝您的支持。</li>
                 <li>贊助者若違反伺服器規則，將一視同仁處理，無任何豁免權。</li>

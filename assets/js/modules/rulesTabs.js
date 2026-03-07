@@ -17,7 +17,7 @@
         
         if (!tabBtns.length || !panels.length) return;
         
-        function switchTab(targetId) {
+        function switchTab(targetId, updateHash) {
             tabBtns.forEach(btn => {
                 const isTarget = btn.getAttribute('data-tab') === targetId;
                 btn.classList.toggle('active', isTarget);
@@ -28,7 +28,7 @@
                 panel.classList.toggle('active', isTarget);
                 panel.setAttribute('aria-hidden', String(!isTarget));
             });
-            if (history.replaceState) {
+            if (updateHash && history.replaceState) {
                 history.replaceState(null, '', window.location.pathname + '#' + targetId);
             }
         }
@@ -36,13 +36,14 @@
         tabBtns.forEach(btn => {
             btn.addEventListener('click', () => {
                 const targetId = btn.getAttribute('data-tab');
-                if (targetId) switchTab(targetId);
+                if (targetId) switchTab(targetId, true);
             });
         });
         
         const hash = window.location.hash.slice(1);
         const validTab = Array.from(tabBtns).some(b => b.getAttribute('data-tab') === hash);
-        switchTab(hash && validTab ? hash : panels[0].id);
+        // 初始化時不更新 hash，避免瀏覽器因 #tab-basic 錨點捲動到非頂部位置
+        switchTab(hash && validTab ? hash : panels[0].id, false);
     }
     
     if (document.readyState === 'loading') {

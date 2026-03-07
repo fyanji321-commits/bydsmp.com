@@ -1,11 +1,23 @@
 /* Footer Component */
 
 footer {
-    background: var(--bg-dark);
-    border-top: 1px solid var(--border-color);
+    background: var(--bg-mid);
+    border-top: 1px solid rgba(232, 121, 249, 0.1);
     padding: var(--spacing-md) clamp(var(--spacing-md), 6vw, var(--spacing-xl));
     margin-top: var(--spacing-lg);
     position: relative;
+    overflow: hidden;
+}
+
+/* 頂部光暈線 */
+footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, rgba(232, 121, 249, 0.4) 30%, rgba(167, 139, 250, 0.5) 50%, rgba(56, 189, 248, 0.4) 70%, transparent 100%);
 }
 
 footer p {
@@ -13,7 +25,7 @@ footer p {
     margin-bottom: var(--spacing-sm);
     line-height: 1.7;
     text-align: center;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
 }
 
 .footer-contact {
@@ -26,26 +38,32 @@ footer p {
 
 .footer-contact span {
     color: var(--text-muted);
-    font-size: 0.95rem;
+    font-size: 0.9rem;
 }
 
 footer p:first-child {
-    font-size: 1rem;
+    font-size: 0.95rem;
     font-weight: 600;
     color: var(--text-light);
-    letter-spacing: 0.02em;
+    letter-spacing: 0.04em;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 footer .footer-disclaimer {
     margin-bottom: 0;
     margin-top: var(--spacing-sm);
     padding-top: var(--spacing-sm);
-    border-top: 1px solid var(--border-color);
-    font-size: 0.72rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.04);
+    font-size: 0.7rem;
     color: var(--text-subtle);
     max-width: 720px;
     margin-left: auto;
     margin-right: auto;
+    text-align: center;
+    line-height: 1.6;
 }
 
 footer strong {
@@ -77,15 +95,16 @@ footer a:focus-visible {
 
     .footer-contact {
         flex-direction: column;
+        align-items: center;
         gap: var(--spacing-xs);
     }
 
     footer p,
     .footer-contact span {
-        font-size: 0.9rem;
+        font-size: 0.85rem;
     }
 
     footer .footer-disclaimer {
-        font-size: 0.68rem;
+        font-size: 0.65rem;
     }
 }
