@@ -1,4 +1,4 @@
-/* Hero Section - 現代化美學：Logo 左、主標語右、IP 與 Logo 底對齊 */
+/* Hero Section */
 
 .hero {
     position: relative;
@@ -22,7 +22,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: clamp(var(--spacing-lg), 5vw, var(--spacing-xl) * 1.25);
+    gap: clamp(var(--spacing-lg), 5vw, var(--spacing-xl));
     max-width: 1100px;
     margin: 0 auto;
     width: 100%;
@@ -80,12 +80,12 @@
 
 .hero-title {
     font-family: var(--font-heading);
-    font-size: clamp(1.6rem, 3.2vw, 2.5rem);
+    font-size: clamp(2rem, 5vw, 3.5rem);
     font-weight: 700;
     color: var(--text-main);
     margin: 0;
-    line-height: 1.35;
-    letter-spacing: 0.06em;
+    line-height: 1.15;
+    letter-spacing: 0.04em;
     max-width: 20ch;
     opacity: 0;
     transform: translateY(16px);
@@ -97,7 +97,7 @@
     font-family: var(--font-body);
     font-size: clamp(0.95rem, 1.8vw, 1.1rem);
     color: var(--text-muted);
-    line-height: 1.6;
+    line-height: 1.7;
     margin: 0;
     max-width: 28ch;
     opacity: 0;
@@ -124,57 +124,58 @@
     }
 }
 
-/* IP Box - 懸停與點擊動畫 */
+/* IP Box - 複製 IP 按鈕 */
 .ip-box {
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 121, 188, 0.4);
-    color: var(--text-main);
-    padding: 0.9rem 2rem;
-    font-size: 1.2rem;
-    font-weight: 600;
+    background: var(--primary-color);
+    border: none;
+    color: #0F0F0F;
+    padding: 0.85rem 2rem;
+    font-size: 1.1rem;
+    font-weight: 700;
     font-family: var(--font-heading);
     line-height: 1.5;
-    border-radius: 12px;
+    border-radius: 10px;
     cursor: pointer;
     position: relative;
     white-space: nowrap;
     min-width: 160px;
+    min-height: 44px;
     width: auto;
     text-align: center;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    height: auto;
-    backdrop-filter: blur(8px);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-    transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+    transition: opacity var(--transition-fast), transform var(--transition-fast);
+    letter-spacing: 0.02em;
 }
 
 .ip-box:hover {
-    transform: translateY(-3px) scale(1.02);
-    border-color: var(--primary-color);
-    background: rgba(255, 121, 188, 0.12);
-    box-shadow: 0 6px 20px rgba(255, 121, 188, 0.25);
+    opacity: 0.85;
+    transform: translateY(-2px);
 }
 
 .ip-box:active {
+    opacity: 0.95;
     transform: translateY(0) scale(0.98);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* 按鈕容器 */
+.ip-box:focus-visible {
+    outline: 2px solid var(--primary-light);
+    outline-offset: 3px;
+}
+
 /* 複製成功 Toast - 固定於畫面底部中央 */
 .copy-toast {
     position: fixed;
     bottom: 2rem;
     left: 50%;
     transform: translateX(-50%) translateY(1rem);
-    padding: 0.65rem 1.25rem;
+    padding: 0.65rem 1.5rem;
     font-size: 0.9rem;
     font-family: var(--font-body);
     color: var(--text-main);
-    background: rgba(30, 30, 30, 0.95);
-    border: 1px solid rgba(255, 121, 188, 0.4);
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
     border-radius: 999px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
     opacity: 0;
@@ -188,7 +189,7 @@
     transform: translateX(-50%) translateY(0);
 }
 
-/* 響應式：小螢幕改為上下排列，主標語仍在視覺上與 Logo 同一區塊 */
+/* 響應式：小螢幕改為上下排列 */
 @media (max-width: 900px) {
     .hero-content {
         flex-wrap: wrap;
@@ -200,32 +201,32 @@
         min-height: 90vh;
         padding: var(--spacing-lg) var(--spacing-md);
     }
-    
+
     .hero-content {
         flex-direction: column;
         align-items: flex-start;
-        gap: var(--spacing-lg);
+        gap: var(--spacing-md);
     }
-    
+
     .hero-logo {
         width: min(340px, 72vw);
     }
-    
+
     .hero-right {
         width: 100%;
     }
-    
+
     .hero-title {
         max-width: none;
     }
-    
+
     .hero-desc {
         max-width: none;
     }
-    
+
     .ip-box {
         padding: 0.85rem 1.5rem;
-        font-size: 1.2rem;
+        font-size: 1.1rem;
         min-width: 200px;
     }
 }
@@ -234,13 +235,13 @@
     .hero-logo {
         width: min(280px, 85vw);
     }
-    
+
     .hero-title {
-        font-size: 1.4rem;
+        font-size: 1.75rem;
     }
-    
+
     .ip-box {
-        font-size: 1.05rem;
-        padding: 0.75rem var(--spacing-md);
+        font-size: 1rem;
+        padding: 0.85rem var(--spacing-md);
     }
 }

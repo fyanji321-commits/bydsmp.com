@@ -1,4 +1,4 @@
-/* Navigation Component Styles - 重新設計 */
+/* Navigation Component Styles */
 
 nav {
     position: fixed;
@@ -8,7 +8,7 @@ nav {
     height: var(--nav-height);
     transform: translateY(-100%);
     transition: transform var(--transition-normal);
-    background: rgba(18, 18, 18, 0.4);
+    background: rgba(15, 15, 15, 0.75);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     display: flex;
@@ -16,23 +16,9 @@ nav {
     justify-content: center;
     padding: 0 var(--spacing-lg);
     z-index: var(--z-nav);
-    border-bottom: 2px solid transparent;
-    background-image: linear-gradient(
-        rgba(18, 18, 18, 0.5),
-        rgba(18, 18, 18, 0.45)
-    ),
-    linear-gradient(
-        90deg,
-        transparent,
-        var(--primary-color) 20%,
-        var(--primary-color) 80%,
-        transparent
-    );
-    background-size: 100% 100%, 100% 2px;
-    background-position: top, bottom;
-    background-repeat: no-repeat;
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: 0 1px 12px rgba(0, 0, 0, 0.25);
     transition: all var(--transition-normal);
-    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
 }
 
 /* 預設隱藏，滑動頁面後顯示 */
@@ -52,40 +38,32 @@ nav:not(.nav-hidden) {
 }
 
 .nav-center-link {
-    color: var(--text-light);
+    color: var(--text-muted);
     font-weight: 500;
     padding: var(--spacing-xs) var(--spacing-md);
     border-radius: 8px;
-    transition: all var(--transition-normal);
+    transition: color var(--transition-fast), background var(--transition-fast);
     text-decoration: none;
     font-size: 1rem;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
 }
 
 .nav-center-link:hover {
     color: var(--primary-light);
-    background: rgba(255, 121, 188, 0.05);
+    background: rgba(167, 139, 250, 0.06);
+}
+
+.nav-center-link:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
 }
 
 /* Discord 固定右側 */
 nav .btn-discord {
     position: absolute;
     right: var(--spacing-lg);
-}
-
-nav::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(255, 121, 188, 0.5),
-        transparent
-    );
-    opacity: 0.5;
 }
 
 /* Logo/Brand Link */
@@ -107,14 +85,17 @@ nav::before {
     text-transform: uppercase;
     color: var(--text-main);
     text-decoration: none;
-    transition: all var(--transition-normal);
-    filter: drop-shadow(0 0 10px rgba(255, 121, 188, 0.3));
+    transition: color var(--transition-fast);
 }
 
 .brand-text:hover {
     color: var(--primary-light);
-    transform: scale(1.05);
-    filter: drop-shadow(0 0 15px rgba(255, 121, 188, 0.5));
+}
+
+.brand-text:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 4px;
+    border-radius: 4px;
 }
 
 /* 手機選單（漢堡展開的連結） */
@@ -126,90 +107,71 @@ nav::before {
 }
 
 .nav-links a {
-    color: var(--text-light);
+    color: var(--text-muted);
     font-weight: 500;
     padding: var(--spacing-xs) var(--spacing-md);
     border-radius: 8px;
-    transition: all var(--transition-normal);
+    transition: color var(--transition-fast), background var(--transition-fast);
     position: relative;
     font-size: 1rem;
-    overflow: hidden;
-}
-
-.nav-links a::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(255, 121, 188, 0.1),
-        transparent
-    );
-    transition: left 0.5s ease;
+    text-decoration: none;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
 }
 
 .nav-links a::after {
     content: '';
     position: absolute;
-    bottom: 0;
+    bottom: 4px;
     left: 50%;
     transform: translateX(-50%);
     width: 0;
     height: 2px;
-    background: linear-gradient(
-        90deg,
-        var(--primary-color),
-        var(--primary-light)
-    );
+    background: var(--primary-color);
     border-radius: 2px;
     transition: width var(--transition-normal);
-    box-shadow: 0 0 10px var(--primary-color);
 }
 
 .nav-links a:hover {
     color: var(--primary-light);
-    background: rgba(255, 121, 188, 0.05);
-    transform: translateY(-2px);
-}
-
-.nav-links a:hover::before {
-    left: 100%;
+    background: rgba(167, 139, 250, 0.06);
 }
 
 .nav-links a:hover::after {
-    width: 80%;
+    width: 60%;
 }
 
-/* Discord Button - 描邊風格 */
+.nav-links a:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+/* Discord Button */
 .btn-discord {
     background: transparent;
     color: var(--primary-color);
     padding: var(--spacing-sm);
     border-radius: 50%;
-    width: 45px;
-    height: 45px;
+    width: 44px;
+    height: 44px;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all var(--transition-normal);
-    border: 2px solid var(--primary-color);
+    transition: color var(--transition-fast), border-color var(--transition-fast), background var(--transition-fast);
+    border: 1.5px solid var(--border-color-hover);
     text-decoration: none;
 }
 
 .btn-discord i {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     color: var(--primary-color);
-    transition: all var(--transition-normal);
+    transition: color var(--transition-fast);
 }
 
 .btn-discord:hover {
-    transform: translateY(-2px);
-    border-color: var(--primary-light);
-    background: rgba(255, 121, 188, 0.08);
+    border-color: var(--primary-color);
+    background: rgba(167, 139, 250, 0.08);
 }
 
 .btn-discord:hover i {
@@ -217,71 +179,72 @@ nav::before {
 }
 
 .btn-discord:active {
-    transform: translateY(0);
+    opacity: 0.8;
+}
+
+.btn-discord:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
 }
 
 /* Hamburger Menu */
 .hamburger {
     display: none;
     flex-direction: column;
-    gap: 6px;
+    gap: 5px;
     background: transparent;
     padding: var(--spacing-xs);
-    width: 35px;
-    height: 35px;
+    width: 44px;
+    height: 44px;
     justify-content: center;
     align-items: center;
-    border-radius: 6px;
-    transition: all var(--transition-normal);
+    border-radius: 8px;
+    transition: background var(--transition-fast);
     border: 1px solid transparent;
+    cursor: pointer;
 }
 
 .hamburger:hover {
-    background: rgba(255, 121, 188, 0.1);
-    border-color: var(--primary-color);
+    background: rgba(167, 139, 250, 0.08);
+    border-color: var(--border-color-hover);
+}
+
+.hamburger:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
 }
 
 .hamburger span {
     display: block;
-    width: 25px;
-    height: 3px;
-    background: linear-gradient(
-        90deg,
-        var(--primary-color),
-        var(--primary-light)
-    );
-    border-radius: 3px;
+    width: 22px;
+    height: 2px;
+    background: var(--text-muted);
+    border-radius: 2px;
     transition: all var(--transition-normal);
-    box-shadow: 0 0 5px rgba(255, 121, 188, 0.3);
 }
 
 .hamburger:hover span {
-    background: linear-gradient(
-        90deg,
-        var(--primary-light),
-        var(--primary-color)
-    );
-    box-shadow: 0 0 8px rgba(255, 121, 188, 0.5);
+    background: var(--primary-light);
 }
 
 /* Hamburger Active State */
 .hamburger.active {
-    background: rgba(255, 121, 188, 0.15);
-    border-color: var(--primary-color);
+    background: rgba(167, 139, 250, 0.1);
+    border-color: var(--border-color-hover);
 }
 
 .hamburger.active span:nth-child(1) {
-    transform: rotate(45deg) translate(8px, 8px);
+    transform: rotate(45deg) translate(5px, 5px);
     background: var(--primary-color);
 }
 
 .hamburger.active span:nth-child(2) {
     opacity: 0;
-    transform: translateX(-10px);
+    transform: translateX(-8px);
 }
 
 .hamburger.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(8px, -8px);
+    transform: rotate(-45deg) translate(5px, -5px);
     background: var(--primary-color);
 }
 
@@ -291,17 +254,6 @@ nav::before {
         height: var(--nav-height-mobile);
         padding: 0 var(--spacing-md);
         justify-content: flex-start;
-        background-image: linear-gradient(
-            rgba(18, 18, 18, 0.5),
-            rgba(18, 18, 18, 0.45)
-        ),
-        linear-gradient(
-            90deg,
-            transparent,
-            var(--primary-color) 30%,
-            var(--primary-color) 70%,
-            transparent
-        );
     }
 
     .nav-center-group {
@@ -331,8 +283,8 @@ nav::before {
     }
 
     .btn-discord {
-        width: 40px;
-        height: 40px;
+        width: 44px;
+        height: 44px;
         padding: var(--spacing-xs);
     }
 
@@ -346,7 +298,7 @@ nav::before {
         top: var(--nav-height-mobile);
         left: 0;
         right: 0;
-        background: rgba(18, 18, 18, 0.4);
+        background: rgba(15, 15, 15, 0.95);
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
         flex-direction: column;
@@ -354,10 +306,10 @@ nav::before {
         gap: var(--spacing-xs);
         transform: translateX(-100%);
         transition: transform var(--transition-normal);
-        border-bottom: 2px solid var(--primary-color);
+        border-bottom: 1px solid var(--border-color);
         max-height: calc(100vh - var(--nav-height-mobile));
         overflow-y: auto;
-        box-shadow: 0 5px 30px rgba(0, 0, 0, 0.5);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
     }
 
     .nav-links.active {
@@ -370,7 +322,7 @@ nav::before {
         padding: var(--spacing-md);
         border: 1px solid var(--border-color);
         border-radius: 10px;
-        background: rgba(255, 121, 188, 0.05);
+        justify-content: center;
     }
 
     .nav-links a::after {
@@ -378,9 +330,7 @@ nav::before {
     }
 
     .nav-links a:hover {
-        background: rgba(255, 121, 188, 0.15);
-        border-color: var(--primary-color);
-        transform: translateX(5px);
+        background: rgba(167, 139, 250, 0.08);
+        border-color: var(--border-color-hover);
     }
 }
-
