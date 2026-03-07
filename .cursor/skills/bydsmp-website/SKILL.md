@@ -25,16 +25,16 @@ bydsmp.com/
 │   │   └── components/
 │   │       ├── navigation.css
 │   │       ├── hero.css
-│   │       ├── sections.css
+│   │       ├── sections.css       # 通用 section + modes + responsive
 │   │       ├── gallery.css
 │   │       ├── footer.css
-│   │       ├── rules.css
-│   │       └── sponsor.css
+│   │       ├── rules.css          # .subpage 共用基礎、.rule-box、rules 分頁
+│   │       └── sponsor.css        # 贊助頁專屬樣式
 │   ├── js/
-│   │   ├── main.js                # Main entry point
-│   │   ├── config.js              # Configuration file
+│   │   ├── main.js                # Config 值注入（footer IP/email、Discord 連結）
+│   │   ├── config.js              # 集中管理 serverIP、email、discordLink 等
 │   │   └── modules/
-│   │       ├── navigation.js
+│   │       ├── navigation.js      # data-nav="always-visible" 控制滾動隱藏
 │   │       ├── copyIP.js
 │   │       ├── galleryCarousel.js
 │   │       ├── modesScroll.js
@@ -70,11 +70,7 @@ bydsmp.com/
 - `discordLink`: Discord invite link
 - `email`: Contact email
 
-The config is used throughout the site, so updating it here will update all references.
-
-**Manual updates** (if needed):
-- Hero section `.ip-box` element in `index.html`
-- Footer in `index.html`
+`main.js` 在每頁 DOM ready 後自動將 CONFIG 值注入至 footer（`#footer-server-ip`、`#footer-email`）、nav Discord 按鈕（`#nav-discord-btn`）及贊助 CTA（`#sponsor-cta-link`）。更新 `config.js` 即可同步所有頁面，無需手動修改 HTML。
 
 ### Updating Gallery Images
 
@@ -131,10 +127,9 @@ Replace the image file to update.
 
 ### Updating Navigation
 
-Navigation is in both `index.html` and `rules.html`. Currently shows:
-- Brand link (to index)
-- Rules link (to rules.html)
-- Discord button (in config.js)
+Navigation HTML 存在於三頁（index、rules、sponsor），結構相同。Discord 按鈕 href 由 `main.js` 從 `CONFIG.discordLink` 注入，無需手動修改。
+
+若新增子頁面（非 index 首頁），在 `<nav>` 加上 `data-nav="always-visible"` 即可讓 navigation 保持常態顯示，無需修改 JS。
 
 ### Updating Meta Tags
 
@@ -228,8 +223,15 @@ After making changes:
 
 1. Create module file in `assets/js/modules/`
 2. Use IIFE pattern (see existing modules)
-3. Add `<script>` tag to `index.html` before closing `</body>`
+3. Add `<script>` tag before closing `</body>`（確保在 `config.js` 之後、`main.js` 之前）
 4. Module will auto-initialize on DOM ready
+
+### Adding a New Subpage
+
+1. 複製 `rules.html` 或 `sponsor.html` 的 `<head>` 結構作為起點
+2. `<nav>` 加上 `data-nav="always-visible"`（nav 永遠顯示）
+3. `<main>` 加上 `class="subpage"` 以套用共用頂部留白
+4. Scripts 依序：`config.js` → `navigation.js` → （頁面模組）→ `main.js`
 
 ### Modifying Styles
 

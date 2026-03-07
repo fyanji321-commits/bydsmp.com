@@ -22,13 +22,20 @@
     <meta property="og:description" content="BYDSMP VIP 等級贊助：每級 200 TWD，達指定等級享領地、Home、鑰匙等福利。">
     <meta property="og:locale" content="zh_TW">
     <meta property="og:image" content="https://truth.bahamut.com.tw/s01/202602/forum/18673/a93d4588615c872f5128d334fdc166ea.JPG?w=1000">
-    <meta property="twitter:card" content="summary">
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://bydsmp.com/sponsor.html">
     <meta property="twitter:title" content="贊助支持 | BYDSMP">
     <meta property="twitter:description" content="BYDSMP VIP 等級贊助：每級 200 TWD，達指定等級享領地、Home、鑰匙等福利。">
+    <meta property="twitter:image" content="https://truth.bahamut.com.tw/s01/202602/forum/18673/a93d4588615c872f5128d334fdc166ea.JPG?w=1000">
+    <meta name="msapplication-TileColor" content="#FF79BC">
     
     <link rel="icon" type="image/png" href="assets/images/logo.png">
     <link rel="apple-touch-icon" href="assets/images/logo.png">
     <link rel="shortcut icon" href="assets/images/logo.png">
+
+    <!-- Preload for Performance -->
+    <link rel="preload" href="assets/css/main.css" as="style">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Noto+Sans+TC:wght@300;400;700&display=swap" as="style">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -38,7 +45,7 @@
     <link rel="stylesheet" href="assets/css/main.css">
 </head>
 <body>
-    <nav role="navigation" aria-label="主要導航">
+    <nav role="navigation" aria-label="主要導航" data-nav="always-visible">
         <div class="nav-center-group">
             <a href="rules.html" class="nav-center-link" role="menuitem">規則</a>
             <a href="index.html" class="brand-link brand-text" aria-label="返回首頁">BYDSMP</a>
@@ -53,7 +60,8 @@
             <span></span>
             <span></span>
         </button>
-        <a href="https://discord.gg/2EDqgeRKPs" 
+        <a id="nav-discord-btn"
+           href="#"
            target="_blank" 
            rel="noopener noreferrer"
            class="btn-discord"
@@ -66,7 +74,7 @@
         </div>
     </nav>
 
-    <main class="sponsor-page" role="main">
+    <main class="subpage sponsor-page" role="main">
         <h1 id="sponsor-title" class="section-title">贊助支持</h1>
         <p class="sponsor-intro">VIP 以等級計算，每提升 1 級需贊助 <strong>200 TWD</strong>（例：贊助 600 TWD = VIP 3）。贊助後請在訂單留言註明「遊戲 ID」以便發放福利。</p>
 
@@ -140,7 +148,7 @@
         </section>
 
         <div class="sponsor-cta-wrap">
-            <a href="https://discord.gg/2EDqgeRKPs" target="_blank" rel="noopener noreferrer" class="sponsor-cta">前往贊助 / 洽詢 Discord</a>
+            <a id="sponsor-cta-link" href="#" target="_blank" rel="noopener noreferrer" class="sponsor-cta">前往贊助 / 洽詢 Discord</a>
         </div>
 
         <div class="sponsor-disclaimer">
@@ -157,12 +165,14 @@
     <footer role="contentinfo">
         <p>&copy; 2026 BYDSMP. All Rights Reserved.</p>
         <div class="footer-contact">
-            <span>Server IP: <strong>bydsmp.com</strong></span>
-            <span>聯絡信箱: <a href="mailto:bydsmp@gmail.com">bydsmp@gmail.com</a></span>
+            <span>Server IP: <strong id="footer-server-ip"></strong></span>
+            <span>聯絡信箱: <a id="footer-email" href="#">...</a></span>
         </div>
         <p class="footer-disclaimer">本網站與 BYDSMP 伺服器為非官方粉絲創作，與 Mojang Studios 或 Microsoft 無關。NOT OFFICIAL MINECRAFT PRODUCT. NOT APPROVED BY OR ASSOCIATED WITH MOJANG OR MICROSOFT.</p>
     </footer>
 
+    <script src="assets/js/config.js"></script>
     <script src="assets/js/modules/navigation.js"></script>
+    <script src="assets/js/main.js"></script>
 </body>
 </html>

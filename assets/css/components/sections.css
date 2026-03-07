@@ -204,57 +204,6 @@ section:not(.hero) {
     color: var(--text-main);
 }
 
-/* ============================================
-   規則區域 (Rules)
-   ============================================ */
-
-.rule-box {
-    background-color: var(--bg-card);
-    border: 2px solid var(--border-color);
-    border-radius: 12px;
-    padding: var(--spacing-lg);
-    transition: all var(--transition-normal);
-}
-
-.rule-box:hover {
-    border-color: var(--primary-color);
-    box-shadow: var(--shadow-glow);
-    transform: translateY(-3px);
-}
-
-.rule-box h3 {
-    color: var(--primary-color);
-    margin-bottom: var(--spacing-sm);
-    font-size: 1.5rem;
-    border-bottom: 2px solid var(--border-color);
-    padding-bottom: var(--spacing-xs);
-}
-
-.rule-box p {
-    color: var(--text-light);
-    margin-bottom: var(--spacing-sm);
-}
-
-.rule-list {
-    list-style: disc;
-    padding-left: 1.5rem;
-}
-
-.rule-list li {
-    padding: var(--spacing-sm) 0;
-    color: var(--text-main);
-    font-size: 1.02rem;
-    line-height: 1.7;
-}
-
-.rule-box--violation {
-    border-color: var(--color-violation);
-}
-
-.rule-box--violation h3 {
-    color: var(--color-violation);
-}
-
 /* 響應式設計 */
 @media (max-width: 768px) {
     section {
@@ -274,8 +223,7 @@ section:not(.hero) {
         gap: var(--spacing-md);
     }
     
-    .mode-card,
-    .rule-box {
+    .mode-card {
         padding: var(--spacing-md);
     }
 

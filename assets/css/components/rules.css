@@ -1,17 +1,79 @@
 /* Rules Page - 分頁設計 */
 
-.rules-page {
+/* ============================================
+   子頁面共用基礎佈局（rules & sponsor 共享）
+   ============================================ */
+
+.subpage {
     padding-top: max(160px, calc(var(--nav-height, 70px) + var(--spacing-lg) + var(--spacing-md)));
     padding-left: clamp(var(--spacing-md), 6vw, var(--spacing-xl));
     padding-right: clamp(var(--spacing-md), 6vw, var(--spacing-xl));
-    padding-bottom: var(--spacing-md);
-    max-width: 900px;
     margin: 0 auto;
 }
 
-.rules-page .section-title {
+.subpage .section-title {
     margin-top: var(--spacing-sm);
     scroll-margin-top: calc(var(--nav-height, 70px) + 1rem);
+}
+
+/* ============================================
+   規則卡片 (Rule Box)
+   ============================================ */
+
+.rule-box {
+    background-color: var(--bg-card);
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    padding: var(--spacing-lg);
+    transition: all var(--transition-normal);
+}
+
+.rule-box:hover {
+    border-color: var(--primary-color);
+    box-shadow: var(--shadow-glow);
+    transform: translateY(-3px);
+}
+
+.rule-box h3 {
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-sm);
+    font-size: 1.5rem;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: var(--spacing-xs);
+}
+
+.rule-box p {
+    color: var(--text-light);
+    margin-bottom: var(--spacing-sm);
+}
+
+.rule-list {
+    list-style: disc;
+    padding-left: 1.5rem;
+}
+
+.rule-list li {
+    padding: var(--spacing-sm) 0;
+    color: var(--text-main);
+    font-size: 1.02rem;
+    line-height: 1.7;
+}
+
+.rule-box--violation {
+    border-color: var(--color-violation);
+}
+
+.rule-box--violation h3 {
+    color: var(--color-violation);
+}
+
+/* ============================================
+   規則頁面
+   ============================================ */
+
+.rules-page {
+    padding-bottom: var(--spacing-md);
+    max-width: 900px;
 }
 
 .rules-tabs {
@@ -72,13 +134,16 @@
 }
 
 @media (max-width: 768px) {
-    .rules-page {
+    .subpage {
         padding-top: max(140px, calc(var(--nav-height-mobile, 60px) + var(--spacing-lg) + var(--spacing-sm)));
         padding-left: clamp(var(--spacing-md), 5vw, var(--spacing-lg));
         padding-right: clamp(var(--spacing-md), 5vw, var(--spacing-lg));
+    }
+
+    .rules-page {
         padding-bottom: var(--spacing-lg);
     }
-    
+
     .rules-tabs {
         gap: var(--spacing-xs);
     }
@@ -86,5 +151,9 @@
     .rules-tab-btn {
         font-size: 0.9rem;
         padding: var(--spacing-xs) var(--spacing-sm);
+    }
+
+    .rule-box {
+        padding: var(--spacing-md);
     }
 }

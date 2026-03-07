@@ -6,18 +6,10 @@
     if ('scrollRestoration' in history) {
         history.scrollRestoration = 'manual';
     }
-    function scrollToTop() { window.scrollTo(0, 0); }
-    scrollToTop();
+    window.scrollTo(0, 0);
     
-    // 瀏覽器可能在多個時機還原捲動，故在多個時機強制捲回頂部
-    window.addEventListener('pageshow', function() { scrollToTop(); });
-    window.addEventListener('DOMContentLoaded', scrollToTop);
-    window.addEventListener('load', function() {
-        scrollToTop();
-        requestAnimationFrame(function() { scrollToTop(); });
-        setTimeout(scrollToTop, 0);
-        setTimeout(scrollToTop, 100);
-    });
+    // bfcache 還原時也強制回頂
+    window.addEventListener('pageshow', function() { window.scrollTo(0, 0); });
     
     function initRulesTabs() {
         const tabBtns = document.querySelectorAll('.rules-tab-btn');
@@ -27,12 +19,14 @@
         
         function switchTab(targetId) {
             tabBtns.forEach(btn => {
-                btn.classList.toggle('active', btn.getAttribute('data-tab') === targetId);
-                btn.setAttribute('aria-selected', btn.getAttribute('data-tab') === targetId);
+                const isTarget = btn.getAttribute('data-tab') === targetId;
+                btn.classList.toggle('active', isTarget);
+                btn.setAttribute('aria-selected', String(isTarget));
             });
             panels.forEach(panel => {
-                panel.classList.toggle('active', panel.id === targetId);
-                panel.setAttribute('aria-hidden', panel.id !== targetId);
+                const isTarget = panel.id === targetId;
+                panel.classList.toggle('active', isTarget);
+                panel.setAttribute('aria-hidden', String(!isTarget));
             });
             if (history.replaceState) {
                 history.replaceState(null, '', window.location.pathname + '#' + targetId);
@@ -48,11 +42,7 @@
         
         const hash = window.location.hash.slice(1);
         const validTab = Array.from(tabBtns).some(b => b.getAttribute('data-tab') === hash);
-        if (hash && validTab) {
-            switchTab(hash);
-        } else {
-            switchTab(panels[0].id);
-        }
+        switchTab(hash && validTab ? hash : panels[0].id);
     }
     
     if (document.readyState === 'loading') {

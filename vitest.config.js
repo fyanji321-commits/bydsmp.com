@@ -11,7 +11,7 @@ export default defineConfig({
       provider: 'v8',
       reporter: ['text', 'html'],
       include: ['assets/js/**/*.js'],
-      exclude: ['assets/js/modules/backgroundSlider.js', 'assets/js/modules/particleBackground.js', 'assets/js/modules/typewriter.js'],
+      exclude: [],
     },
   },
 });
