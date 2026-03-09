@@ -24,9 +24,12 @@
     }
 
     // Build a single player card element
-    // opts.showDate: boolean — render the date tag (used for 近期贊助)
-    function buildPlayerCard(sponsor, extra, opts) {
-        var showDate = opts && opts.showDate;
+    // { sponsor, displayAmount, showDate }
+    // showDate: boolean — render the date tag (used for 近期贊助)
+    function buildPlayerCard(cardOpts) {
+        var sponsor = cardOpts.sponsor;
+        var displayAmount = cardOpts.displayAmount;
+        var showDate = cardOpts.showDate;
 
         var article = document.createElement('article');
         article.className = 'sponsor-player-card';
@@ -50,7 +53,7 @@
 
         var amountEl = document.createElement('span');
         amountEl.className = 'sponsor-player-amount';
-        amountEl.textContent = formatAmount(extra !== undefined ? extra : sponsor.amount);
+        amountEl.textContent = formatAmount(displayAmount !== undefined ? displayAmount : sponsor.amount);
 
         info.appendChild(nameEl);
         info.appendChild(amountEl);
@@ -93,8 +96,9 @@
         var list = document.createElement('div');
         list.className = 'leaderboard-card__list';
 
+        var cardShowDate = opts.showDate || false;
         opts.players.forEach(function (item) {
-            list.appendChild(buildPlayerCard(item.sponsor, item.displayAmount, { showDate: !!opts.showDate }));
+            list.appendChild(buildPlayerCard({ sponsor: item.sponsor, displayAmount: item.displayAmount, showDate: cardShowDate }));
         });
 
         card.appendChild(list);
