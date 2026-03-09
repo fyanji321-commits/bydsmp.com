@@ -1,8 +1,10 @@
 // Sponsor Leaderboard Module
-// Fetches docs/sponsors.json and renders three stat cards:
-//   1. 近期贊助   – latest entry by date, dropdown lists all by date desc
-//   2. 最高單筆   – single entry with highest amount, dropdown lists all by amount desc
-//   3. 最高贊助總額 – player whose cumulative total is highest, dropdown lists all totals desc
+// Fetches docs/sponsors.json and renders:
+//   Three stat cards (top player each):
+//     1. 近期贊助   – latest entry by date
+//     2. 最高單筆   – single entry with highest amount
+//     3. 最高贊助總額 – player whose cumulative total is highest
+//   A standalone "all records" section below the leaderboard (collapsed by default)
 (function () {
     'use strict';
 
@@ -67,10 +69,8 @@
         return article;
     }
 
-    // Build a leaderboard card element
-    // opts: { id, icon, heading, topPlayer, allPlayers, showDate, totalCount }
-    // topPlayer: { sponsor, displayAmount } — shown as main card
-    // allPlayers: array of { sponsor, displayAmount } — shown in dropdown
+    // Build a leaderboard card element (top player only, no dropdown)
+    // opts: { id, icon, heading, topPlayer, showDate }
     function buildCard(opts) {
         var card = document.createElement('div');
         card.className = 'leaderboard-card';
@@ -91,7 +91,6 @@
         header.appendChild(heading);
         card.appendChild(header);
 
-        // Main display: single top player
         var mainList = document.createElement('div');
         mainList.className = 'leaderboard-card__list';
         mainList.appendChild(buildPlayerCard({
@@ -101,49 +100,92 @@
         }));
         card.appendChild(mainList);
 
-        // Dropdown: all records
-        if (opts.allPlayers && opts.allPlayers.length > 0) {
-            var details = document.createElement('details');
-            details.className = 'lb-dropdown';
-
-            var summary = document.createElement('summary');
-            summary.textContent = '查看所有 ' + opts.totalCount + ' 筆紀錄';
-            details.appendChild(summary);
-
-            var dropList = document.createElement('div');
-            dropList.className = 'leaderboard-card__list';
-            opts.allPlayers.forEach(function (item) {
-                dropList.appendChild(buildPlayerCard({
-                    sponsor: item.sponsor,
-                    displayAmount: item.displayAmount,
-                    showDate: opts.showDate
-                }));
-            });
-            details.appendChild(dropList);
-            card.appendChild(details);
-        }
-
         return card;
+    }
+
+    // Build the standalone "all records" section inserted after the leaderboard section
+    function buildAllRecordsSection(sponsors) {
+        // All records sorted by date desc
+        var allByDate = sponsors.slice().sort(function (a, b) {
+            return b.date.localeCompare(a.date);
+        });
+
+        var section = document.createElement('section');
+        section.className = 'sponsor-all-records';
+        section.setAttribute('aria-label', '所有贊助紀錄');
+
+        var details = document.createElement('details');
+        details.className = 'sponsor-all-records__details';
+
+        var summary = document.createElement('summary');
+        summary.className = 'sponsor-all-records__summary';
+
+        var summaryInner = document.createElement('span');
+        summaryInner.className = 'sponsor-all-records__summary-text';
+        summaryInner.textContent = '所有贊助紀錄（共 ' + allByDate.length + ' 筆）';
+        summary.appendChild(summaryInner);
+
+        details.appendChild(summary);
+
+        var list = document.createElement('div');
+        list.className = 'sponsor-all-records__list';
+        list.setAttribute('role', 'list');
+
+        allByDate.forEach(function (s) {
+            var row = document.createElement('div');
+            row.className = 'sponsor-record-row';
+            row.setAttribute('role', 'listitem');
+
+            var img = document.createElement('img');
+            img.src = avatarURL(s.id, 36);
+            img.alt = s.name + ' 的頭像';
+            img.width = 36;
+            img.height = 36;
+            img.loading = 'lazy';
+            img.className = 'sponsor-record-row__avatar';
+            img.onerror = function () {
+                this.src = 'https://minotar.net/avatar/MHF_Steve/36';
+            };
+
+            var name = document.createElement('span');
+            name.className = 'sponsor-record-row__name';
+            name.textContent = s.name;
+
+            var amount = document.createElement('span');
+            amount.className = 'sponsor-record-row__amount';
+            amount.textContent = formatAmount(s.amount);
+
+            var date = document.createElement('span');
+            date.className = 'sponsor-record-row__date';
+            date.textContent = formatDate(s.date);
+
+            row.appendChild(img);
+            row.appendChild(name);
+            row.appendChild(amount);
+            row.appendChild(date);
+            list.appendChild(row);
+        });
+
+        details.appendChild(list);
+        section.appendChild(details);
+        return section;
     }
 
     // ── stats computation ─────────────────────────────────────
 
     function computeStats(sponsors) {
-        // 1. 近期贊助：依 date 降序
         var recentAll = sponsors
             .slice()
             .sort(function (a, b) {
                 return b.date.localeCompare(a.date);
             });
 
-        // 2. 最高單筆：依 amount 降序
         var topSingleAll = sponsors
             .slice()
             .sort(function (a, b) {
                 return b.amount - a.amount;
             });
 
-        // 3. 最高贊助總額（同 id 累計），依總額降序
         var totals = {};
         sponsors.forEach(function (s) {
             if (!totals[s.id]) {
@@ -176,11 +218,7 @@
             icon: 'fas fa-clock',
             heading: '近期贊助',
             showDate: true,
-            topPlayer: { sponsor: stats.recentAll[0], displayAmount: stats.recentAll[0].amount },
-            allPlayers: stats.recentAll.map(function (s) {
-                return { sponsor: s, displayAmount: s.amount };
-            }),
-            totalCount: stats.recentAll.length
+            topPlayer: { sponsor: stats.recentAll[0], displayAmount: stats.recentAll[0].amount }
         }));
 
         // Card 2: 最高單筆
@@ -189,11 +227,7 @@
             icon: 'fas fa-coins',
             heading: '最高單筆贊助',
             showDate: false,
-            topPlayer: { sponsor: stats.topSingleAll[0], displayAmount: stats.topSingleAll[0].amount },
-            allPlayers: stats.topSingleAll.map(function (s) {
-                return { sponsor: s, displayAmount: s.amount };
-            }),
-            totalCount: stats.topSingleAll.length
+            topPlayer: { sponsor: stats.topSingleAll[0], displayAmount: stats.topSingleAll[0].amount }
         }));
 
         // Card 3: 最高贊助總額
@@ -202,12 +236,17 @@
             icon: 'fas fa-trophy',
             heading: '最高贊助總額',
             showDate: false,
-            topPlayer: { sponsor: stats.topTotalAll[0].sponsor, displayAmount: stats.topTotalAll[0].total },
-            allPlayers: stats.topTotalAll.map(function (item) {
-                return { sponsor: item.sponsor, displayAmount: item.total };
-            }),
-            totalCount: stats.topTotalAll.length
+            topPlayer: { sponsor: stats.topTotalAll[0].sponsor, displayAmount: stats.topTotalAll[0].total }
         }));
+
+        // Standalone all-records section inserted after the leaderboard section
+        var leaderboardSection = document.getElementById('sponsor-leaderboard');
+        if (leaderboardSection && leaderboardSection.parentNode) {
+            leaderboardSection.parentNode.insertBefore(
+                buildAllRecordsSection(sponsors),
+                leaderboardSection.nextSibling
+            );
+        }
     }
 
     // ── init ──────────────────────────────────────────────────

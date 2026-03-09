@@ -724,63 +724,138 @@
     letter-spacing: 0.02em;
 }
 
-/* ─── 下拉選單 ─────────────────────────────────────── */
-.lb-dropdown {
-    margin-top: 0.85rem;
-    border-top: 1px solid var(--border-color);
-    padding-top: 0.65rem;
+/* ─── 獨立贊助紀錄區塊 ─────────────────────────────── */
+.sponsor-all-records {
+    margin-top: 1rem;
+    margin-bottom: 0;
 }
 
-.lb-dropdown summary {
+.sponsor-all-records__details {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    transition: border-color var(--transition-normal);
+}
+
+.sponsor-all-records__details[open] {
+    border-color: var(--border-color-hover);
+}
+
+.sponsor-all-records__summary {
     list-style: none;
     cursor: pointer;
     display: flex;
     align-items: center;
-    gap: 0.4rem;
-    font-size: 0.75rem;
-    font-family: var(--font-heading);
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--primary-color);
+    justify-content: space-between;
+    padding: 1rem 1.25rem;
     user-select: none;
-    transition: opacity var(--transition-fast);
     outline: none;
+    gap: 0.75rem;
 }
 
-.lb-dropdown summary::-webkit-details-marker {
+.sponsor-all-records__summary::-webkit-details-marker {
     display: none;
 }
 
-.lb-dropdown summary::after {
-    content: '▾';
-    display: inline-block;
-    transition: transform 0.25s ease;
-    margin-left: auto;
+.sponsor-all-records__summary-text {
+    font-family: var(--font-heading);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    transition: color var(--transition-fast);
 }
 
-.lb-dropdown[open] summary::after {
+.sponsor-all-records__summary::after {
+    content: '▾';
+    display: inline-block;
+    font-size: 0.9rem;
+    color: var(--primary-color);
+    transition: transform 0.25s ease;
+    flex-shrink: 0;
+}
+
+.sponsor-all-records__details[open] .sponsor-all-records__summary::after {
     transform: rotate(-180deg);
 }
 
-.lb-dropdown summary:hover {
-    opacity: 0.75;
+.sponsor-all-records__summary:hover .sponsor-all-records__summary-text {
+    color: var(--primary-color);
 }
 
-.lb-dropdown summary:focus-visible {
+.sponsor-all-records__summary:focus-visible {
     outline: 2px solid var(--primary-color);
-    outline-offset: 2px;
-    border-radius: 2px;
+    outline-offset: -2px;
 }
 
-.lb-dropdown .leaderboard-card__list {
-    margin-top: 0.75rem;
-    animation: lb-dropdown-in 0.22s ease both;
+/* 展開內容 */
+.sponsor-all-records__list {
+    padding: 0 1.25rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    animation: records-fade-in 0.22s ease both;
 }
 
-@keyframes lb-dropdown-in {
+@keyframes records-fade-in {
     from { opacity: 0; transform: translateY(-6px); }
     to   { opacity: 1; transform: translateY(0); }
+}
+
+/* 紀錄列（每一筆） */
+.sponsor-record-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.55rem 0.75rem;
+    background: rgba(255, 255, 255, 0.025);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius-sm);
+    transition: background var(--transition-fast), border-color var(--transition-fast);
+}
+
+.sponsor-record-row:hover {
+    background: rgba(232, 121, 249, 0.06);
+    border-color: rgba(232, 121, 249, 0.15);
+}
+
+.sponsor-record-row__avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 5px;
+    image-rendering: pixelated;
+    flex-shrink: 0;
+    background: var(--bg-mid);
+}
+
+.sponsor-record-row__name {
+    font-family: var(--font-heading);
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--text-main);
+    flex: 1;
+    min-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.sponsor-record-row__amount {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--primary-light);
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+}
+
+.sponsor-record-row__date {
+    font-size: 0.72rem;
+    color: var(--text-subtle);
+    white-space: nowrap;
+    min-width: 5.5rem;
+    text-align: right;
 }
 
 /* ─── RWD ──────────────────────────────────────────── */
