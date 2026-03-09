@@ -71,6 +71,17 @@
 
     <main class="sponsor-page" role="main">
 
+        <!-- 贊助名單 -->
+        <section id="sponsor-leaderboard" class="sponsor-leaderboard" aria-label="贊助名單">
+            <div class="leaderboard-header">
+                <span class="leaderboard-tagline">Hall of Support</span>
+                <h2 class="leaderboard-title">贊助名單</h2>
+            </div>
+            <div class="leaderboard-grid" id="leaderboard-grid" role="list" aria-label="贊助統計卡片">
+                <!-- 由 sponsorLeaderboard.js 動態渲染 -->
+            </div>
+        </section>
+
         <!-- Hero 標題區 -->
         <div class="sponsor-hero">
             <span class="sponsor-tagline">Support BYDSMP</span>
@@ -388,6 +399,7 @@
 
     <script src="assets/js/config.js"></script>
     <script src="assets/js/modules/navigation.js"></script>
+    <script src="assets/js/modules/sponsorLeaderboard.js"></script>
     <script src="assets/js/main.js"></script>
 </body>
 </html>

@@ -512,3 +512,224 @@
         grid-template-columns: repeat(2, 1fr);
     }
 }
+
+/* ═══════════════════════════════════════════════════
+   贊助名單 (Sponsor Leaderboard)
+   ═══════════════════════════════════════════════════ */
+
+/* ─── Section 容器 ─────────────────────────────────── */
+.sponsor-leaderboard {
+    padding: 2.5rem 0 2rem;
+    margin-bottom: var(--spacing-md);
+    position: relative;
+}
+
+.sponsor-leaderboard::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 80% at 50% 0%,
+        rgba(232, 121, 249, 0.08) 0%, transparent 65%);
+    pointer-events: none;
+}
+
+/* 載入完成後顯示整個區塊（淡入） */
+.sponsor-leaderboard.is-loaded .leaderboard-grid {
+    animation: lb-fade-in 0.5s ease both;
+}
+
+@keyframes lb-fade-in {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── 標題區 ───────────────────────────────────────── */
+.leaderboard-header {
+    text-align: center;
+    margin-bottom: 1.75rem;
+    position: relative;
+}
+
+.leaderboard-tagline {
+    font-family: var(--font-heading);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--primary-color);
+    display: block;
+    margin-bottom: 0.4rem;
+}
+
+.leaderboard-title {
+    font-family: var(--font-heading);
+    font-size: 1.75rem;
+    font-weight: 900;
+    background: var(--gradient-text);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 0;
+    letter-spacing: 0.06em;
+}
+
+/* ─── 三欄 Grid ────────────────────────────────────── */
+.leaderboard-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    position: relative;
+}
+
+/* ─── 單張統計卡片 ─────────────────────────────────── */
+.leaderboard-card {
+    position: relative;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 1.5rem 1.25rem 1.25rem;
+    overflow: hidden;
+    transition: transform var(--transition-normal),
+                border-color var(--transition-normal),
+                box-shadow var(--transition-normal);
+}
+
+/* 頂部強調邊線 */
+.leaderboard-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--gradient-primary);
+    opacity: 0.7;
+}
+
+/* 右上角光暈 */
+.leaderboard-card::after {
+    content: '';
+    position: absolute;
+    top: -24px;
+    right: -24px;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: var(--primary-glow-soft);
+    filter: blur(18px);
+    opacity: 0;
+    transition: opacity var(--transition-normal);
+}
+
+.leaderboard-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--border-color-hover);
+    box-shadow: var(--shadow-card-hover);
+}
+
+.leaderboard-card:hover::after {
+    opacity: 1;
+}
+
+/* ─── 卡片標頭 ─────────────────────────────────────── */
+.leaderboard-card__header {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 1.1rem;
+}
+
+.leaderboard-card__header i {
+    font-size: 0.95rem;
+    color: var(--primary-color);
+    flex-shrink: 0;
+}
+
+.leaderboard-card__heading {
+    font-family: var(--font-heading);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin: 0;
+}
+
+/* ─── 卡片列表 ─────────────────────────────────────── */
+.leaderboard-card__list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+}
+
+/* ─── 玩家卡片 ─────────────────────────────────────── */
+.sponsor-player-card {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.6rem 0.75rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius-sm);
+    transition: background var(--transition-fast), border-color var(--transition-fast);
+}
+
+.sponsor-player-card:hover {
+    background: rgba(232, 121, 249, 0.06);
+    border-color: rgba(232, 121, 249, 0.18);
+}
+
+/* Minecraft 頭像 */
+.sponsor-player-card img {
+    width: 48px;
+    height: 48px;
+    border-radius: 6px;
+    image-rendering: pixelated;
+    flex-shrink: 0;
+    background: var(--bg-mid);
+}
+
+/* 玩家資訊 */
+.sponsor-player-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    min-width: 0;
+}
+
+.sponsor-player-name {
+    font-family: var(--font-heading);
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--text-main);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.sponsor-player-amount {
+    font-size: 0.78rem;
+    color: var(--primary-light);
+    font-weight: 600;
+}
+
+/* ─── RWD ──────────────────────────────────────────── */
+@media (max-width: 1024px) {
+    .leaderboard-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .leaderboard-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .leaderboard-card {
+        padding: 1.25rem 1rem 1rem;
+    }
+
+    .leaderboard-title {
+        font-size: 1.4rem;
+    }
+}

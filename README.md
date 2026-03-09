@@ -23,6 +23,7 @@
 |------|------|------|
 | 首頁 | `index.html` | Hero、遊戲分流、相冊、贊助 |
 | 規則 | `rules.html` | 伺服器規則（分頁設計） |
+| 贊助支持 | `sponsor.html` | 贊助名單、VIP 等級福利、CTA |
 
 ### 導覽列（Header）
 
@@ -38,6 +39,7 @@
 bydsmp.com/
 ├── index.html                 # 首頁
 ├── rules.html                 # 規則頁面
+├── sponsor.html               # 贊助支持頁面
 ├── sitemap.xml                # 網站地圖
 ├── robots.txt                 # 爬蟲規則
 ├── README.md
@@ -56,16 +58,21 @@ bydsmp.com/
 │   │   ├── main.js            # 主入口
 │   │   ├── config.js          # 設定檔
 │   │   └── modules/
-│   │       ├── navigation.js  # 導覽行為（顯示/隱藏、漢堡選單）
-│   │       ├── copyIP.js      # 複製 IP 功能
+│   │       ├── navigation.js       # 導覽行為（顯示/隱藏、漢堡選單）
+│   │       ├── copyIP.js           # 複製 IP 功能
 │   │       ├── galleryCarousel.js  # 相冊輪播
-│   │       └── rulesTabs.js   # 規則分頁切換
+│   │       ├── rulesTabs.js        # 規則分頁切換
+│   │       └── sponsorLeaderboard.js  # 贊助名單統計卡片
 │   └── images/
 │       ├── logo.png
 │       ├── hero_background.png
 │       └── icon_item_totem_of_undying.png
+├── docs/
+│   └── sponsors.json          # 贊助紀錄資料
 └── .cursor/skills/bydsmp-website/
-    └── SKILL.md               # 專案維護指南
+    ├── SKILL.md                # 專案維護指南
+    └── add-sponsor/
+        └── SKILL.md            # 添加贊助名單指南
 ```
 
 ## 技術棧
@@ -90,6 +97,20 @@ bydsmp.com/
 1. **分頁**：基本規則、世界規則、生電規則、PVP 規則、違規處理
 2. **URL Hash**：支援 `rules.html#tab-pvp` 等直接連結
 3. **標題上方留白**：配合固定 Header 的 padding
+
+### 贊助支持頁（sponsor.html）
+
+1. **贊助名單**：三項統計卡片（近期贊助、最高單筆、最高贊助總額），含玩家 Minotar 頭像
+2. **VIP 等級**：VIP 0–10 福利卡片，每升 1 級需 200 TWD
+3. **CTA**：Discord 洽詢按鈕
+4. **重要說明**：免責聲明與規範
+
+### 贊助紀錄（docs/sponsors.json）
+
+所有贊助資料以 JSON 格式儲存，`sponsorLeaderboard.js` 動態讀取並計算三項統計：
+- **近期贊助**：最新 3 筆（依日期降序）
+- **最高單筆**：單次金額最高的紀錄
+- **最高贊助總額**：同一玩家累計金額最高
 
 ## 設定檔（config.js）
 

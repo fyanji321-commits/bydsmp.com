@@ -15,9 +15,12 @@ This is a modular multi-page HTML website for the BYDSMP Minecraft server. The p
 bydsmp.com/
 ├── index.html                      # Home page
 ├── rules.html                      # Rules page (tabs)
-├── sponsor.html                    # Sponsor / VIP page
+├── sponsor.html                    # Sponsor / VIP page（含贊助名單）
 ├── sitemap.xml
 ├── robots.txt
+├── docs/
+│   ├── sponsors.json               # 贊助紀錄資料（新增贊助時修改此檔）
+│   └── TEST_COVERAGE_ANALYSIS.md
 ├── assets/
 │   ├── css/
 │   │   ├── main.css               # Main stylesheet (imports all)
@@ -29,7 +32,7 @@ bydsmp.com/
 │   │       ├── gallery.css
 │   │       ├── footer.css
 │   │       ├── rules.css          # .subpage 共用基礎、.rule-box、rules 分頁
-│   │       └── sponsor.css        # 贊助頁專屬樣式
+│   │       └── sponsor.css        # 贊助頁專屬樣式（含贊助名單卡片）
 │   ├── js/
 │   │   ├── main.js                # Config 值注入（footer IP/email、Discord 連結）
 │   │   ├── config.js              # 集中管理 serverIP、email、discordLink 等
@@ -38,9 +41,12 @@ bydsmp.com/
 │   │       ├── copyIP.js
 │   │       ├── galleryCarousel.js
 │   │       ├── modesScroll.js
-│   │       └── rulesTabs.js
+│   │       ├── rulesTabs.js
+│   │       └── sponsorLeaderboard.js  # 讀取 sponsors.json，渲染贊助統計卡片
 │   └── images/
 └── .cursor/skills/bydsmp-website/  # This skill directory
+    └── add-sponsor/
+        └── SKILL.md               # 添加贊助名單的完整指南
 ```
 
 ## Key Sections
@@ -54,6 +60,7 @@ bydsmp.com/
 - Server rules with tabs: 基本規則、世界規則、生電規則、PVP 規則、違規處理
 
 ### sponsor.html
+- 贊助名單（三項統計卡片：近期贊助、最高單筆、最高贊助總額，含 Minotar 頭像）
 - VIP 等級贊助說明、福利表格、贊助 CTA 與重要說明
 
 ### Navigation
@@ -62,6 +69,24 @@ bydsmp.com/
 - Rules / Sponsor page: Header always visible
 
 ## Common Update Tasks
+
+### Updating Sponsor List（更新贊助名單）
+
+贊助名單資料集中儲存於 `docs/sponsors.json`。`sponsorLeaderboard.js` 在頁面載入時讀取此檔案，自動計算三個統計卡片：
+
+- **近期贊助**：最新 3 筆（依 `date` 降序）
+- **最高單筆**：單次 `amount` 最高的紀錄
+- **最高贊助總額**：相同 `id` 的 `amount` 累計最高
+
+**新增一筆贊助**：
+
+```json
+{ "id": "PlayerID", "name": "PlayerID", "amount": 400, "date": "YYYY-MM-DD" }
+```
+
+詳細步驟、欄位說明與注意事項請參考專屬指南：**`.cursor/skills/bydsmp-website/add-sponsor/SKILL.md`**
+
+---
 
 ### Updating Server Information
 
@@ -181,6 +206,7 @@ Update when changing site content or adding new features.
 ## Testing Checklist
 
 After making changes:
+- [ ] Check sponsor leaderboard renders (open sponsor.html via local server, verify 3 cards appear)
 - [ ] Test IP copy functionality (index)
 - [ ] Verify all images load correctly
 - [ ] Check responsive design on mobile (< 768px)
