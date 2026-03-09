@@ -18,8 +18,16 @@
         return amount.toLocaleString() + ' TWD';
     }
 
+    function formatDate(dateStr) {
+        // "2026-02-26" → "2026/02/26"
+        return dateStr ? dateStr.replace(/-/g, '/') : '';
+    }
+
     // Build a single player card element
-    function buildPlayerCard(sponsor, extra) {
+    // opts.showDate: boolean — render the date tag (used for 近期贊助)
+    function buildPlayerCard(sponsor, extra, opts) {
+        var showDate = opts && opts.showDate;
+
         var article = document.createElement('article');
         article.className = 'sponsor-player-card';
 
@@ -46,6 +54,14 @@
 
         info.appendChild(nameEl);
         info.appendChild(amountEl);
+
+        if (showDate && sponsor.date) {
+            var dateEl = document.createElement('span');
+            dateEl.className = 'sponsor-player-date';
+            dateEl.textContent = formatDate(sponsor.date);
+            info.appendChild(dateEl);
+        }
+
         article.appendChild(img);
         article.appendChild(info);
         return article;
@@ -78,7 +94,7 @@
         list.className = 'leaderboard-card__list';
 
         opts.players.forEach(function (item) {
-            list.appendChild(buildPlayerCard(item.sponsor, item.displayAmount));
+            list.appendChild(buildPlayerCard(item.sponsor, item.displayAmount, { showDate: !!opts.showDate }));
         });
 
         card.appendChild(list);
@@ -122,11 +138,12 @@
 
         var stats = computeStats(sponsors);
 
-        // Card 1: 近期贊助
+        // Card 1: 近期贊助（含日期）
         grid.appendChild(buildCard({
             id: 'lb-recent',
             icon: 'fas fa-clock',
             heading: '近期贊助',
+            showDate: true,
             players: stats.recent.map(function (s) {
                 return { sponsor: s, displayAmount: s.amount };
             })

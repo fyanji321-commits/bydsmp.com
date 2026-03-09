@@ -13,8 +13,10 @@
 /* ─── Hero 標題區 ──────────────────────────────── */
 .sponsor-hero {
     text-align: center;
-    padding: 2rem 0 1.5rem;
+    padding: 1rem 0 1.5rem;
     position: relative;
+    border-top: 1px solid var(--border-color);
+    margin-top: 0.5rem;
 }
 
 .sponsor-hero::before {
@@ -84,7 +86,7 @@
 /* ─── VIP 卡片網格 ─────────────────────────────── */
 .vip-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
     margin-bottom: var(--spacing-lg);
 }
@@ -483,7 +485,7 @@
     }
 
     .vip-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
         gap: 0.75rem;
     }
 
@@ -501,15 +503,15 @@
     }
 }
 
-@media (min-width: 600px) and (max-width: 768px) {
+@media (max-width: 480px) {
     .vip-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: 1fr;
     }
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
     .vip-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(3, 1fr);
     }
 }
 
@@ -519,8 +521,8 @@
 
 /* ─── Section 容器 ─────────────────────────────────── */
 .sponsor-leaderboard {
-    padding: 2.5rem 0 2rem;
-    margin-bottom: var(--spacing-md);
+    padding: 2.5rem 0 1.25rem;
+    margin-bottom: 0;
     position: relative;
 }
 
@@ -579,6 +581,7 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
     position: relative;
+    align-items: start;
 }
 
 /* ─── 單張統計卡片 ─────────────────────────────────── */
@@ -708,9 +711,17 @@
 }
 
 .sponsor-player-amount {
-    font-size: 0.78rem;
+    font-size: 0.85rem;
     color: var(--primary-light);
-    font-weight: 600;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+}
+
+.sponsor-player-date {
+    font-size: 0.7rem;
+    color: var(--text-subtle);
+    font-weight: 400;
+    letter-spacing: 0.02em;
 }
 
 /* ─── RWD ──────────────────────────────────────────── */
