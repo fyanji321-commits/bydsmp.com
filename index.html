@@ -24,6 +24,7 @@
     <meta property="og:image" content="https://bydsmp.com/assets/images/logo.png">
     <meta property="og:image:width" content="512">
     <meta property="og:image:height" content="512">
+    <meta property="og:image:alt" content="BYDSMP 台灣 Minecraft 伺服器 Logo">
     <meta property="og:locale" content="zh_TW">
     <meta property="og:site_name" content="BYDSMP">
     
@@ -33,6 +34,7 @@
     <meta property="twitter:title" content="BYDSMP - 生存與 PVP 的完美結合">
     <meta property="twitter:description" content="台灣 Minecraft 伺服器，賞金、PVP、防噴機制，保留原版探索體驗。SMP 與 KitPVP 分流。">
     <meta property="twitter:image" content="https://bydsmp.com/assets/images/logo.png">
+    <meta property="twitter:image:alt" content="BYDSMP 台灣 Minecraft 伺服器 Logo">
     
     <!-- Theme Color -->
     <meta name="theme-color" content="#FF79BC">
@@ -101,6 +103,20 @@
         "url": "https://bydsmp.com"
     }
     </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "首頁",
+                "item": "https://bydsmp.com/"
+            }
+        ]
+    }
+    </script>
 </head>
 <body>
     <!-- Navigation：BYDSMP 左側，導航連結右側 -->
@@ -110,8 +126,8 @@
         </a>
         <div class="nav-right">
             <div class="nav-links" id="nav-links" role="menubar">
-                <a href="/rules" role="menuitem">規則</a>
-                <a href="/sponsor" role="menuitem">贊助支持</a>
+                <a href="/rules" role="menuitem" title="BYDSMP 伺服器規則">規則</a>
+                <a href="/sponsor" role="menuitem" title="贊助 BYDSMP 取得 VIP 福利">贊助支持</a>
             </div>
             <button class="hamburger" 
                     aria-label="開啟選單" 
@@ -373,10 +389,10 @@
     <!-- Footer -->
     <footer role="contentinfo">
         <p>&copy; 2026 BYDSMP. All Rights Reserved.</p>
-        <div class="footer-contact">
+        <address class="footer-contact">
             <span>Server IP: <strong id="footer-server-ip"></strong></span>
             <span>聯絡信箱: <a id="footer-email" href="#">...</a></span>
-        </div>
+        </address>
         <p class="footer-disclaimer">本網站與 BYDSMP 伺服器為非官方粉絲創作，與 Mojang Studios 或 Microsoft 無關。NOT OFFICIAL MINECRAFT PRODUCT. NOT APPROVED BY OR ASSOCIATED WITH MOJANG OR MICROSOFT.</p>
     </footer>
 

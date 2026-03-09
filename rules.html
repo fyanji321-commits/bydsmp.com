@@ -5,10 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <title>伺服器規則 | BYDSMP 台灣 Minecraft 伺服器</title>
-    <meta name="description" content="BYDSMP 伺服器規則：基本規則、世界規則、生電規則、PVP 規則、違規處理。">
-    <meta name="keywords" content="BYDSMP, Minecraft, 伺服器規則, 台灣伺服器, SMP, PVP">
+    <meta name="description" content="BYDSMP 台灣 Minecraft 伺服器完整規則：禁止外掛、世界建設規範、生電（刷石機/TNT複製）、PVP 規則（水晶/禁外掛），以及違規處理方式。">
+    <meta name="keywords" content="BYDSMP, Minecraft, 伺服器規則, 台灣伺服器, SMP, PVP, 生電規則, 世界規則, 基本規則">
     <meta name="robots" content="index, follow">
     <meta name="language" content="zh-TW">
+    <meta name="author" content="BYDSMP">
     
     <!-- Theme Color -->
     <meta name="theme-color" content="#FF79BC">
@@ -19,17 +20,19 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://bydsmp.com/rules">
     <meta property="og:title" content="伺服器規則 | BYDSMP 台灣 Minecraft 伺服器">
-    <meta property="og:description" content="BYDSMP 伺服器規則：基本規則、世界規則、生電規則、PVP 規則、違規處理。">
+    <meta property="og:description" content="BYDSMP 台灣 Minecraft 伺服器完整規則：禁止外掛、世界建設規範、生電（刷石機/TNT複製）、PVP 規則，以及違規處理方式。">
     <meta property="og:locale" content="zh_TW">
     <meta property="og:image" content="https://bydsmp.com/assets/images/logo.png">
     <meta property="og:image:width" content="512">
     <meta property="og:image:height" content="512">
+    <meta property="og:image:alt" content="BYDSMP 台灣 Minecraft 伺服器 Logo">
     <meta property="og:site_name" content="BYDSMP">
     <meta property="twitter:card" content="summary">
     <meta property="twitter:url" content="https://bydsmp.com/rules">
     <meta property="twitter:title" content="伺服器規則 | BYDSMP">
-    <meta property="twitter:description" content="BYDSMP 伺服器規則：基本規則、世界規則、生電規則、PVP 規則、違規處理。">
+    <meta property="twitter:description" content="BYDSMP 台灣 Minecraft 伺服器完整規則：禁止外掛、世界建設規範、生電、PVP 規則，以及違規處理方式。">
     <meta property="twitter:image" content="https://bydsmp.com/assets/images/logo.png">
+    <meta property="twitter:image:alt" content="BYDSMP 台灣 Minecraft 伺服器 Logo">
     <meta name="msapplication-TileColor" content="#FF79BC">
     
     <link rel="icon" type="image/png" href="assets/images/logo.png">
@@ -46,6 +49,68 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <link rel="stylesheet" href="assets/css/main.css">
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "首頁",
+                "item": "https://bydsmp.com/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "伺服器規則",
+                "item": "https://bydsmp.com/rules"
+            }
+        ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "BYDSMP 伺服器的基本規則有哪些？",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "禁止作弊與使用任何外掛、禁止宣傳其他伺服器、禁止發表不當言論、禁止利用影響平衡之漏洞。"
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "BYDSMP 生電（Redstone）規則允許什麼？",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "允許防噴、刷沙、破基岩、TNT 複製、打印機、複製物品。大型機器須報備，若造成伺服器卡頓，官方有權修整機器。"
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "BYDSMP PVP 規則允許和禁止什麼？",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "允許水晶 PVP、自動圖騰。禁止使用任何外掛、禁止在建築和 Spawn 附近打水晶。"
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "BYDSMP 違規會怎樣處理？",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "開掛者直接裝反掛處理；若在領地內或周圍持續騷擾，將嚴懲。"
+                }
+            }
+        ]
+    }
+    </script>
 </head>
 <body>
     <nav role="navigation" aria-label="主要導航" data-nav="always-visible">
@@ -54,8 +119,8 @@
         </a>
         <div class="nav-right">
             <div class="nav-links" id="nav-links" role="menubar">
-                <a href="/rules" role="menuitem">規則</a>
-                <a href="/sponsor" role="menuitem">贊助支持</a>
+                <a href="/rules" role="menuitem" title="BYDSMP 伺服器規則">規則</a>
+                <a href="/sponsor" role="menuitem" title="贊助 BYDSMP 取得 VIP 福利">贊助支持</a>
             </div>
             <button class="hamburger" 
                     aria-label="開啟選單" 
@@ -261,10 +326,10 @@
 
     <footer role="contentinfo">
         <p>&copy; 2026 BYDSMP. All Rights Reserved.</p>
-        <div class="footer-contact">
+        <address class="footer-contact">
             <span>Server IP: <strong id="footer-server-ip"></strong></span>
             <span>聯絡信箱: <a id="footer-email" href="#">...</a></span>
-        </div>
+        </address>
         <p class="footer-disclaimer">本網站與 BYDSMP 伺服器為非官方粉絲創作，與 Mojang Studios 或 Microsoft 無關。NOT OFFICIAL MINECRAFT PRODUCT. NOT APPROVED BY OR ASSOCIATED WITH MOJANG OR MICROSOFT.</p>
     </footer>
 

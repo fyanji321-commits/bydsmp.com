@@ -1,3 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /docs/
+Disallow: /assets/js/
+Disallow: /.cursor/
+
 Sitemap: https://bydsmp.com/sitemap.xml
