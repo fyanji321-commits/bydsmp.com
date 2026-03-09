@@ -724,6 +724,65 @@
     letter-spacing: 0.02em;
 }
 
+/* ─── 下拉選單 ─────────────────────────────────────── */
+.lb-dropdown {
+    margin-top: 0.85rem;
+    border-top: 1px solid var(--border-color);
+    padding-top: 0.65rem;
+}
+
+.lb-dropdown summary {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.75rem;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--primary-color);
+    user-select: none;
+    transition: opacity var(--transition-fast);
+    outline: none;
+}
+
+.lb-dropdown summary::-webkit-details-marker {
+    display: none;
+}
+
+.lb-dropdown summary::after {
+    content: '▾';
+    display: inline-block;
+    transition: transform 0.25s ease;
+    margin-left: auto;
+}
+
+.lb-dropdown[open] summary::after {
+    transform: rotate(-180deg);
+}
+
+.lb-dropdown summary:hover {
+    opacity: 0.75;
+}
+
+.lb-dropdown summary:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+    border-radius: 2px;
+}
+
+.lb-dropdown .leaderboard-card__list {
+    margin-top: 0.75rem;
+    animation: lb-dropdown-in 0.22s ease both;
+}
+
+@keyframes lb-dropdown-in {
+    from { opacity: 0; transform: translateY(-6px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
 /* ─── RWD ──────────────────────────────────────────── */
 @media (max-width: 1024px) {
     .leaderboard-grid {

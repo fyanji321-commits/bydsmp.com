@@ -1,8 +1,8 @@
 // Sponsor Leaderboard Module
 // Fetches docs/sponsors.json and renders three stat cards:
-//   1. 近期贊助   – latest 3 entries by date (desc)
-//   2. 最高單筆   – single entry with highest amount
-//   3. 最高贊助總額 – player whose cumulative total is highest
+//   1. 近期贊助   – latest entry by date, dropdown lists all by date desc
+//   2. 最高單筆   – single entry with highest amount, dropdown lists all by amount desc
+//   3. 最高贊助總額 – player whose cumulative total is highest, dropdown lists all totals desc
 (function () {
     'use strict';
 
@@ -19,13 +19,10 @@
     }
 
     function formatDate(dateStr) {
-        // "2026-02-26" → "2026/02/26"
         return dateStr ? dateStr.replace(/-/g, '/') : '';
     }
 
     // Build a single player card element
-    // { sponsor, displayAmount, showDate }
-    // showDate: boolean — render the date tag (used for 近期贊助)
     function buildPlayerCard(cardOpts) {
         var sponsor = cardOpts.sponsor;
         var displayAmount = cardOpts.displayAmount;
@@ -71,9 +68,10 @@
     }
 
     // Build a leaderboard card element
+    // opts: { id, icon, heading, topPlayer, allPlayers, showDate, totalCount }
+    // topPlayer: { sponsor, displayAmount } — shown as main card
+    // allPlayers: array of { sponsor, displayAmount } — shown in dropdown
     function buildCard(opts) {
-        // opts: { id, icon, heading, players }
-        // players: array of { sponsor, displayAmount }
         var card = document.createElement('div');
         card.className = 'leaderboard-card';
         card.id = opts.id;
@@ -93,45 +91,75 @@
         header.appendChild(heading);
         card.appendChild(header);
 
-        var list = document.createElement('div');
-        list.className = 'leaderboard-card__list';
+        // Main display: single top player
+        var mainList = document.createElement('div');
+        mainList.className = 'leaderboard-card__list';
+        mainList.appendChild(buildPlayerCard({
+            sponsor: opts.topPlayer.sponsor,
+            displayAmount: opts.topPlayer.displayAmount,
+            showDate: opts.showDate
+        }));
+        card.appendChild(mainList);
 
-        var cardShowDate = opts.showDate || false;
-        opts.players.forEach(function (item) {
-            list.appendChild(buildPlayerCard({ sponsor: item.sponsor, displayAmount: item.displayAmount, showDate: cardShowDate }));
-        });
+        // Dropdown: all records
+        if (opts.allPlayers && opts.allPlayers.length > 0) {
+            var details = document.createElement('details');
+            details.className = 'lb-dropdown';
 
-        card.appendChild(list);
+            var summary = document.createElement('summary');
+            summary.textContent = '查看所有 ' + opts.totalCount + ' 筆紀錄';
+            details.appendChild(summary);
+
+            var dropList = document.createElement('div');
+            dropList.className = 'leaderboard-card__list';
+            opts.allPlayers.forEach(function (item) {
+                dropList.appendChild(buildPlayerCard({
+                    sponsor: item.sponsor,
+                    displayAmount: item.displayAmount,
+                    showDate: opts.showDate
+                }));
+            });
+            details.appendChild(dropList);
+            card.appendChild(details);
+        }
+
         return card;
     }
 
     // ── stats computation ─────────────────────────────────────
 
     function computeStats(sponsors) {
-        // 1. 近期贊助：依 date 降序，取前 3
-        var recent = sponsors
+        // 1. 近期贊助：依 date 降序
+        var recentAll = sponsors
             .slice()
             .sort(function (a, b) {
                 return b.date.localeCompare(a.date);
-            })
-            .slice(0, 3);
+            });
 
-        // 2. 最高單筆
-        var topSingle = sponsors.reduce(function (best, s) {
-            return s.amount > best.amount ? s : best;
-        });
+        // 2. 最高單筆：依 amount 降序
+        var topSingleAll = sponsors
+            .slice()
+            .sort(function (a, b) {
+                return b.amount - a.amount;
+            });
 
-        // 3. 最高贊助總額（同 id 累計）
+        // 3. 最高贊助總額（同 id 累計），依總額降序
         var totals = {};
         sponsors.forEach(function (s) {
-            totals[s.id] = (totals[s.id] || { sponsor: s, total: 0 });
+            if (!totals[s.id]) {
+                totals[s.id] = { sponsor: s, total: 0 };
+            }
             totals[s.id].total += s.amount;
         });
-        var topTotal = Object.values(totals).reduce(function (best, item) {
-            return item.total > best.total ? item : best;
+        var topTotalAll = Object.values(totals).sort(function (a, b) {
+            return b.total - a.total;
         });
 
-        return { recent: recent, topSingle: topSingle, topTotal: topTotal };
+        return {
+            recentAll: recentAll,
+            topSingleAll: topSingleAll,
+            topTotalAll: topTotalAll
+        };
     }
 
     // ── render ────────────────────────────────────────────────
@@ -148,9 +176,11 @@
             icon: 'fas fa-clock',
             heading: '近期贊助',
             showDate: true,
-            players: stats.recent.map(function (s) {
+            topPlayer: { sponsor: stats.recentAll[0], displayAmount: stats.recentAll[0].amount },
+            allPlayers: stats.recentAll.map(function (s) {
                 return { sponsor: s, displayAmount: s.amount };
-            })
+            }),
+            totalCount: stats.recentAll.length
         }));
 
         // Card 2: 最高單筆
@@ -158,7 +188,12 @@
             id: 'lb-top-single',
             icon: 'fas fa-coins',
             heading: '最高單筆贊助',
-            players: [{ sponsor: stats.topSingle, displayAmount: stats.topSingle.amount }]
+            showDate: false,
+            topPlayer: { sponsor: stats.topSingleAll[0], displayAmount: stats.topSingleAll[0].amount },
+            allPlayers: stats.topSingleAll.map(function (s) {
+                return { sponsor: s, displayAmount: s.amount };
+            }),
+            totalCount: stats.topSingleAll.length
         }));
 
         // Card 3: 最高贊助總額
@@ -166,7 +201,12 @@
             id: 'lb-top-total',
             icon: 'fas fa-trophy',
             heading: '最高贊助總額',
-            players: [{ sponsor: stats.topTotal.sponsor, displayAmount: stats.topTotal.total }]
+            showDate: false,
+            topPlayer: { sponsor: stats.topTotalAll[0].sponsor, displayAmount: stats.topTotalAll[0].total },
+            allPlayers: stats.topTotalAll.map(function (item) {
+                return { sponsor: item.sponsor, displayAmount: item.total };
+            }),
+            totalCount: stats.topTotalAll.length
         }));
     }
 
