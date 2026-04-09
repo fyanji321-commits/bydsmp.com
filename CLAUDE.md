@@ -1,6 +1,10 @@
-# CLAUDE.md — BYDSMP Website
+# CLAUDE.md
 
-Official website for the BYDSMP Taiwan Minecraft server (`bydsmp.com`). A multi-page static website with no build step, no frameworks, and no package manager — just plain HTML5, CSS3, and Vanilla JavaScript.
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
+## Overview
+
+Official website for the BYDSMP Taiwan Minecraft server (`bydsmp.com`). A multi-page static website with no build step, no frameworks — just plain HTML5, CSS3, and Vanilla JavaScript.
 
 ---
 
@@ -269,6 +273,42 @@ npx http-server
 Then open `http://localhost:8000`.
 
 **Do not** open HTML files directly as `file://` — relative paths and some browser APIs (Clipboard) require an HTTP origin.
+
+---
+
+## Testing
+
+### Commands
+
+```bash
+npm test              # Run all tests once
+npm run test:watch    # Run tests in watch mode
+npm run test:coverage # Run tests with V8 coverage report
+```
+
+To run a single test file:
+```bash
+npx vitest run tests/unit/copyIP.test.js
+```
+
+### Test Architecture
+
+Tests use **Vitest + jsdom**. The IIFE modules have no exports, so tests use a special loading strategy:
+
+1. `fs.readFileSync()` reads the JS source file
+2. `new Function(code)()` executes the IIFE inside the jsdom `globalThis` scope
+3. `CONFIG`, `document`, `navigator`, `window` all resolve from jsdom automatically — no mocking needed
+
+Test structure:
+- `tests/unit/` — individual module tests (config, main, copyIP, navigation, modesScroll, galleryCarousel)
+- `tests/integration/` — cross-module tests (rulesTabs, navigation, copyIP, modesScroll, galleryCarousel)
+- `tests/fixtures/` — HTML fixture files loaded per test
+
+### Key Testing Gotchas
+
+- Use `vi.useFakeTimers()` for carousel/modesScroll/copyIP timer tests
+- Set `galleryTransitionDuration: 100` in test CONFIG (never 0 — the code uses `0 || 500` fallback)
+- Mock touch events as `new Event(type)` with `event.changedTouches = [{screenX}]` (jsdom lacks `TouchEvent`)
 
 ---
 
