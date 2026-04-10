@@ -23,7 +23,7 @@
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(232, 121, 249, 0.12) 0%, transparent 70%);
+    background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(249, 115, 22, 0.12) 0%, transparent 70%);
     pointer-events: none;
 }
 
@@ -61,8 +61,8 @@
     display: inline-flex;
     align-items: baseline;
     gap: 0.25rem;
-    background: linear-gradient(135deg, rgba(232, 121, 249, 0.15), rgba(167, 139, 250, 0.1));
-    border: 1px solid rgba(232, 121, 249, 0.3);
+    background: linear-gradient(135deg, rgba(249, 115, 22, 0.15), rgba(249, 115, 22, 0.1));
+    border: 1px solid rgba(249, 115, 22, 0.3);
     border-radius: 100px;
     padding: 0.5rem 1.25rem;
     margin-bottom: 1.5rem;
@@ -107,7 +107,7 @@
     content: '';
     position: absolute;
     inset: 0;
-    background: var(--gradient-card);
+    background: linear-gradient(145deg, rgba(249, 115, 22, 0.06) 0%, rgba(148, 163, 184, 0.03) 100%);
     opacity: 0;
     transition: opacity var(--transition-normal);
     pointer-events: none;
@@ -158,8 +158,8 @@
 
 /* 頂級（VIP 10）特殊樣式 */
 .vip-card--top {
-    border-color: rgba(232, 121, 249, 0.4);
-    background: linear-gradient(145deg, rgba(232, 121, 249, 0.07), rgba(56, 189, 248, 0.04));
+    border-color: rgba(249, 115, 22, 0.4);
+    background: linear-gradient(145deg, rgba(249, 115, 22, 0.07), rgba(148, 163, 184, 0.04));
     grid-column: 1 / -1;
     max-width: 480px;
     justify-self: center;
@@ -204,31 +204,31 @@
 .vip-badge--1,
 .vip-badge--2,
 .vip-badge--3 {
-    background: linear-gradient(135deg, #C084FC, #A78BFA);
+    background: linear-gradient(135deg, #FB923C, #F97316);
     color: #0F0F0F;
-    box-shadow: 0 2px 12px rgba(167, 139, 250, 0.4);
+    box-shadow: 0 2px 12px rgba(249, 115, 22, 0.3);
 }
 
 .vip-badge--4,
 .vip-badge--5,
 .vip-badge--6 {
-    background: linear-gradient(135deg, #E879F9, #C084FC);
+    background: linear-gradient(135deg, #F97316, #EA580C);
     color: #0F0F0F;
-    box-shadow: 0 2px 16px rgba(232, 121, 249, 0.45);
+    box-shadow: 0 2px 16px rgba(249, 115, 22, 0.4);
 }
 
 .vip-badge--7,
 .vip-badge--8,
 .vip-badge--9 {
-    background: linear-gradient(135deg, #F0ABFC, #E879F9);
+    background: linear-gradient(135deg, #FDBA74, #F97316);
     color: #0F0F0F;
-    box-shadow: 0 2px 20px rgba(232, 121, 249, 0.55);
+    box-shadow: 0 2px 20px rgba(249, 115, 22, 0.5);
 }
 
 .vip-badge--10 {
     background: var(--gradient-primary);
     color: #0F0F0F;
-    box-shadow: 0 2px 24px rgba(232, 121, 249, 0.6), 0 0 0 2px rgba(232, 121, 249, 0.2);
+    box-shadow: 0 2px 24px rgba(249, 115, 22, 0.6), 0 0 0 2px rgba(249, 115, 22, 0.2);
 }
 
 /* 累計金額 */
@@ -336,7 +336,7 @@
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(ellipse 60% 100% at 50% 50%, rgba(232, 121, 249, 0.06), transparent 70%);
+    background: radial-gradient(ellipse 60% 100% at 50% 50%, rgba(249, 115, 22, 0.06), transparent 70%);
     pointer-events: none;
 }
 
@@ -364,7 +364,7 @@
     min-height: 52px;
     transition: opacity var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
     letter-spacing: 0.03em;
-    box-shadow: 0 4px 24px rgba(232, 121, 249, 0.4), 0 0 0 0 rgba(232, 121, 249, 0);
+    box-shadow: 0 4px 24px rgba(249, 115, 22, 0.4), 0 0 0 0 rgba(249, 115, 22, 0);
     position: relative;
     overflow: hidden;
 }
@@ -380,7 +380,7 @@
 
 .sponsor-cta:hover {
     transform: translateY(-3px);
-    box-shadow: 0 8px 40px rgba(232, 121, 249, 0.55), 0 0 0 4px rgba(232, 121, 249, 0.15);
+    box-shadow: 0 8px 40px rgba(249, 115, 22, 0.55), 0 0 0 4px rgba(249, 115, 22, 0.15);
 }
 
 .sponsor-cta:hover::before {
@@ -389,7 +389,7 @@
 
 .sponsor-cta:active {
     transform: translateY(-1px) scale(0.98);
-    box-shadow: 0 4px 20px rgba(232, 121, 249, 0.4);
+    box-shadow: 0 4px 20px rgba(249, 115, 22, 0.4);
 }
 
 .sponsor-cta:focus-visible {
@@ -531,7 +531,7 @@
     position: absolute;
     inset: 0;
     background: radial-gradient(ellipse 70% 80% at 50% 0%,
-        rgba(232, 121, 249, 0.08) 0%, transparent 65%);
+        rgba(249, 115, 22, 0.08) 0%, transparent 65%);
     pointer-events: none;
 }
 
@@ -678,8 +678,8 @@
 }
 
 .sponsor-player-card:hover {
-    background: rgba(232, 121, 249, 0.06);
-    border-color: rgba(232, 121, 249, 0.18);
+    background: rgba(249, 115, 22, 0.06);
+    border-color: rgba(249, 115, 22, 0.18);
 }
 
 /* Minecraft 頭像 */
@@ -817,8 +817,8 @@
 }
 
 .sponsor-record-row:hover {
-    background: rgba(232, 121, 249, 0.06);
-    border-color: rgba(232, 121, 249, 0.15);
+    background: rgba(249, 115, 22, 0.06);
+    border-color: rgba(249, 115, 22, 0.15);
 }
 
 .sponsor-record-row__avatar {

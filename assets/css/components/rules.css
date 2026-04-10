@@ -66,8 +66,8 @@
     height: 1px;
     background: linear-gradient(90deg,
         var(--border-color) 0%,
-        rgba(232, 121, 249, 0.25) 40%,
-        rgba(56, 189, 248, 0.15) 70%,
+        rgba(249, 115, 22, 0.25) 40%,
+        rgba(148, 163, 184, 0.15) 70%,
         transparent 100%
     );
 }
@@ -100,8 +100,8 @@
 
 .rules-tab-btn:hover {
     color: var(--primary-light);
-    background: rgba(232, 121, 249, 0.06);
-    border-color: rgba(232, 121, 249, 0.12);
+    background: rgba(249, 115, 22, 0.06);
+    border-color: rgba(249, 115, 22, 0.12);
 }
 
 .rules-tab-btn:hover .tab-icon {
@@ -116,8 +116,8 @@
 
 .rules-tab-btn.active {
     color: var(--primary-color);
-    border-color: rgba(232, 121, 249, 0.3);
-    background: rgba(232, 121, 249, 0.07);
+    border-color: rgba(249, 115, 22, 0.3);
+    background: rgba(249, 115, 22, 0.07);
     font-weight: 600;
 }
 
@@ -197,7 +197,7 @@
     right: -10%;
     width: 200px;
     height: 200px;
-    background: radial-gradient(circle, rgba(232, 121, 249, 0.04) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(249, 115, 22, 0.04) 0%, transparent 70%);
     pointer-events: none;
 }
 
@@ -217,15 +217,15 @@
     gap: 0.75rem;
     margin-bottom: var(--spacing-md);
     padding-bottom: var(--spacing-sm);
-    border-bottom: 1px solid rgba(232, 121, 249, 0.1);
+    border-bottom: 1px solid rgba(249, 115, 22, 0.1);
 }
 
 .rule-box-icon {
     width: 40px;
     height: 40px;
     border-radius: var(--radius-sm);
-    background: rgba(232, 121, 249, 0.1);
-    border: 1px solid rgba(232, 121, 249, 0.2);
+    background: rgba(249, 115, 22, 0.1);
+    border: 1px solid rgba(249, 115, 22, 0.2);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -236,8 +236,8 @@
 }
 
 .rule-box:hover .rule-box-icon {
-    background: rgba(232, 121, 249, 0.16);
-    box-shadow: 0 0 16px rgba(232, 121, 249, 0.2);
+    background: rgba(249, 115, 22, 0.16);
+    box-shadow: 0 0 16px rgba(249, 115, 22, 0.2);
 }
 
 .rule-box h3 {
@@ -278,7 +278,7 @@
 }
 
 .rule-item:hover {
-    background: rgba(232, 121, 249, 0.04);
+    background: rgba(249, 115, 22, 0.04);
 }
 
 .rule-item-num {
@@ -286,8 +286,8 @@
     width: 22px;
     height: 22px;
     border-radius: 50%;
-    background: rgba(232, 121, 249, 0.1);
-    border: 1px solid rgba(232, 121, 249, 0.2);
+    background: rgba(249, 115, 22, 0.1);
+    border: 1px solid rgba(249, 115, 22, 0.2);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -340,7 +340,7 @@
 /* 分隔線 */
 .rule-divider {
     height: 1px;
-    background: rgba(232, 121, 249, 0.07);
+    background: rgba(249, 115, 22, 0.07);
     margin: 0.5rem 0;
 }
 
@@ -450,7 +450,7 @@
 .rule-group-label.deny { color: rgba(248, 113, 113, 0.7); }
 .rule-group-label.allow { color: rgba(74, 222, 128, 0.7); }
 .rule-group-label.warn { color: rgba(251, 191, 36, 0.7); }
-.rule-group-label.info { color: rgba(56, 189, 248, 0.7); }
+.rule-group-label.info { color: rgba(148, 163, 184, 0.7); }
 
 /* ============================================
    響應式設計
