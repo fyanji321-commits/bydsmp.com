@@ -1,8 +1,8 @@
-/* Footer Component */
+/* Footer Component — Obsidian Forge */
 
 footer {
     background: var(--bg-mid);
-    border-top: 1px solid rgba(232, 121, 249, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
     padding: var(--spacing-md) clamp(var(--spacing-md), 6vw, var(--spacing-xl));
     margin-top: var(--spacing-lg);
     position: relative;
@@ -17,7 +17,7 @@ footer::before {
     left: 0;
     right: 0;
     height: 1px;
-    background: linear-gradient(90deg, transparent 0%, rgba(232, 121, 249, 0.4) 30%, rgba(167, 139, 250, 0.5) 50%, rgba(56, 189, 248, 0.4) 70%, transparent 100%);
+    background: linear-gradient(90deg, transparent 0%, rgba(249, 115, 22, 0.3) 50%, transparent 100%);
 }
 
 footer p {

@@ -1,4 +1,4 @@
-/* Hero Section */
+/* Hero Section — Obsidian Forge */
 
 .hero {
     position: relative;
@@ -15,36 +15,18 @@
     overflow: hidden;
 }
 
-/* 多層次背景覆蓋 */
+/* 暗化覆蓋層 */
 .hero::before {
     content: '';
     position: absolute;
     inset: 0;
-    background:
-        radial-gradient(ellipse 80% 60% at 50% 0%, rgba(232, 121, 249, 0.18) 0%, transparent 60%),
-        radial-gradient(ellipse 60% 80% at 100% 50%, rgba(56, 189, 248, 0.1) 0%, transparent 50%),
-        linear-gradient(to bottom, rgba(7, 7, 17, 0.45) 0%, rgba(7, 7, 17, 0.75) 60%, rgba(7, 7, 17, 0.97) 100%);
+    background: linear-gradient(
+        to bottom,
+        rgba(8, 8, 14, 0.3) 0%,
+        rgba(8, 8, 14, 0.75) 60%,
+        rgba(8, 8, 14, 0.97) 100%
+    );
     z-index: 1;
-}
-
-/* 粒子光暈底層 */
-.hero::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image:
-        radial-gradient(circle 3px at 15% 25%, rgba(232, 121, 249, 0.5) 0%, transparent 100%),
-        radial-gradient(circle 2px at 80% 15%, rgba(167, 139, 250, 0.6) 0%, transparent 100%),
-        radial-gradient(circle 4px at 65% 70%, rgba(56, 189, 248, 0.4) 0%, transparent 100%),
-        radial-gradient(circle 2px at 30% 80%, rgba(232, 121, 249, 0.4) 0%, transparent 100%),
-        radial-gradient(circle 3px at 90% 60%, rgba(167, 139, 250, 0.5) 0%, transparent 100%);
-    z-index: 1;
-    animation: starsTwinkle 8s ease-in-out infinite alternate;
-}
-
-@keyframes starsTwinkle {
-    0% { opacity: 0.4; }
-    100% { opacity: 1; }
 }
 
 /* ── 內容容器 ──────────────────────────────────────── */
@@ -68,9 +50,9 @@
     line-height: 0;
     flex-shrink: 0;
     opacity: 0;
-    transform: translateX(-32px) scale(0.92);
-    animation: heroLogoIn 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.1s forwards;
-    filter: drop-shadow(0 0 40px rgba(232, 121, 249, 0.35)) drop-shadow(0 0 80px rgba(232, 121, 249, 0.15));
+    transform: translateY(20px) scale(0.96);
+    animation: heroLogoIn 0.9s var(--ease-out-expo) 0.1s forwards;
+    filter: drop-shadow(0 0 30px rgba(249, 115, 22, 0.2));
 }
 
 .hero-logo {
@@ -83,12 +65,12 @@
 }
 
 .hero-logo-wrap:hover .hero-logo {
-    filter: drop-shadow(0 0 50px rgba(232, 121, 249, 0.5));
+    filter: drop-shadow(0 0 40px rgba(249, 115, 22, 0.35));
 }
 
 @keyframes heroLogoIn {
-    from { opacity: 0; transform: translateX(-32px) scale(0.92); }
-    to   { opacity: 1; transform: translateX(0) scale(1); }
+    from { opacity: 0; transform: translateY(20px) scale(0.96); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 .hero h1.hero-logo-wrap {
@@ -120,10 +102,11 @@
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 0.35rem 1rem;
-    background: rgba(232, 121, 249, 0.1);
-    border: 1px solid rgba(232, 121, 249, 0.25);
-    border-radius: 999px;
+    padding: 0.4rem 1rem;
+    background: rgba(249, 115, 22, 0.08);
+    border: none;
+    border-left: 3px solid var(--primary-color);
+    border-radius: var(--radius-sm);
     font-family: var(--font-body);
     font-size: 0.8rem;
     font-weight: 500;
@@ -132,57 +115,41 @@
     text-transform: uppercase;
     opacity: 0;
     transform: translateY(8px);
-    animation: heroTextIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.2s forwards;
-}
-
-.hero-badge::before {
-    content: '';
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--primary-color);
-    box-shadow: 0 0 8px var(--primary-color);
-    animation: pulse 2s ease-in-out infinite;
-}
-
-@keyframes pulse {
-    0%, 100% { transform: scale(1); opacity: 1; }
-    50%       { transform: scale(1.4); opacity: 0.7; }
+    animation: heroTextIn 0.6s var(--ease-out-expo) 0.2s forwards;
 }
 
 /* 主標題 */
 .hero-title {
     font-family: var(--font-heading);
-    font-size: clamp(1.75rem, 3.8vw, 3.5rem);
-    font-weight: 900;
+    font-size: clamp(1.75rem, 3.8vw, 3.2rem);
+    font-weight: 700;
     margin: 0;
     line-height: 1.1;
-    letter-spacing: 0.03em;
-    white-space: nowrap;
+    letter-spacing: 0.06em;
     background: var(--gradient-text);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     opacity: 0;
-    transform: translateY(20px);
-    animation: heroTextIn 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.35s forwards;
+    transform: translateY(16px);
+    animation: heroTextIn 0.7s var(--ease-out-expo) 0.3s forwards;
 }
 
 /* 分隔線 */
 .hero-divider {
     width: 4rem;
     height: 2px;
-    background: var(--gradient-primary);
+    background: var(--primary-color);
     border-radius: 2px;
     opacity: 0;
     transform: translateY(10px) scaleX(0.3);
     transform-origin: left;
-    animation: heroDividerIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.48s forwards;
+    animation: heroDividerIn 0.6s var(--ease-out-expo) 0.38s forwards;
 }
 
 @keyframes heroDividerIn {
     from { opacity: 0; transform: translateY(10px) scaleX(0.3); }
-    to   { opacity: 1; transform: translateY(0) scaleX(1); }
+    to   { opacity: 0.6; transform: translateY(0) scaleX(1); }
 }
 
 /* 標語內文 */
@@ -195,7 +162,7 @@
     max-width: 36ch;
     opacity: 0;
     transform: translateY(14px);
-    animation: heroTextIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.52s forwards;
+    animation: heroTextIn 0.6s var(--ease-out-expo) 0.44s forwards;
 }
 
 @keyframes heroTextIn {
@@ -212,7 +179,7 @@
     flex-wrap: wrap;
     opacity: 0;
     transform: translateY(14px);
-    animation: heroTextIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.65s forwards;
+    animation: heroTextIn 0.6s var(--ease-out-expo) 0.52s forwards;
 }
 
 /* 主按鈕：立即遊玩 */
@@ -236,29 +203,19 @@
     justify-content: center;
     gap: 0.5rem;
     transition: transform var(--transition-fast), box-shadow var(--transition-fast);
-    letter-spacing: 0.06em;
-    box-shadow: 0 4px 24px rgba(232, 121, 249, 0.35), 0 0 0 1px rgba(232, 121, 249, 0.2);
-}
-
-.ip-box::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, transparent 60%);
-    opacity: 0;
-    transition: opacity var(--transition-fast);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    box-shadow: 0 4px 24px rgba(249, 115, 22, 0.3), 0 0 0 1px rgba(249, 115, 22, 0.2);
 }
 
 .ip-box:hover {
     transform: translateY(-3px);
-    box-shadow: 0 8px 32px rgba(232, 121, 249, 0.5), 0 0 0 1px rgba(232, 121, 249, 0.3);
+    box-shadow: 0 8px 32px rgba(249, 115, 22, 0.45), 0 0 0 1px rgba(249, 115, 22, 0.3);
 }
-
-.ip-box:hover::before { opacity: 1; }
 
 .ip-box:active {
     transform: translateY(-1px) scale(0.98);
-    box-shadow: 0 4px 20px rgba(232, 121, 249, 0.4);
+    box-shadow: 0 4px 20px rgba(249, 115, 22, 0.35);
 }
 
 .ip-box:focus-visible {
@@ -274,9 +231,9 @@
     padding: 0.85rem 1.6rem;
     min-height: 48px;
     border-radius: var(--radius-sm);
-    border: 1px solid rgba(232, 121, 249, 0.22);
-    background: rgba(232, 121, 249, 0.06);
-    color: var(--primary-light);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--text-light);
     font-family: var(--font-heading);
     font-size: 0.9rem;
     font-weight: 600;
@@ -285,8 +242,6 @@
     text-decoration: none;
     transition: background var(--transition-fast), border-color var(--transition-fast),
                 color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
 }
 
 .btn-hero-secondary i {
@@ -295,11 +250,11 @@
 }
 
 .btn-hero-secondary:hover {
-    background: rgba(232, 121, 249, 0.12);
-    border-color: rgba(232, 121, 249, 0.4);
+    background: rgba(249, 115, 22, 0.08);
+    border-color: rgba(249, 115, 22, 0.3);
     color: var(--primary-light);
     transform: translateY(-2px);
-    box-shadow: 0 4px 20px rgba(232, 121, 249, 0.15);
+    box-shadow: 0 4px 20px rgba(249, 115, 22, 0.1);
 }
 
 .btn-hero-secondary:hover i { transform: scale(1.15); }
@@ -319,13 +274,11 @@
     gap: 0;
     opacity: 0;
     transform: translateY(12px);
-    animation: heroTextIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.8s forwards;
+    animation: heroTextIn 0.6s var(--ease-out-expo) 0.62s forwards;
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.07);
     border-radius: var(--radius-md);
     overflow: hidden;
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
     width: fit-content;
 }
 
@@ -377,10 +330,7 @@
     font-family: var(--font-heading);
     font-size: 1.25rem;
     font-weight: 700;
-    background: var(--gradient-primary);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--text-main);
     line-height: 1;
 }
 
@@ -426,7 +376,7 @@
 }
 
 #server-online-count.count-flip {
-    animation: countFlip 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    animation: countFlip 0.35s var(--ease-out-expo);
 }
 
 @keyframes countFlip {
@@ -445,10 +395,10 @@
     font-size: 0.9rem;
     font-family: var(--font-body);
     color: var(--text-main);
-    background: rgba(18, 18, 31, 0.9);
-    border: 1px solid rgba(232, 121, 249, 0.25);
+    background: rgba(14, 14, 22, 0.92);
+    border: 1px solid rgba(249, 115, 22, 0.25);
     border-radius: 999px;
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5), 0 0 20px rgba(232, 121, 249, 0.12);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5), 0 0 16px rgba(249, 115, 22, 0.1);
     backdrop-filter: blur(16px);
     opacity: 0;
     pointer-events: none;

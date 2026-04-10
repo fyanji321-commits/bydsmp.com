@@ -1,4 +1,4 @@
-/* Sections Component Styles */
+/* Sections Component — Obsidian Forge */
 
 /* 通用 Section 樣式 */
 section {
@@ -19,14 +19,14 @@ section:not(.hero)::before {
     left: 0;
     right: 0;
     height: 1px;
-    background: linear-gradient(90deg, transparent 0%, rgba(232, 121, 249, 0.2) 30%, rgba(167, 139, 250, 0.3) 50%, rgba(56, 189, 248, 0.2) 70%, transparent 100%);
+    background: linear-gradient(90deg, transparent 0%, rgba(249, 115, 22, 0.15) 50%, transparent 100%);
 }
 
 /* Section 標題 */
 .section-title {
     font-family: var(--font-heading);
     text-align: center;
-    font-size: clamp(1.6rem, 3.5vw, 2.5rem);
+    font-size: clamp(1.5rem, 3.5vw, 2.3rem);
     font-weight: 700;
     margin-bottom: var(--spacing-lg);
     color: var(--text-main);
@@ -42,11 +42,10 @@ section:not(.hero)::before {
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 3.5rem;
-    height: 3px;
-    background: var(--gradient-primary);
-    border-radius: 3px;
-    box-shadow: 0 0 12px rgba(232, 121, 249, 0.4);
+    width: 2.5rem;
+    height: 2px;
+    background: var(--primary-color);
+    border-radius: 2px;
 }
 
 /* ============================================
@@ -101,36 +100,30 @@ section:not(.hero)::before {
     border-radius: var(--radius-lg);
     background: linear-gradient(
         to bottom,
-        rgba(7, 7, 17, 0.2) 0%,
-        rgba(7, 7, 17, 0.5) 30%,
-        rgba(7, 7, 17, 0.88) 70%,
-        rgba(7, 7, 17, 0.97) 100%
+        rgba(8, 8, 14, 0.2) 0%,
+        rgba(8, 8, 14, 0.5) 30%,
+        rgba(8, 8, 14, 0.88) 70%,
+        rgba(8, 8, 14, 0.97) 100%
     );
-    transition: background 0.4s ease;
+    transition: opacity 0.4s ease;
     z-index: 0;
 }
 
 .mode-card:hover::after {
-    background: linear-gradient(
-        to bottom,
-        rgba(7, 7, 17, 0.1) 0%,
-        rgba(7, 7, 17, 0.35) 25%,
-        rgba(7, 7, 17, 0.82) 65%,
-        rgba(7, 7, 17, 0.97) 100%
-    );
+    opacity: 0.85;
 }
 
 /* 懸停光暈邊框 */
 .mode-card--smp:hover {
-    border-color: rgba(232, 121, 249, 0.35);
-    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.6), 0 0 30px rgba(232, 121, 249, 0.12);
-    transform: translateY(-4px);
+    border-color: rgba(249, 115, 22, 0.25);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.7);
+    transform: translateY(-2px);
 }
 
 .mode-card--kitpvp:hover {
-    border-color: rgba(56, 189, 248, 0.35);
-    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.6), 0 0 30px rgba(56, 189, 248, 0.12);
-    transform: translateY(-4px);
+    border-color: rgba(148, 163, 184, 0.25);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.7);
+    transform: translateY(-2px);
 }
 
 .mode-card__content {
@@ -221,20 +214,14 @@ section:not(.hero)::before {
     font-family: var(--font-heading);
 }
 
-/* SMP 卡片標題色 */
+/* SMP 卡片標題色 — 琥珀橙 */
 .mode-card--smp .mode-card__title-wrap h3 {
-    background: linear-gradient(135deg, #F0ABFC 0%, #A78BFA 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--primary-light);
 }
 
-/* KitPVP 卡片標題色 */
+/* KitPVP 卡片標題色 — 鋼鐵藍灰 */
 .mode-card--kitpvp .mode-card__title-wrap h3 {
-    background: linear-gradient(135deg, #7DD3FC 0%, #38BDF8 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--accent-color);
 }
 
 /* 卡片內文字列表 */
@@ -297,14 +284,14 @@ section:not(.hero)::before {
 }
 
 .mode-card--smp .mode-card__tag {
-    background: rgba(232, 121, 249, 0.12);
-    border: 1px solid rgba(232, 121, 249, 0.25);
+    background: rgba(249, 115, 22, 0.12);
+    border: 1px solid rgba(249, 115, 22, 0.25);
     color: var(--primary-light);
 }
 
 .mode-card--kitpvp .mode-card__tag {
-    background: rgba(56, 189, 248, 0.12);
-    border: 1px solid rgba(56, 189, 248, 0.25);
+    background: rgba(148, 163, 184, 0.12);
+    border: 1px solid rgba(148, 163, 184, 0.25);
     color: var(--accent-color);
 }
 

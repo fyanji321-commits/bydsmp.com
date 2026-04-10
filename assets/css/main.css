@@ -3,7 +3,10 @@
 /* 1. 導入變數 */
 @import url('./variables.css');
 
-/* 2. 導入組件樣式 */
+/* 2. 導入效果 */
+@import url('./components/effects.css');
+
+/* 3. 導入組件樣式 */
 @import url('./components/navigation.css');
 @import url('./components/hero.css');
 @import url('./components/sections.css');
@@ -50,18 +53,18 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-    font-size: 3.5rem;
+    font-size: 3.2rem;
     font-weight: 900;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.08em;
 }
 
 h2 {
-    font-size: 2.5rem;
+    font-size: 2.3rem;
 }
 
 h3 {
-    font-size: 1.75rem;
+    font-size: 1.6rem;
 }
 
 /* 連結樣式 */
@@ -106,16 +109,16 @@ ul {
     html {
         font-size: 14px;
     }
-    
+
     h1 {
-        font-size: 2.5rem;
+        font-size: 2.3rem;
     }
-    
+
     h2 {
-        font-size: 2rem;
+        font-size: 1.8rem;
     }
-    
+
     h3 {
-        font-size: 1.5rem;
+        font-size: 1.4rem;
     }
 }
