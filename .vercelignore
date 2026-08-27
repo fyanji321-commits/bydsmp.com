@@ -13,3 +13,4 @@ vitest.config.js
 CLAUDE.md
 README.md
 docs/*.md
+docs/agents/

@@ -84,3 +84,17 @@ Every page must have: unique `<title>`, `<meta name="description">` (120-160 cha
 - Images: `loading="lazy"` on all except first visible, must have `width`/`height`/`alt`
 - External links: `rel="noopener noreferrer"`
 - All images are local under `assets/images/` (the old Bahamut-hosted gallery was removed)
+
+## Agent skills
+
+### Issue tracker
+
+Issues live in this repo's GitHub Issues (`fyanji321-commits/bydsmp.com`), managed via the `gh` CLI. See `docs/agents/issue-tracker.md`.
+
+### Triage labels
+
+Canonical label names, used verbatim — `needs-triage`, `needs-info`, `ready-for-agent`, `ready-for-human`, `wontfix`. See `docs/agents/triage-labels.md`.
+
+### Domain docs
+
+Single-context — `CONTEXT.md` and `docs/adr/` at the repo root. See `docs/agents/domain.md`.
