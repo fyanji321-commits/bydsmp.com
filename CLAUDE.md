@@ -67,6 +67,8 @@ Sponsor data lives in `docs/sponsors.json`. `sponsorLeaderboard.js` fetches it a
 
 Tests use Vitest + jsdom. Since IIFE modules have no exports, tests load them via `fs.readFileSync()` + `new Function(code)()` which executes the IIFE inside jsdom's `globalThis` scope. `CONFIG`, `document`, `navigator`, `window` all resolve from jsdom automatically.
 
+**`npm run test:coverage` always reports 0%.** Because modules are executed via `new Function(code)()` rather than imported, V8 never instruments the source files. The number is structurally meaningless, not a real coverage gap — don't gate CI on it. Measuring it for real would require reshaping the IIFE modules into importable ones.
+
 Key gotchas:
 - Use `vi.useFakeTimers()` for copyIP toast timer tests; reveal tests stub `IntersectionObserver` and `matchMedia`
 - Test structure: `tests/unit/` + `tests/integration/` + `tests/fixtures/` (HTML fixtures loaded per test)
