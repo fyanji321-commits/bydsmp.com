@@ -79,14 +79,14 @@ section:not(.hero)::before {
 
 /* 遊戲畫面背景圖 */
 .mode-card--smp {
-    background-image: url("../../images/smp_background.png");
+    background-image: url("../../images/smp_background.webp");
     background-size: cover;
     background-position: center top;
     background-color: var(--bg-dark);
 }
 
 .mode-card--kitpvp {
-    background-image: url("../../images/kitpvp_background.png");
+    background-image: url("../../images/kitpvp_background.webp");
     background-size: cover;
     background-position: center;
     background-color: var(--bg-dark);

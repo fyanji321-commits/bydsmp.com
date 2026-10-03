@@ -1,7 +1,7 @@
 /**
  * navigation.js 單元測試
  * 測試：
- *   - 首頁 nav-hidden 初始行為 vs 子頁面（rules / sponsor）永遠顯示
+ *   - 首頁 nav-hidden 初始行為 vs 子頁面（nav 帶 data-nav="always-visible"）永遠顯示
  *   - 捲動超過/低於閾值時的 nav-hidden 切換
  *   - 漢堡選單的開關與點擊外部關閉
  *   - window.toggleMenu 全域匯出
@@ -66,14 +66,16 @@ describe('navigation', () => {
       expect(document.querySelector('nav').classList.contains('nav-hidden')).toBe(true);
     });
 
-    it('路徑為 /rules.html 時不應加上 nav-hidden', () => {
+    it('rules.html（nav 帶 data-nav="always-visible"）不應加上 nav-hidden', () => {
       window.history.pushState({}, '', '/rules.html');
+      document.querySelector('nav').dataset.nav = 'always-visible';
       runNavigation();
       expect(document.querySelector('nav').classList.contains('nav-hidden')).toBe(false);
     });
 
-    it('路徑為 /sponsor.html 時不應加上 nav-hidden', () => {
+    it('sponsor.html（nav 帶 data-nav="always-visible"）不應加上 nav-hidden', () => {
       window.history.pushState({}, '', '/sponsor.html');
+      document.querySelector('nav').dataset.nav = 'always-visible';
       runNavigation();
       expect(document.querySelector('nav').classList.contains('nav-hidden')).toBe(false);
     });

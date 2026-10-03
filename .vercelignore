@@ -1,0 +1,15 @@
+# 只部署網站本身（*.html、assets/、docs/sponsors.json、robots.txt、sitemap.xml）
+.cursor/
+.github/
+tests/
+coverage/
+node_modules/
+package.json
+package-lock.json
+vitest.config.js
+*.code-workspace
+*.zip
+*.log
+CLAUDE.md
+README.md
+docs/*.md
