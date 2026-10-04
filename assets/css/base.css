@@ -1,0 +1,358 @@
+/* Base — 重置、字體排印與跨頁共用元件
+   每頁直接 <link> 需要的檔案（variables → base → 元件），不用 @import 串接，避免請求瀑布。 */
+
+/* ============================================
+   重置
+   ============================================ */
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: calc(var(--nav-height) + var(--spacing-sm));
+    font-size: 16px;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    line-height: 1.7;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: var(--spacing-sm);
+}
+
+h1 { font-size: clamp(2.3rem, 5vw, 3.4rem); }
+h2 { font-size: clamp(1.8rem, 3.6vw, 2.5rem); }
+h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); }
+
+a {
+    color: var(--primary-light);
+    text-decoration: none;
+    transition: color var(--transition-normal);
+}
+
+a:hover { color: var(--primary-color); }
+
+a:focus-visible,
+button:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 3px;
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+    background: none;
+    color: inherit;
+    transition: all var(--transition-normal);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+ul,
+ol { list-style: none; }
+
+code,
+kbd {
+    font-family: var(--font-mono);
+    font-size: 0.88em;
+    color: var(--primary-light);
+    background: var(--primary-tint);
+    border: 1px solid var(--primary-border);
+    padding: 0.05em 0.4em;
+    border-radius: 4px;
+    white-space: nowrap;
+}
+
+/* 跳到主要內容（鍵盤使用者） */
+.skip-link {
+    position: absolute;
+    left: var(--spacing-sm);
+    top: -100px;
+    z-index: var(--z-toast);
+    padding: 0.6rem 1rem;
+    background: var(--primary-color);
+    color: var(--bg-dark);
+    font-weight: 700;
+}
+
+.skip-link:focus {
+    top: var(--spacing-sm);
+    color: var(--bg-dark);
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+}
+
+/* ============================================
+   SVG 圖示（assets/images/icons.svg sprite）
+   以 font-size 控制大小、currentColor 控制顏色
+   ============================================ */
+
+.icon {
+    width: 1em;
+    height: 1em;
+    flex-shrink: 0;
+    display: inline-block;
+    vertical-align: -0.125em;
+}
+
+/* ============================================
+   版面
+   ============================================ */
+
+.container {
+    width: 100%;
+    max-width: var(--content-width);
+    margin: 0 auto;
+    padding: 0 var(--page-gutter);
+}
+
+.section {
+    position: relative;
+    padding: var(--spacing-xl) 0;
+}
+
+.section + .section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, var(--primary-glow-soft) 50%, transparent 100%);
+}
+
+.section--alt { background: var(--bg-section); }
+
+/* 區塊標頭：編號 eyebrow + 標題 + 導言 */
+.section-head {
+    max-width: 720px;
+    margin-bottom: var(--spacing-lg);
+}
+
+.section-head--center {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-sm);
+}
+
+.eyebrow::before {
+    content: '';
+    width: 1.75rem;
+    height: 2px;
+    background: currentColor;
+}
+
+.section-head--center .eyebrow::after {
+    content: '';
+    width: 1.75rem;
+    height: 2px;
+    background: currentColor;
+}
+
+.section-title {
+    font-family: var(--font-heading);
+    font-size: clamp(1.9rem, 4vw, 2.75rem);
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: var(--text-main);
+    margin-bottom: var(--spacing-sm);
+}
+
+.section-lead {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+}
+
+/* 子頁共用：避開固定導覽列 */
+.subpage {
+    max-width: var(--content-width);
+    margin: 0 auto;
+    padding: calc(var(--nav-height) + var(--spacing-lg)) var(--page-gutter) var(--spacing-xl);
+}
+
+/* ============================================
+   按鈕
+   ============================================ */
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    min-height: 48px;
+    padding: 0.85rem 1.6rem;
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    clip-path: var(--clip-cut-sm);
+    transition: transform var(--transition-fast), background var(--transition-fast), color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.btn:active { transform: translateY(1px); }
+
+.btn .icon { font-size: 1.15em; }
+
+.btn--primary {
+    background: var(--gradient-primary);
+    color: var(--bg-dark);
+    box-shadow: 0 0 0 0 var(--primary-glow);
+}
+
+.btn--primary:hover {
+    color: var(--bg-dark);
+    box-shadow: 0 0 28px var(--primary-glow);
+    transform: translateY(-2px);
+}
+
+.btn--ghost {
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--text-main);
+    box-shadow: inset 0 0 0 1px var(--border-strong);
+}
+
+.btn--ghost:hover {
+    color: var(--primary-light);
+    background: var(--primary-tint);
+    box-shadow: inset 0 0 0 1px var(--primary-border);
+    transform: translateY(-2px);
+}
+
+/* IP 按鈕：等寬字顯示位址 */
+.btn__ip {
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    text-transform: none;
+    padding-left: 0.6rem;
+    margin-left: 0.1rem;
+    border-left: 1px solid rgba(8, 8, 14, 0.3);
+}
+
+/* ============================================
+   複製 IP 提示
+   ============================================ */
+
+.copy-toast {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(1rem);
+    padding: 0.7rem 1.6rem;
+    font-size: 0.9rem;
+    color: var(--text-main);
+    background: var(--bg-overlay-strong);
+    border: 1px solid var(--primary-border);
+    border-radius: var(--radius-pill);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5), 0 0 16px var(--primary-glow-soft);
+    opacity: 0;
+    pointer-events: none;
+    z-index: var(--z-toast);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.copy-toast.is-visible {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* ============================================
+   捲動進場（reveal.js 加 .is-visible）
+   沒有 JS 時 html 不會有 .js，內容直接顯示
+   ============================================ */
+
+.js [data-reveal] {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s var(--ease-out-expo), transform 0.7s var(--ease-out-expo);
+    transition-delay: var(--reveal-delay, 0s);
+}
+
+.js [data-reveal].is-visible {
+    opacity: 1;
+    transform: none;
+}
+
+/* ============================================
+   響應式
+   ============================================ */
+
+@media (max-width: 768px) {
+    html {
+        font-size: 15px;
+        scroll-padding-top: calc(var(--nav-height-mobile) + var(--spacing-sm));
+    }
+
+    .section { padding: var(--spacing-lg) 0; }
+
+    .section-head { margin-bottom: var(--spacing-md); }
+
+    .subpage { padding-top: calc(var(--nav-height-mobile) + var(--spacing-md)); }
+}
+
+/* ============================================
+   減少動態：關掉所有動畫與平滑捲動
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        transition-delay: 0s !important;
+    }
+
+    .js [data-reveal] {
+        opacity: 1;
+        transform: none;
+    }
+}

@@ -21,16 +21,11 @@ npx vitest run tests/unit/copyIP.test.js    # Single test file
 
 ## Architecture
 
-### CSS: Token-driven component system
+### CSS: Token-driven, linked per page
 
-`main.css` imports `variables.css` (design tokens) then component files. All colors, spacing, fonts, and shadows are CSS custom properties — never hardcode values.
+`variables.css` holds every design token (colors, fonts, spacing, `--clip-cut-*` angled corners); never hardcode values elsewhere. There is no `@import` chain: each page `<link>`s what it needs in order `variables.css` → `base.css` → `components/navigation.css` → page component (`home.css` / `rules.css` / `sponsor.css`) → `components/footer.css`.
 
-```
-variables.css → main.css imports → effects.css, navigation.css, hero.css, sections.css,
-                                    gallery.css, footer.css, rules.css, sponsor.css, serverStatus.css
-```
-
-**Current theme: "Obsidian Forge"** — ember orange (`#F97316`) + steel blue-gray (`#94A3B8`), Rajdhani headings + Noto Sans TC body + JetBrains Mono monospace. Dark background (`#08080E`).
+**Current theme: "Arena Forge"** — ember orange (`#F97316`, brand + PvP) with emerald (`--smp-color`) for SMP, Rajdhani headings + Noto Sans TC body + JetBrains Mono labels, dark background (`#08080E`). Icons are an SVG sprite at `assets/images/icons.svg` used as `<svg class="icon"><use href="assets/images/icons.svg#i-name"></use></svg>`; no icon font.
 
 ### JavaScript: Self-initializing IIFE modules
 
@@ -40,21 +35,23 @@ Every JS module is an IIFE with `'use strict'` that listens for `DOMContentLoade
 config.js (must load first) → navigation.js → [page modules] → main.js (must load last)
 ```
 
-`config.js` defines the global `CONFIG` object (server IP, Discord link, email, timing values). `main.js` exposes it as `window.CONFIG` and injects values into footer/nav DOM elements.
+`config.js` defines the global `CONFIG` (server IP, Discord link, email, toast delay). `main.js` binds it to markup: `data-config-text="key"` sets text, `data-config-href="key"` sets href, `data-config-mailto="key"` sets text + mailto. The HTML carries the same values as static defaults so pages work without JS.
 
 ### Pages and their scripts
 
 | Page | Scripts loaded | Notes |
 |------|---------------|-------|
-| `index.html` | config, navigation, galleryCarousel, copyIP, modesScroll, serverStatus, main | Full feature set |
-| `rules.html` | navigation, rulesTabs | No config.js needed |
+| `index.html` | config, navigation, copyIP, reveal, serverStatus, main | PvP-first landing page |
+| `rules.html` | config, navigation, rulesTabs, main | Tabs: basic, pvp, world, redstone, violation |
 | `sponsor.html` | config, navigation, sponsorLeaderboard, main | Reads `docs/sponsors.json` |
 
-### Navigation behavior
+Home page content (PvP systems, mode list, arenas, SMP features) mirrors plugins in `MrPippi/Bydsmp` (`plugins/pvp/*`, `plugins/smp/*`). Mode names come from `Duel/modes.yml`, arena names from `Duel/arena.yml`.
 
-Nav HTML is **copy-pasted** across all 3 pages (not shared/included). On `index.html`, nav starts hidden and reveals after 50px scroll. On sub-pages (`rules.html`, `sponsor.html`), nav is always visible — controlled by `data-nav="always-visible"` attribute on `<nav>`.
+### Navigation and footer
 
-**When adding a new sub-page:** add `data-nav="always-visible"` to its `<nav>` element and update `sitemap.xml`.
+Nav and footer HTML are **copy-pasted** across all 3 pages; `tests/unit/sharedLayout.test.js` fails if they drift (only `aria-current="page"` may differ). The nav is always visible: transparent at the top, `.is-scrolled` (added by `navigation.js` past 50px) makes it solid. Elements fade in on scroll via `data-reveal` (`reveal.js`); content stays visible without JS (`html.js` gate) and with `prefers-reduced-motion`.
+
+**When adding a new sub-page:** copy the nav/footer from an existing page, use `<main class="subpage" id="main">`, add it to `vercel.json` rewrites and `sitemap.xml`, and add it to `PAGES` in `sharedLayout.test.js`.
 
 ### Sponsor system
 
@@ -71,9 +68,7 @@ Sponsor data lives in `docs/sponsors.json`. `sponsorLeaderboard.js` fetches it a
 Tests use Vitest + jsdom. Since IIFE modules have no exports, tests load them via `fs.readFileSync()` + `new Function(code)()` which executes the IIFE inside jsdom's `globalThis` scope. `CONFIG`, `document`, `navigator`, `window` all resolve from jsdom automatically.
 
 Key gotchas:
-- Use `vi.useFakeTimers()` for carousel/modesScroll/copyIP timer tests
-- Set `galleryTransitionDuration: 100` in test CONFIG (never 0 — the code uses `0 || 500` fallback)
-- Mock touch events as `new Event(type)` with `event.changedTouches = [{screenX}]` (jsdom lacks `TouchEvent`)
+- Use `vi.useFakeTimers()` for copyIP toast timer tests; reveal tests stub `IntersectionObserver` and `matchMedia`
 - Test structure: `tests/unit/` + `tests/integration/` + `tests/fixtures/` (HTML fixtures loaded per test)
 
 ## SEO requirements
@@ -84,9 +79,8 @@ Every page must have: unique `<title>`, `<meta name="description">` (120-160 cha
 
 - CSS variables from `variables.css` only — no hardcoded colors/spacing
 - Desktop-first responsive: base styles then `@media (max-width: 768px)` overrides
-- BEM-like class names: `.mode-card`, `.mode-card__content`, `.mode-card--smp`
-- State classes managed by JS: `.active`, `.is-visible`, `.is-in-view`, `.nav-hidden`
+- BEM-like class names: `.server-card`, `.server-card__body`, `.server-card--smp`
+- State classes managed by JS: `.active`, `.is-open`, `.is-scrolled`, `.is-visible`
 - Images: `loading="lazy"` on all except first visible, must have `width`/`height`/`alt`
 - External links: `rel="noopener noreferrer"`
-- Gallery images are hosted on Bahamut forum CDN (external URLs, not local)
-- Unused legacy modules exist (`backgroundSlider.js`, `particleBackground.js`, `typewriter.js`) — not loaded by any page
+- All images are local under `assets/images/` (the old Bahamut-hosted gallery was removed)

@@ -1,43 +1,43 @@
 // Navigation Module
+// 導覽列永遠可見：頁面頂端透明，捲動超過門檻加 .is-scrolled 變實底；行動版漢堡選單開關。
 (function() {
     'use strict';
 
-    // Holds the toggle function once initNavigation() runs;
+    const SCROLL_THRESHOLD = 50;
+
+    // Holds the toggle function once initMenu() runs;
     // window.toggleMenu delegates here so the global never re-queries the DOM.
     let _toggle = null;
 
-    function initScrollHide() {
-        const nav = document.querySelector('nav');
-        if (!nav) return;
-
-        // Pages that opt out of the scroll-hide behaviour declare data-nav="always-visible"
-        // on the <nav> element, keeping JS decoupled from URL path strings.
-        if (nav.dataset.nav === 'always-visible') return;
-
-        nav.classList.add('nav-hidden');
-        const showThreshold = 50;
-
+    function initScrollState(nav) {
         function onScroll() {
-            if (window.scrollY > showThreshold) {
-                nav.classList.remove('nav-hidden');
-            } else {
-                nav.classList.add('nav-hidden');
-            }
+            nav.classList.toggle('is-scrolled', window.scrollY > SCROLL_THRESHOLD);
         }
 
+        onScroll();
         window.addEventListener('scroll', onScroll, { passive: true });
     }
 
-    function initNavigation() {
-        const navLinks = document.querySelector('.nav-links');
-        const hamburger = document.querySelector('.hamburger');
+    function initMenu(nav) {
+        const navLinks = nav.querySelector('.nav-links');
+        const hamburger = nav.querySelector('.hamburger');
 
         if (!navLinks || !hamburger) return;
 
+        function setOpen(open) {
+            navLinks.classList.toggle('active', open);
+            hamburger.classList.toggle('active', open);
+            nav.classList.toggle('is-open', open);
+            hamburger.setAttribute('aria-expanded', String(open));
+            hamburger.setAttribute('aria-label', open ? '關閉選單' : '開啟選單');
+        }
+
+        function isOpen() {
+            return navLinks.classList.contains('active');
+        }
+
         function toggleMenu() {
-            navLinks.classList.toggle('active');
-            hamburger.classList.toggle('active');
-            hamburger.setAttribute('aria-expanded', String(navLinks.classList.contains('active')));
+            setOpen(!isOpen());
         }
 
         _toggle = toggleMenu;
@@ -46,22 +46,29 @@
 
         navLinks.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
-                if (navLinks.classList.contains('active')) toggleMenu();
+                if (isOpen()) setOpen(false);
             });
         });
 
         document.addEventListener('click', (e) => {
-            if (navLinks.classList.contains('active') &&
-                !navLinks.contains(e.target) &&
-                !hamburger.contains(e.target)) {
-                toggleMenu();
+            if (isOpen() && !navLinks.contains(e.target) && !hamburger.contains(e.target)) {
+                setOpen(false);
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && isOpen()) {
+                setOpen(false);
+                hamburger.focus();
             }
         });
     }
 
     function init() {
-        initScrollHide();
-        initNavigation();
+        const nav = document.querySelector('.site-nav');
+        if (!nav) return;
+        initScrollState(nav);
+        initMenu(nav);
     }
 
     if (document.readyState === 'loading') {

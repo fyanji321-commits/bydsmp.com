@@ -40,22 +40,17 @@ describe('CONFIG (config.js)', () => {
     expect(typeof CONFIG.email).toBe('string');
   });
 
-  it('應包含 backgroundImages 陣列', () => {
+  it('copyResetDelay 應為正數（Toast 顯示時間）', () => {
     const CONFIG = loadCONFIG();
-    expect(Array.isArray(CONFIG.backgroundImages)).toBe(true);
-  });
-
-  it('應包含數值型設定：sliderInterval、copyResetDelay、galleryInterval、galleryTransitionDuration', () => {
-    const CONFIG = loadCONFIG();
-    expect(typeof CONFIG.sliderInterval).toBe('number');
     expect(typeof CONFIG.copyResetDelay).toBe('number');
-    expect(typeof CONFIG.galleryInterval).toBe('number');
-    expect(typeof CONFIG.galleryTransitionDuration).toBe('number');
+    expect(CONFIG.copyResetDelay).toBeGreaterThan(0);
   });
 
-  it('應包含布林型設定：galleryAutoPlay、galleryPauseOnHover', () => {
+  it('不應殘留已移除功能的設定（相簿輪播、背景輪播）', () => {
     const CONFIG = loadCONFIG();
-    expect(typeof CONFIG.galleryAutoPlay).toBe('boolean');
-    expect(typeof CONFIG.galleryPauseOnHover).toBe('boolean');
+    ['backgroundImages', 'sliderInterval', 'galleryAutoPlay', 'galleryInterval',
+     'galleryTransitionDuration', 'galleryPauseOnHover'].forEach((key) => {
+      expect(CONFIG).not.toHaveProperty(key);
+    });
   });
 });

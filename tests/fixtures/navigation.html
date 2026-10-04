@@ -1,15 +1,15 @@
-<!-- 最小導航 DOM，供 navigation 整合測試使用 -->
-<nav role="navigation" aria-label="主要導航">
-  <div class="nav-center-group">
-    <a href="/rules" class="nav-center-link" role="menuitem">規則</a>
-    <a href="https://www.bydsmp.com/" class="brand-link brand-text" aria-label="返回首頁">BYDSMP</a>
-    <a href="/sponsor" class="nav-center-link" role="menuitem">贊助支持</a>
+<!-- 最小導航 DOM，供 navigation 整合測試使用（結構同正式頁面的 .site-nav） -->
+<nav class="site-nav" aria-label="主要導航">
+  <a href="/" class="brand-link" aria-label="BYDSMP 首頁"><span class="brand-text">BYDSMP</span></a>
+  <div class="nav-links" id="nav-links">
+    <a href="/#pvp">PvP 競技</a>
+    <a href="/rules">規則</a>
+    <a href="/sponsor">贊助</a>
   </div>
-  <button class="hamburger" aria-label="開啟選單" aria-expanded="false" aria-controls="nav-links">
+  <button class="hamburger" aria-label="開啟選單" aria-expanded="false" aria-controls="nav-links" type="button">
     <span></span><span></span><span></span>
   </button>
-  <div class="nav-links" id="nav-links" role="menubar">
-    <a href="/rules" role="menuitem">規則</a>
-    <a href="/sponsor" role="menuitem">贊助支持</a>
-  </div>
 </nav>
+<footer>
+  <nav aria-label="頁尾連結"><a href="/rules">規則</a></nav>
+</footer>

@@ -15,12 +15,13 @@ alwaysApply: true
 ## CSS 規範
 
 - 全域變數定義在 `assets/css/variables.css`，勿在其他檔案寫死顏色/字型
-- 新增元件時，建立新 CSS 檔並在 `assets/css/main.css` import
-- 主色調: `--primary-color: #FF79BC`（粉紅霓虹主題）
+- 新增元件時，建立新 CSS 檔並在需要的頁面 `<link>`（順序：variables → base → navigation → 頁面元件 → footer），不使用 `@import`
+- 主色調: `--primary-color: #F97316`（Arena Forge：琥珀橙＝PvP，翠綠 `--smp-color`＝SMP）
+- 圖示用 `assets/images/icons.svg` sprite，不用 icon font
 
 ```css
 /* ❌ BAD - 寫死顏色 */
-.btn { color: #FF79BC; }
+.btn { color: #F97316; }
 
 /* ✅ GOOD - 使用變數 */
 .btn { color: var(--primary-color); }
@@ -49,6 +50,6 @@ alwaysApply: true
 
 1. HTML 結構加入對應頁面
 2. 在 `assets/css/components/` 建立對應 CSS 檔
-3. 在 `assets/css/main.css` import 新 CSS
+3. 在需要的頁面 `<head>` 加 `<link>` 新 CSS
 4. 在 `assets/js/modules/` 建立 JS 模組（如需要）
 5. 更新相關頁面的 `<script>` 標籤
