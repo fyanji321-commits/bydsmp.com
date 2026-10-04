@@ -70,13 +70,15 @@ describe('navigation (integration)', () => {
     expect(nav.classList.contains('nav-hidden')).toBe(true);
   });
 
-  it('rules.html: 初始化後 nav 不應有 nav-hidden', () => {
+  it('rules.html（data-nav="always-visible"）: 初始化後 nav 不應有 nav-hidden', () => {
+    document.querySelector('nav').dataset.nav = 'always-visible';
     runNavigation('/rules.html');
     const nav = document.querySelector('nav');
     expect(nav.classList.contains('nav-hidden')).toBe(false);
   });
 
-  it('sponsor.html: 初始化後 nav 不應有 nav-hidden', () => {
+  it('sponsor.html（data-nav="always-visible"）: 初始化後 nav 不應有 nav-hidden', () => {
+    document.querySelector('nav').dataset.nav = 'always-visible';
     runNavigation('/sponsor.html');
     const nav = document.querySelector('nav');
     expect(nav.classList.contains('nav-hidden')).toBe(false);
