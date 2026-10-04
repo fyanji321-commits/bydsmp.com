@@ -1,9 +1,9 @@
 /**
  * navigation.js 單元測試
  * 測試：
- *   - 首頁 nav-hidden 初始行為 vs 子頁面（nav 帶 data-nav="always-visible"）永遠顯示
- *   - 捲動超過/低於閾值時的 nav-hidden 切換
- *   - 漢堡選單的開關與點擊外部關閉
+ *   - 導覽列永遠可見；捲動超過 50px 加 .is-scrolled，回到頂端移除
+ *   - 只作用在 .site-nav（頁尾的 <nav> 不受影響）
+ *   - 漢堡選單的開關、aria 狀態、點擊外部與 Esc 關閉
  *   - window.toggleMenu 全域匯出
  */
 import { readFileSync } from 'fs';
@@ -18,147 +18,140 @@ const navCode = readFileSync(
 );
 
 const NAV_HTML = `
-  <nav role="navigation" aria-label="主要導航">
-    <div class="nav-center-group">
-      <a href="rules.html" class="nav-center-link">規則</a>
-      <a href="index.html" class="brand-link brand-text">BYDSMP</a>
-      <a href="sponsor.html" class="nav-center-link">贊助支持</a>
+  <nav class="site-nav" aria-label="主要導航">
+    <a href="/" class="brand-link">BYDSMP</a>
+    <div class="nav-links" id="nav-links">
+      <a href="/rules">規則</a>
+      <a href="/sponsor">贊助</a>
     </div>
-    <button class="hamburger" aria-expanded="false" aria-controls="nav-links">
+    <button class="hamburger" aria-label="開啟選單" aria-expanded="false" aria-controls="nav-links">
       <span></span><span></span><span></span>
     </button>
-    <div class="nav-links" id="nav-links">
-      <a href="rules.html">規則</a>
-      <a href="sponsor.html">贊助支持</a>
-    </div>
   </nav>
+  <footer><nav aria-label="頁尾連結"><a href="/rules">規則</a></nav></footer>
 `;
 
 function runNavigation() {
   new Function(navCode)();
 }
 
+function setScrollY(value) {
+  Object.defineProperty(window, 'scrollY', { value, configurable: true });
+}
+
+const siteNav = () => document.querySelector('.site-nav');
+const navLinks = () => document.querySelector('.nav-links');
+const hamburger = () => document.querySelector('.hamburger');
+
 describe('navigation', () => {
   beforeEach(() => {
     document.body.innerHTML = NAV_HTML;
-    // 確保 scrollY 從 0 開始
-    Object.defineProperty(window, 'scrollY', { value: 0, configurable: true });
+    setScrollY(0);
   });
 
   afterEach(() => {
     vi.restoreAllMocks();
-    // 重置 URL 避免影響其他測試
-    window.history.pushState({}, '', '/');
   });
 
-  // ── 捲動隱藏行為 ─────────────────────────────────────────────────────────
-
-  describe('捲動隱藏 (Scroll Hide)', () => {
-    it('路徑為 / 時應初始加上 nav-hidden（首頁預設隱藏）', () => {
-      window.history.pushState({}, '', '/');
+  describe('捲動狀態 (is-scrolled)', () => {
+    it('頁面頂端時不應有 is-scrolled，也不應隱藏導覽列', () => {
       runNavigation();
-      expect(document.querySelector('nav').classList.contains('nav-hidden')).toBe(true);
+      expect(siteNav().classList.contains('is-scrolled')).toBe(false);
+      expect(siteNav().classList.contains('nav-hidden')).toBe(false);
     });
 
-    it('路徑為 /index.html 時應初始加上 nav-hidden', () => {
-      window.history.pushState({}, '', '/index.html');
+    it('載入時已捲動超過 50px（例如重新整理）應立即加上 is-scrolled', () => {
+      setScrollY(300);
       runNavigation();
-      expect(document.querySelector('nav').classList.contains('nav-hidden')).toBe(true);
+      expect(siteNav().classList.contains('is-scrolled')).toBe(true);
     });
 
-    it('rules.html（nav 帶 data-nav="always-visible"）不應加上 nav-hidden', () => {
-      window.history.pushState({}, '', '/rules.html');
-      document.querySelector('nav').dataset.nav = 'always-visible';
+    it('捲動超過 50px 應加上 is-scrolled', () => {
       runNavigation();
-      expect(document.querySelector('nav').classList.contains('nav-hidden')).toBe(false);
-    });
-
-    it('sponsor.html（nav 帶 data-nav="always-visible"）不應加上 nav-hidden', () => {
-      window.history.pushState({}, '', '/sponsor.html');
-      document.querySelector('nav').dataset.nav = 'always-visible';
-      runNavigation();
-      expect(document.querySelector('nav').classList.contains('nav-hidden')).toBe(false);
-    });
-
-    it('捲動超過 50px 應移除 nav-hidden', () => {
-      window.history.pushState({}, '', '/');
-      runNavigation();
-      const nav = document.querySelector('nav');
-      expect(nav.classList.contains('nav-hidden')).toBe(true);
-
-      Object.defineProperty(window, 'scrollY', { value: 100, configurable: true });
+      setScrollY(100);
       window.dispatchEvent(new Event('scroll'));
-
-      expect(nav.classList.contains('nav-hidden')).toBe(false);
+      expect(siteNav().classList.contains('is-scrolled')).toBe(true);
     });
 
-    it('捲動回 50px 以下應重新加上 nav-hidden', () => {
-      window.history.pushState({}, '', '/');
+    it('捲回 50px 以內應移除 is-scrolled', () => {
       runNavigation();
-
-      Object.defineProperty(window, 'scrollY', { value: 100, configurable: true });
+      setScrollY(100);
       window.dispatchEvent(new Event('scroll'));
-
-      Object.defineProperty(window, 'scrollY', { value: 10, configurable: true });
+      setScrollY(10);
       window.dispatchEvent(new Event('scroll'));
-
-      expect(document.querySelector('nav').classList.contains('nav-hidden')).toBe(true);
+      expect(siteNav().classList.contains('is-scrolled')).toBe(false);
     });
 
-    it('剛好在閾值 50px 時不應移除 nav-hidden', () => {
-      window.history.pushState({}, '', '/');
+    it('剛好在閾值 50px 時不應加上 is-scrolled', () => {
       runNavigation();
-
-      Object.defineProperty(window, 'scrollY', { value: 50, configurable: true });
+      setScrollY(50);
       window.dispatchEvent(new Event('scroll'));
+      expect(siteNav().classList.contains('is-scrolled')).toBe(false);
+    });
 
-      expect(document.querySelector('nav').classList.contains('nav-hidden')).toBe(true);
+    it('頁尾的 <nav> 不應被加上任何狀態 class', () => {
+      setScrollY(300);
+      runNavigation();
+      expect(document.querySelector('footer nav').className).toBe('');
+    });
+
+    it('頁面沒有 .site-nav 時不應拋錯', () => {
+      document.body.innerHTML = '<nav></nav>';
+      expect(() => runNavigation()).not.toThrow();
     });
   });
-
-  // ── 漢堡選單 ─────────────────────────────────────────────────────────────
 
   describe('漢堡選單 (Hamburger Menu)', () => {
     beforeEach(() => {
-      window.history.pushState({}, '', '/');
       runNavigation();
     });
 
-    it('點擊漢堡按鈕應開啟選單（加上 active）', () => {
-      document.querySelector('.hamburger').click();
-      expect(document.querySelector('.nav-links').classList.contains('active')).toBe(true);
-      expect(document.querySelector('.hamburger').classList.contains('active')).toBe(true);
+    it('點擊漢堡按鈕應開啟選單並更新 aria', () => {
+      hamburger().click();
+      expect(navLinks().classList.contains('active')).toBe(true);
+      expect(hamburger().classList.contains('active')).toBe(true);
+      expect(siteNav().classList.contains('is-open')).toBe(true);
+      expect(hamburger().getAttribute('aria-expanded')).toBe('true');
+      expect(hamburger().getAttribute('aria-label')).toBe('關閉選單');
     });
 
-    it('再次點擊漢堡按鈕應關閉選單（移除 active）', () => {
-      const hamburger = document.querySelector('.hamburger');
-      hamburger.click();
-      hamburger.click();
-      expect(document.querySelector('.nav-links').classList.contains('active')).toBe(false);
+    it('再次點擊漢堡按鈕應關閉選單', () => {
+      hamburger().click();
+      hamburger().click();
+      expect(navLinks().classList.contains('active')).toBe(false);
+      expect(siteNav().classList.contains('is-open')).toBe(false);
+      expect(hamburger().getAttribute('aria-expanded')).toBe('false');
+      expect(hamburger().getAttribute('aria-label')).toBe('開啟選單');
     });
 
     it('選單開啟時點擊外部區域應關閉選單', () => {
-      document.querySelector('.hamburger').click();
-      expect(document.querySelector('.nav-links').classList.contains('active')).toBe(true);
-
-      // 點擊 document（非 nav 內部）
-      document.dispatchEvent(new MouseEvent('click', { bubbles: true }));
-      expect(document.querySelector('.nav-links').classList.contains('active')).toBe(false);
+      hamburger().click();
+      document.body.click();
+      expect(navLinks().classList.contains('active')).toBe(false);
     });
 
     it('選單開啟時點擊選單內連結應關閉選單', () => {
-      document.querySelector('.hamburger').click();
-      // 點擊 nav-links 內的連結
-      document.querySelector('.nav-links a').click();
-      expect(document.querySelector('.nav-links').classList.contains('active')).toBe(false);
+      hamburger().click();
+      navLinks().querySelector('a').click();
+      expect(navLinks().classList.contains('active')).toBe(false);
+    });
+
+    it('選單開啟時按 Esc 應關閉選單並把焦點還給漢堡按鈕', () => {
+      hamburger().click();
+      document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
+      expect(navLinks().classList.contains('active')).toBe(false);
+      expect(document.activeElement).toBe(hamburger());
+    });
+
+    it('選單關閉時按 Esc 不應改變狀態', () => {
+      document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
+      expect(navLinks().classList.contains('active')).toBe(false);
+      expect(hamburger().getAttribute('aria-expanded')).toBe('false');
     });
   });
 
-  // ── window.toggleMenu 匯出 ────────────────────────────────────────────────
-
   describe('window.toggleMenu 全域匯出', () => {
     beforeEach(() => {
-      window.history.pushState({}, '', '/');
       runNavigation();
     });
 
@@ -168,13 +161,13 @@ describe('navigation', () => {
 
     it('呼叫 window.toggleMenu() 應開啟選單', () => {
       window.toggleMenu();
-      expect(document.querySelector('.nav-links').classList.contains('active')).toBe(true);
+      expect(navLinks().classList.contains('active')).toBe(true);
     });
 
     it('呼叫兩次 window.toggleMenu() 應關閉選單', () => {
       window.toggleMenu();
       window.toggleMenu();
-      expect(document.querySelector('.nav-links').classList.contains('active')).toBe(false);
+      expect(navLinks().classList.contains('active')).toBe(false);
     });
   });
 });

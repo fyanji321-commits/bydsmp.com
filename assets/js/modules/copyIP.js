@@ -1,4 +1,4 @@
-// Copy IP Module - 點擊複製 IP，顯示「已複製IP位置」提示，無懸停動畫
+// Copy IP Module - 點擊任一 .ip-box 複製伺服器 IP，顯示「已複製IP位置」提示
 (function() {
     'use strict';
     
@@ -63,10 +63,9 @@
     }
     
     function initCopyIP() {
-        const ipBox = document.querySelector('.ip-box');
-        if (!ipBox) return;
-        ipBox.removeAttribute('onclick');
-        ipBox.addEventListener('click', performCopy);
+        document.querySelectorAll('.ip-box').forEach(ipBox => {
+            ipBox.addEventListener('click', performCopy);
+        });
     }
     
     if (document.readyState === 'loading') {

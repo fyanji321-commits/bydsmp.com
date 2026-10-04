@@ -1,110 +1,95 @@
-/* Footer Component — Obsidian Forge */
+/* Footer — 品牌、站內連結、聯絡資訊與免責聲明 */
 
-footer {
-    background: var(--bg-mid);
-    border-top: 1px solid rgba(255, 255, 255, 0.06);
-    padding: var(--spacing-md) clamp(var(--spacing-md), 6vw, var(--spacing-xl));
-    margin-top: var(--spacing-lg);
+.site-footer {
     position: relative;
-    overflow: hidden;
+    background: var(--bg-mid);
+    border-top: 1px solid var(--border-color);
+    padding: var(--spacing-lg) 0 var(--spacing-md);
 }
 
-/* 頂部光暈線 */
-footer::before {
+.site-footer::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     height: 1px;
-    background: linear-gradient(90deg, transparent 0%, rgba(249, 115, 22, 0.3) 50%, transparent 100%);
+    background: linear-gradient(90deg, transparent 0%, var(--primary-glow) 50%, transparent 100%);
 }
 
-footer p {
-    color: var(--text-muted);
-    margin-bottom: var(--spacing-sm);
-    line-height: 1.7;
-    text-align: center;
-    font-size: 0.9rem;
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    gap: var(--spacing-md);
+    padding-bottom: var(--spacing-md);
+    border-bottom: 1px solid var(--border-color);
 }
+
+.footer-brand .brand-link { margin-bottom: var(--spacing-sm); }
+
+.footer-tagline {
+    color: var(--text-muted);
+    font-size: 0.92rem;
+    max-width: 320px;
+}
+
+.footer-heading {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-subtle);
+    margin-bottom: 0.9rem;
+}
+
+.footer-links li + li,
+.footer-contact li + li { margin-top: 0.45rem; }
+
+.footer-links a,
+.footer-contact a {
+    color: var(--text-light);
+    font-size: 0.92rem;
+}
+
+.footer-links a:hover,
+.footer-contact a:hover { color: var(--primary-light); }
 
 .footer-contact {
+    font-style: normal;
+    color: var(--text-muted);
+    font-size: 0.92rem;
+}
+
+.footer-contact strong {
+    font-family: var(--font-mono);
+    font-weight: 500;
+    color: var(--primary-light);
+}
+
+.footer-contact .icon {
+    color: var(--text-subtle);
+    margin-right: 0.4rem;
+}
+
+.footer-bottom {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    gap: var(--spacing-md);
-    margin-bottom: var(--spacing-sm);
-}
-
-.footer-contact span {
-    color: var(--text-muted);
-    font-size: 0.9rem;
-}
-
-footer p:first-child {
-    font-size: 0.95rem;
-    font-weight: 600;
-    color: var(--text-light);
-    letter-spacing: 0.04em;
-    background: var(--gradient-primary);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-footer .footer-disclaimer {
-    margin-bottom: 0;
-    margin-top: var(--spacing-sm);
-    padding-top: var(--spacing-sm);
-    border-top: 1px solid rgba(255, 255, 255, 0.04);
-    font-size: 0.7rem;
+    justify-content: space-between;
+    gap: var(--spacing-sm);
+    padding-top: var(--spacing-md);
+    font-size: 0.78rem;
     color: var(--text-subtle);
-    max-width: 720px;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-    line-height: 1.6;
 }
 
-footer strong {
-    color: var(--primary-light);
-    font-weight: 600;
-}
+.footer-disclaimer { max-width: 640px; }
 
-footer a {
-    color: var(--primary-color);
-    text-decoration: none;
-    transition: color var(--transition-fast);
-}
-
-footer a:hover {
-    color: var(--primary-light);
-}
-
-footer a:focus-visible {
-    outline: 2px solid var(--primary-color);
-    outline-offset: 2px;
-    border-radius: 2px;
-}
-
-/* 響應式 */
 @media (max-width: 768px) {
-    footer {
-        padding: var(--spacing-md) clamp(var(--spacing-md), 5vw, var(--spacing-lg));
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
     }
 
-    .footer-contact {
-        flex-direction: column;
-        align-items: center;
-        gap: var(--spacing-xs);
-    }
+    .footer-brand { grid-column: 1 / -1; }
 
-    footer p,
-    .footer-contact span {
-        font-size: 0.85rem;
-    }
-
-    footer .footer-disclaimer {
-        font-size: 0.65rem;
-    }
+    .footer-bottom { flex-direction: column; }
 }

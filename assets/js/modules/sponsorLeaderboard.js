@@ -40,6 +40,7 @@
         img.height = 48;
         img.loading = 'lazy';
         img.onerror = function () {
+            this.onerror = null; // 後備圖也載不到時不要無限重試
             this.src = 'https://minotar.net/avatar/MHF_Steve/48';
         };
 
@@ -79,9 +80,13 @@
         var header = document.createElement('div');
         header.className = 'leaderboard-card__header';
 
-        var icon = document.createElement('i');
-        icon.className = opts.icon;
+        var SVG_NS = 'http://www.w3.org/2000/svg';
+        var icon = document.createElementNS(SVG_NS, 'svg');
+        icon.setAttribute('class', 'icon');
         icon.setAttribute('aria-hidden', 'true');
+        var use = document.createElementNS(SVG_NS, 'use');
+        use.setAttribute('href', 'assets/images/icons.svg#i-' + opts.icon);
+        icon.appendChild(use);
 
         var heading = document.createElement('h3');
         heading.className = 'leaderboard-card__heading';
@@ -144,6 +149,7 @@
             img.loading = 'lazy';
             img.className = 'sponsor-record-row__avatar';
             img.onerror = function () {
+                this.onerror = null; // 後備圖也載不到時不要無限重試
                 this.src = 'https://minotar.net/avatar/MHF_Steve/36';
             };
 
@@ -215,7 +221,7 @@
         // Card 1: 近期贊助（含日期）
         grid.appendChild(buildCard({
             id: 'lb-recent',
-            icon: 'fas fa-clock',
+            icon: 'clock',
             heading: '近期贊助',
             showDate: true,
             topPlayer: { sponsor: stats.recentAll[0], displayAmount: stats.recentAll[0].amount }
@@ -224,7 +230,7 @@
         // Card 2: 最高單筆
         grid.appendChild(buildCard({
             id: 'lb-top-single',
-            icon: 'fas fa-coins',
+            icon: 'coins',
             heading: '最高單筆贊助',
             showDate: false,
             topPlayer: { sponsor: stats.topSingleAll[0], displayAmount: stats.topSingleAll[0].amount }
@@ -233,7 +239,7 @@
         // Card 3: 最高贊助總額
         grid.appendChild(buildCard({
             id: 'lb-top-total',
-            icon: 'fas fa-trophy',
+            icon: 'trophy',
             heading: '最高贊助總額',
             showDate: false,
             topPlayer: { sponsor: stats.topTotalAll[0].sponsor, displayAmount: stats.topTotalAll[0].total }

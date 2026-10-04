@@ -1,161 +1,71 @@
 # BYDSMP 官方網站
 
-台灣 Minecraft 伺服器的官方網站，提供伺服器資訊、遊戲分流介紹、規則說明與贊助支持。
+台灣 Minecraft PvP 伺服器 BYDSMP 的官方網站（[bydsmp.com](https://bydsmp.com)）。以 PvP 競技分流為主打，介紹排隊天梯、FFA、決鬥模式與 SMP 生存分流，並提供規則與贊助頁。
 
-## 專案概述
-
-本專案為多頁面靜態網站，採用模組化 HTML、CSS、JavaScript 架構，深色主題搭配粉紅霓虹風格，並具備響應式設計與 SEO 優化。
+純靜態網站：HTML5 + CSS3 + Vanilla JavaScript，沒有框架、沒有建置步驟，部署在 Vercel。
 
 ## 伺服器資訊
 
 | 項目 | 資訊 |
 |------|------|
-| 伺服器名稱 | BYDSMP |
-| 伺服器 IP | bydsmp.com |
+| 伺服器 IP | bydsmp.com（PvP 與 SMP 同一個入口，資料互不相通） |
+| 版本 | Java 版，建議 1.21.11 |
 | Discord | [加入 Discord](https://discord.gg/2EDqgeRKPs) |
 | 聯絡信箱 | bydsmp@gmail.com |
 
-## 網站架構
+## 頁面
 
-### 頁面結構
-
-| 頁面 | 路徑 | 說明 |
+| 頁面 | 檔案 | 內容 |
 |------|------|------|
-| 首頁 | `index.html` | Hero、遊戲分流、相冊、贊助 |
-| 規則 | `rules.html` | 伺服器規則（分頁設計） |
-| 贊助支持 | `sponsor.html` | 贊助名單、VIP 等級福利、CTA |
+| 首頁 | `index.html` | Hero（複製 IP、線上人數）→ 01 PvP 系統 → 02 決鬥模式與競技場 → 03 分流介紹 → 04 加入方式 |
+| 規則 | `rules.html` | 分頁：基本、PvP、世界、生電、違規處理；支援 `/rules#tab-pvp` 直接連結 |
+| 贊助 | `sponsor.html` | VIP 方案、贊助名單（讀 `docs/sponsors.json`）、Discord CTA |
 
-### 導覽列（Header）
-
-- **品牌連結**：BYDSMP，連結至首頁
-- **規則**：連結至 `rules.html`
-- **Discord**：外部連結至 Discord 社群
-- 首頁：Header 預設隱藏，滑動後顯示（毛玻璃效果）
-- 規則頁：Header 預設顯示
+首頁的 PvP／SMP 內容對照 [MrPippi/Bydsmp](https://github.com/MrPippi/Bydsmp) 的插件（Duel、Ffa、Tiers、Practice、Rtp、Friends、FastCrystal、Report、Settings；SMP 的 Auction、DailySignin、Quest、PlayerWarp、Catcher、ResFly、AfkPool、ItemWorth）。伺服器新增或移除玩法時，記得一起更新首頁。
 
 ## 專案結構
 
 ```
-bydsmp.com/
-├── index.html                 # 首頁
-├── rules.html                 # 規則頁面
-├── sponsor.html               # 贊助支持頁面
-├── sitemap.xml                # 網站地圖
-├── robots.txt                 # 爬蟲規則
-├── README.md
+├── index.html / rules.html / sponsor.html
+├── sitemap.xml / robots.txt / vercel.json / .vercelignore
 ├── assets/
 │   ├── css/
-│   │   ├── main.css           # 主樣式（導入所有組件）
-│   │   ├── variables.css      # CSS 變數
+│   │   ├── variables.css          # 設計 token（顏色、字體、間距、斜切角）
+│   │   ├── base.css               # 重置、排版、按鈕、區塊標頭、reveal、reduced-motion
 │   │   └── components/
-│   │       ├── navigation.css # 導覽列
-│   │       ├── hero.css       # Hero 區塊
-│   │       ├── sections.css   # 通用區塊（分流、贊助）
-│   │       ├── gallery.css    # 相冊輪播
-│   │       ├── footer.css     # 頁尾
-│   │       └── rules.css      # 規則頁面
+│   │       ├── navigation.css     # 固定導覽列 + 行動版選單
+│   │       ├── footer.css         # 頁尾
+│   │       ├── home.css           # 首頁各區塊
+│   │       ├── rules.css          # 規則頁
+│   │       └── sponsor.css        # 贊助頁
 │   ├── js/
-│   │   ├── main.js            # 主入口
-│   │   ├── config.js          # 設定檔
+│   │   ├── config.js              # 站點設定（最先載入）
+│   │   ├── main.js                # 把 CONFIG 綁到 data-config-* 元素（最後載入）
 │   │   └── modules/
-│   │       ├── navigation.js       # 導覽行為（顯示/隱藏、漢堡選單）
-│   │       ├── copyIP.js           # 複製 IP 功能
-│   │       ├── galleryCarousel.js  # 相冊輪播
-│   │       ├── rulesTabs.js        # 規則分頁切換
-│   │       └── sponsorLeaderboard.js  # 贊助名單統計卡片
+│   │       ├── navigation.js      # 捲動後導覽列變實底、漢堡選單
+│   │       ├── copyIP.js          # 點任一 .ip-box 複製 IP
+│   │       ├── reveal.js          # [data-reveal] 進場動畫
+│   │       ├── serverStatus.js    # mcsrvstat.us 線上人數
+│   │       ├── rulesTabs.js       # 規則分頁
+│   │       └── sponsorLeaderboard.js
 │   └── images/
-│       ├── logo.png
-│       ├── hero_background.png
-│       └── icon_item_totem_of_undying.png
-├── docs/
-│   └── sponsors.json          # 贊助紀錄資料
-└── .cursor/skills/bydsmp-website/
-    ├── SKILL.md                # 專案維護指南
-    └── add-sponsor/
-        └── SKILL.md            # 添加贊助名單指南
+│       ├── icons.svg              # SVG 圖示 sprite（Lucide ISC + Simple Icons CC0）
+│       └── logo.png、hero_background.png、*_background.webp、Iron_Pickaxe.png、Netherite_Sword.png
+├── docs/sponsors.json             # 贊助紀錄
+└── tests/                         # Vitest + jsdom
 ```
 
-## 技術棧
-
-- **HTML5**：語義化標籤、SEO meta
-- **CSS3**：變數、Flexbox、Grid、RWD、backdrop-filter
-- **JavaScript (Vanilla)**：模組化、DOM、Clipboard API
-- **字體**：Orbitron（標題）、Noto Sans TC（內文）
-- **圖標**：Font Awesome 6.4.0
-
-## 主要功能
-
-### 首頁（index.html）
-
-1. **Hero**：Logo、標語、立即遊玩按鈕（點擊複製 IP）、背景圖
-2. **遊戲分流**：SMP 生存、KitPVP 競技卡片
-3. **相冊**：輪播、自動播放、手動切換、指示器
-4. **贊助**：純贊助說明與免責聲明
-
-### 規則頁（rules.html）
-
-1. **分頁**：基本規則、世界規則、生電規則、PVP 規則、違規處理
-2. **URL Hash**：支援 `rules.html#tab-pvp` 等直接連結
-3. **標題上方留白**：配合固定 Header 的 padding
-
-### 贊助支持頁（sponsor.html）
-
-1. **贊助名單**：三項統計卡片（近期贊助、最高單筆、最高贊助總額），含玩家 Minotar 頭像
-2. **VIP 等級**：VIP 0–10 福利卡片，每升 1 級需 200 TWD
-3. **CTA**：Discord 洽詢按鈕
-4. **重要說明**：免責聲明與規範
-
-### 贊助紀錄（docs/sponsors.json）
-
-所有贊助資料以 JSON 格式儲存，`sponsorLeaderboard.js` 動態讀取並計算三項統計：
-- **近期贊助**：最新 3 筆（依日期降序）
-- **最高單筆**：單次金額最高的紀錄
-- **最高贊助總額**：同一玩家累計金額最高
-
-## 設定檔（config.js）
-
-```javascript
-const CONFIG = {
-    serverIP: "bydsmp.com",
-    discordLink: "https://discord.gg/2EDqgeRKPs",
-    email: "bydsmp@gmail.com",
-    copyResetDelay: 3000,
-    galleryAutoPlay: true,
-    galleryInterval: 5000,
-    galleryPauseOnHover: true
-};
-```
-
-## 本地開發
+## 開發
 
 ```bash
-# Python
-python -m http.server 8000
-
-# Node.js
-npx http-server
+python -m http.server 8000   # 需要 HTTP（file:// 會擋 Clipboard API 與 SVG sprite）
+npm test                     # 全部測試
 ```
 
-開啟 `http://localhost:8000` 檢視網站。
-
-## 部署
-
-將專案上傳至靜態託管服務（如 GitHub Pages、Netlify、Vercel），或傳統 Web 伺服器（Apache/Nginx）。
-
-## 響應式斷點
-
-| 裝置 | 斷點 |
-|------|------|
-| 手機 | < 768px |
-| 平板 | 768px - 1024px |
-| 桌面 | > 1024px |
+`tests/unit/sharedLayout.test.js` 會檢查三頁的導覽列與頁尾一致、引用的檔案與圖示都存在、SEO 標籤齊全；改導覽列或頁尾時三頁要一起改。
 
 ## 授權與聲明
 
-本網站與 BYDSMP 伺服器為非官方粉絲創作，與 Mojang Studios 或 Microsoft 無關。
-
-**NOT OFFICIAL MINECRAFT PRODUCT. NOT APPROVED BY OR ASSOCIATED WITH MOJANG OR MICROSOFT.**
-
----
+BYDSMP 為玩家自營伺服器，與 Mojang Studios 或 Microsoft 無關。**NOT AN OFFICIAL MINECRAFT PRODUCT. NOT APPROVED BY OR ASSOCIATED WITH MOJANG OR MICROSOFT.**
 
 © 2026 BYDSMP. All Rights Reserved.

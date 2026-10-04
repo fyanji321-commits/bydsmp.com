@@ -111,4 +111,17 @@ describe('copyIP', () => {
 
     expect(document.getElementById('copy-toast').classList.contains('is-visible')).toBe(true);
   });
+
+  it('頁面上每個 .ip-box 都能複製（Hero 與加入方式各一個）', async () => {
+    document.body.innerHTML = `
+      <button class="ip-box" id="first" type="button">複製 IP</button>
+      <button class="ip-box" id="second" type="button">bydsmp.com</button>
+      <div id="copy-toast" class="copy-toast"></div>
+    `;
+    navigator.clipboard.writeText = vi.fn().mockResolvedValue(undefined);
+    runCopyIP();
+    document.getElementById('second').click();
+    await Promise.resolve();
+    expect(navigator.clipboard.writeText).toHaveBeenCalledWith('bydsmp.com');
+  });
 });

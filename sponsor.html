@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>document.documentElement.classList.add('js');</script>
     
     <title>贊助支持 | BYDSMP 台灣 Minecraft 伺服器</title>
     <meta name="description" content="BYDSMP 台灣 Minecraft 伺服器 VIP 贊助方案：每級 200 TWD，VIP 1-10 享領地擴充、Home 增加、每日鑰匙、隨身終界箱、自訂稱號等獨家福利。">
-    <meta name="keywords" content="BYDSMP, Minecraft, 贊助, VIP, 台灣伺服器, VIP福利, 贊助支持, 領地, KitPVP">
+    <meta name="keywords" content="BYDSMP, Minecraft, 贊助, VIP, 台灣伺服器, VIP福利, 贊助支持, 領地, SMP">
     <meta name="robots" content="index, follow">
-    <meta name="language" content="zh-TW">
     <meta name="author" content="BYDSMP">
     
     <!-- Theme Color -->
@@ -27,28 +27,27 @@
     <meta property="og:image:height" content="512">
     <meta property="og:image:alt" content="BYDSMP 台灣 Minecraft 伺服器 Logo">
     <meta property="og:site_name" content="BYDSMP">
-    <meta property="twitter:card" content="summary">
-    <meta property="twitter:url" content="https://bydsmp.com/sponsor">
-    <meta property="twitter:title" content="贊助支持 | BYDSMP">
-    <meta property="twitter:description" content="BYDSMP 台灣 Minecraft 伺服器 VIP 贊助：每級 200 TWD，享領地擴充、每日鑰匙、隨身終界箱、自訂稱號等福利。">
-    <meta property="twitter:image" content="https://bydsmp.com/assets/images/logo.png">
-    <meta property="twitter:image:alt" content="BYDSMP 台灣 Minecraft 伺服器 Logo">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:url" content="https://bydsmp.com/sponsor">
+    <meta name="twitter:title" content="贊助支持 | BYDSMP">
+    <meta name="twitter:description" content="BYDSMP 台灣 Minecraft 伺服器 VIP 贊助：每級 200 TWD，享領地擴充、每日鑰匙、隨身終界箱、自訂稱號等福利。">
+    <meta name="twitter:image" content="https://bydsmp.com/assets/images/logo.png">
+    <meta name="twitter:image:alt" content="BYDSMP 台灣 Minecraft 伺服器 Logo">
     <meta name="msapplication-TileColor" content="#F97316">
     
     <link rel="icon" type="image/png" href="assets/images/logo.png">
     <link rel="apple-touch-icon" href="assets/images/logo.png">
-    <link rel="shortcut icon" href="assets/images/logo.png">
-
-    <!-- Preload for Performance -->
-    <link rel="preload" href="assets/css/main.css" as="style">
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Noto+Sans+TC:wght@300;400;700&family=JetBrains+Mono:wght@400;500&display=swap" as="style">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Noto+Sans+TC:wght@300;400;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Noto+Sans+TC:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="assets/css/main.css">
+    <!-- Stylesheets（依序：token → 基礎 → 元件） -->
+    <link rel="stylesheet" href="assets/css/variables.css">
+    <link rel="stylesheet" href="assets/css/base.css">
+    <link rel="stylesheet" href="assets/css/components/navigation.css">
+    <link rel="stylesheet" href="assets/css/components/sponsor.css">
+    <link rel="stylesheet" href="assets/css/components/footer.css">
 
     <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json">
@@ -151,28 +150,45 @@
     </script>
 </head>
 <body>
-    <nav role="navigation" aria-label="主要導航" data-nav="always-visible">
-        <a href="https://www.bydsmp.com/" class="brand-link" aria-label="返回首頁">
+    <a class="skip-link" href="#main">跳到主要內容</a>
+
+    <!-- 導覽列：各頁內容一致（tests/unit/sharedLayout.test.js 會檢查），只有 aria-current 不同 -->
+    <nav class="site-nav" aria-label="主要導航">
+        <a href="/" class="brand-link" aria-label="BYDSMP 首頁">
+            <img src="assets/images/logo.png" alt="" class="brand-logo" width="36" height="36">
             <span class="brand-text">BYDSMP</span>
         </a>
-        <div class="nav-right">
-            <div class="nav-links" id="nav-links" role="menubar">
-                <a href="/rules" role="menuitem" title="BYDSMP 伺服器規則">規則</a>
-                <a href="/sponsor" role="menuitem" title="贊助 BYDSMP 取得 VIP 福利">贊助支持</a>
-            </div>
-            <button class="hamburger" 
-                    aria-label="開啟選單" 
-                    aria-expanded="false"
-                    aria-controls="nav-links"
-                    type="button">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+        <div class="nav-links" id="nav-links">
+            <a href="/#pvp">PvP 競技</a>
+            <a href="/#modes">決鬥模式</a>
+            <a href="/#servers">分流介紹</a>
+            <a href="/#join">加入方式</a>
+            <a href="/rules">規則</a>
+            <a href="/sponsor" aria-current="page">贊助</a>
+            <a href="https://discord.gg/2EDqgeRKPs" class="nav-cta" data-config-href="discordLink" target="_blank" rel="noopener noreferrer">
+                <svg class="icon" aria-hidden="true"><use href="assets/images/icons.svg#i-discord"></use></svg>Discord
+            </a>
         </div>
+        <button class="hamburger" aria-label="開啟選單" aria-expanded="false" aria-controls="nav-links" type="button">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
     </nav>
 
-    <main class="sponsor-page" role="main">
+    <main class="sponsor-page" id="main">
+
+        <!-- Hero 標題區 -->
+        <div class="sponsor-hero">
+            <span class="sponsor-tagline">Support BYDSMP</span>
+            <h1 id="sponsor-title" class="section-title">贊助支持</h1>
+            <p class="sponsor-intro">VIP 以等級計算，每提升 1 級需贊助 <strong>200 TWD</strong>（例：贊助 600 TWD = VIP 3）。贊助後請在訂單留言註明「遊戲 ID」以便發放福利。</p>
+            <p class="sponsor-note">表中的領地、Home、鑰匙與生怪磚等福利，都是在 <strong>SMP 生存分流</strong>使用。</p>
+            <div class="sponsor-price-badge" aria-label="每級 200 TWD">
+                <span class="price-amount">200</span>
+                <span class="price-unit">TWD / 級</span>
+            </div>
+        </div>
 
         <!-- 贊助名單 -->
         <section id="sponsor-leaderboard" class="sponsor-leaderboard" aria-label="贊助名單">
@@ -184,17 +200,6 @@
                 <!-- 由 sponsorLeaderboard.js 動態渲染 -->
             </div>
         </section>
-
-        <!-- Hero 標題區 -->
-        <div class="sponsor-hero">
-            <span class="sponsor-tagline">Support BYDSMP</span>
-            <h1 id="sponsor-title" class="section-title">贊助支持</h1>
-            <p class="sponsor-intro">VIP 以等級計算，每提升 1 級需贊助 <strong>200 TWD</strong>（例：贊助 600 TWD = VIP 3）。贊助後請在訂單留言註明「遊戲 ID」以便發放福利。</p>
-            <div class="sponsor-price-badge" aria-label="每級 200 TWD">
-                <span class="price-amount">200</span>
-                <span class="price-unit">TWD / 級</span>
-            </div>
-        </div>
 
         <!-- VIP 卡片網格 -->
         <div class="vip-grid" role="list" aria-label="VIP 福利一覽">
@@ -467,12 +472,13 @@
         <div class="sponsor-cta-section">
             <div class="sponsor-cta-wrap">
                 <a id="sponsor-cta-link"
-                   href="#"
+                   href="https://discord.gg/2EDqgeRKPs"
+                   data-config-href="discordLink"
                    target="_blank"
                    rel="noopener noreferrer"
                    class="sponsor-cta"
                    aria-label="前往贊助或洽詢 Discord">
-                    <i class="fab fa-discord" aria-hidden="true"></i>
+                    <svg class="icon" aria-hidden="true"><use href="assets/images/icons.svg#i-discord"></use></svg>
                     前往贊助 / 洽詢 Discord
                 </a>
                 <span class="sponsor-cta-hint">點擊後將前往贊助頁面或 Discord 洽詢</span>
@@ -491,13 +497,40 @@
         </div>
     </main>
 
-    <footer role="contentinfo">
-        <p>&copy; 2026 BYDSMP. All Rights Reserved.</p>
-        <address class="footer-contact">
-            <span>Server IP: <strong id="footer-server-ip"></strong></span>
-            <span>聯絡信箱: <a id="footer-email" href="#">...</a></span>
-        </address>
-        <p class="footer-disclaimer">本網站與 BYDSMP 伺服器為非官方粉絲創作，與 Mojang Studios 或 Microsoft 無關。NOT OFFICIAL MINECRAFT PRODUCT. NOT APPROVED BY OR ASSOCIATED WITH MOJANG OR MICROSOFT.</p>
+    <!-- 頁尾：各頁內容一致（tests/unit/sharedLayout.test.js 會檢查） -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="/" class="brand-link" aria-label="BYDSMP 首頁">
+                        <img src="assets/images/logo.png" alt="" class="brand-logo" width="36" height="36" loading="lazy">
+                        <span class="brand-text">BYDSMP</span>
+                    </a>
+                    <p class="footer-tagline">台灣 Minecraft PvP 伺服器。排隊天梯、FFA、MCTiers 評級，另有 SMP 生存分流。</p>
+                </div>
+                <nav aria-label="頁尾連結">
+                    <h2 class="footer-heading">網站</h2>
+                    <ul class="footer-links">
+                        <li><a href="/#pvp">PvP 競技</a></li>
+                        <li><a href="/#servers">分流介紹</a></li>
+                        <li><a href="/rules">伺服器規則</a></li>
+                        <li><a href="/sponsor">贊助支持</a></li>
+                    </ul>
+                </nav>
+                <div>
+                    <h2 class="footer-heading">聯絡</h2>
+                    <ul class="footer-contact">
+                        <li>伺服器 IP：<strong id="footer-server-ip" data-config-text="serverIP">bydsmp.com</strong></li>
+                        <li><svg class="icon" aria-hidden="true"><use href="assets/images/icons.svg#i-discord"></use></svg><a href="https://discord.gg/2EDqgeRKPs" data-config-href="discordLink" target="_blank" rel="noopener noreferrer">Discord 社群</a></li>
+                        <li><svg class="icon" aria-hidden="true"><use href="assets/images/icons.svg#i-mail"></use></svg><a id="footer-email" href="mailto:bydsmp@gmail.com" data-config-mailto="email">bydsmp@gmail.com</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 BYDSMP. All Rights Reserved.</p>
+                <p class="footer-disclaimer">BYDSMP 為玩家自營伺服器，與 Mojang Studios 或 Microsoft 無關。NOT AN OFFICIAL MINECRAFT PRODUCT. NOT APPROVED BY OR ASSOCIATED WITH MOJANG OR MICROSOFT.</p>
+            </div>
+        </div>
     </footer>
 
     <script src="assets/js/config.js"></script>
