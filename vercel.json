@@ -3,7 +3,8 @@
   "trailingSlash": false,
   "rewrites": [
     { "source": "/rules",   "destination": "/rules.html"   },
-    { "source": "/sponsor", "destination": "/sponsor.html" }
+    { "source": "/sponsor", "destination": "/sponsor.html" },
+    { "source": "/leaderboard", "destination": "/leaderboard.html" }
   ],
   "headers": [
     {

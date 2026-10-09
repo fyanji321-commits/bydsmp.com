@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Overview
 
-Official website for the BYDSMP Taiwan Minecraft server (`bydsmp.com`). A multi-page static website with no build step, no frameworks — plain HTML5, CSS3, and Vanilla JavaScript. All user-visible text is Traditional Chinese (`zh-TW`).
+Official website for the BYDSMP Taiwan Minecraft server (`bydsmp.com`). A multi-page static website with no build step, no frameworks — plain HTML5, CSS3, and Vanilla JavaScript. The only server code is one Vercel Function (`api/leaderboard.mjs`). All user-visible text is Traditional Chinese (`zh-TW`).
 
 ## Commands
 
@@ -23,7 +23,7 @@ npx vitest run tests/unit/copyIP.test.js    # Single test file
 
 ### CSS: Token-driven, linked per page
 
-`variables.css` holds every design token (colors, fonts, spacing, `--clip-cut-*` angled corners); never hardcode values elsewhere. There is no `@import` chain: each page `<link>`s what it needs in order `variables.css` → `base.css` → `components/navigation.css` → page component (`home.css` / `rules.css` / `sponsor.css`) → `components/footer.css`.
+`variables.css` holds every design token (colors, fonts, spacing, `--clip-cut-*` angled corners); never hardcode values elsewhere. There is no `@import` chain: each page `<link>`s what it needs in order `variables.css` → `base.css` → `components/navigation.css` → page component (`home.css` / `rules.css` / `sponsor.css` / `leaderboard.css`) → `components/footer.css`.
 
 **Current theme: "Arena Forge"** — ember orange (`#F97316`, brand + PvP) with emerald (`--smp-color`) for SMP, Rajdhani headings + Noto Sans TC body + JetBrains Mono labels, dark background (`#08080E`). Icons are an SVG sprite at `assets/images/icons.svg` used as `<svg class="icon"><use href="assets/images/icons.svg#i-name"></use></svg>`; no icon font.
 
@@ -41,15 +41,16 @@ config.js (must load first) → navigation.js → [page modules] → main.js (mu
 
 | Page | Scripts loaded | Notes |
 |------|---------------|-------|
-| `index.html` | config, navigation, copyIP, reveal, serverStatus, main | PvP-first landing page |
+| `index.html` | config, navigation, copyIP, serverStatus, main | Hero only |
 | `rules.html` | config, navigation, rulesTabs, main | Tabs: basic, pvp, world, redstone, violation |
 | `sponsor.html` | config, navigation, sponsorLeaderboard, main | Reads `docs/sponsors.json` |
+| `leaderboard.html` | config, navigation, leaderboard, main | Duel ladder; reads `/api/leaderboard` |
 
-Home page content (PvP systems, mode list, arenas, SMP features) mirrors plugins in `MrPippi/Bydsmp` (`plugins/pvp/*`, `plugins/smp/*`). Mode names come from `Duel/modes.yml`, arena names from `Duel/arena.yml`.
+The home page is currently hero-only; the old PvP/modes/servers/join sections were removed (see git history if they come back). Hero copy mirrors plugins in `MrPippi/Bydsmp`.
 
 ### Navigation and footer
 
-Nav and footer HTML are **copy-pasted** across all 3 pages; `tests/unit/sharedLayout.test.js` fails if they drift (only `aria-current="page"` may differ). The nav is always visible: transparent at the top, `.is-scrolled` (added by `navigation.js` past 50px) makes it solid. Elements fade in on scroll via `data-reveal` (`reveal.js`); content stays visible without JS (`html.js` gate) and with `prefers-reduced-motion`.
+Nav and footer HTML are **copy-pasted** across all 4 pages; `tests/unit/sharedLayout.test.js` fails if they drift (only `aria-current="page"` may differ). The nav is always visible: transparent at the top, `.is-scrolled` (added by `navigation.js` past 50px) makes it solid.
 
 **When adding a new sub-page:** copy the nav/footer from an existing page, use `<main class="subpage" id="main">`, add it to `vercel.json` rewrites and `sitemap.xml`, and add it to `PAGES` in `sharedLayout.test.js`.
 
@@ -63,12 +64,24 @@ Sponsor data lives in `docs/sponsors.json`. `sponsorLeaderboard.js` fetches it a
 
 `id` is case-sensitive (used for Minotar avatar URL). Same `id` with multiple entries = cumulative total calculated automatically.
 
+### Duel leaderboard
+
+`leaderboard.html` + `assets/js/modules/leaderboard.js` read same-origin `/api/leaderboard?view=meta|board|find`. `api/leaderboard.mjs` (`export default { fetch }`) validates params, adds `X-Bydsmp-Token`, and forwards to the Bydsmp-Leaderboard plugin's read-only API at `LEADERBOARD_ORIGIN` (Vercel env vars `LEADERBOARD_ORIGIN`, `LEADERBOARD_TOKEN`). It is `.mjs` on purpose: `.vercelignore` drops `package.json`, so a `.js` file can't rely on `"type": "module"`.
+
+The contract lives in `MrPippi/Bydsmp` (`docs/superpowers/specs/2026-10-08-leaderboard-*.md`); API paths, query names, and JSON field names are frozen there — only depend on documented fields.
+
+- Ranks come from the plugin; the page never sorts. Ladders and per-ladder sorts come from `meta` — never hardcode them.
+- Player names go into the DOM via `textContent` only.
+- Page classes use the `duel-` prefix (`leaderboard-*` is already taken by the sponsor page).
+- `python -m http.server` can't run the Function; the page shows its error state locally. Use `npx vercel dev`.
+
 ## Testing architecture
 
 Tests use Vitest + jsdom. Since IIFE modules have no exports, tests load them via `fs.readFileSync()` + `new Function(code)()` which executes the IIFE inside jsdom's `globalThis` scope. `CONFIG`, `document`, `navigator`, `window` all resolve from jsdom automatically.
 
 Key gotchas:
-- Use `vi.useFakeTimers()` for copyIP toast timer tests; reveal tests stub `IntersectionObserver` and `matchMedia`
+- Use `vi.useFakeTimers()` for copyIP toast timer tests
+- `api/leaderboard.mjs` is imported directly (not via `new Function`); its test runs under `// @vitest-environment node`
 - Test structure: `tests/unit/` + `tests/integration/` + `tests/fixtures/` (HTML fixtures loaded per test)
 
 ## SEO requirements

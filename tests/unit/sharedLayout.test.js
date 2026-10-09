@@ -9,8 +9,13 @@ import { describe, it, expect } from 'vitest';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = join(__dirname, '../..');
-const PAGES = ['index.html', 'rules.html', 'sponsor.html'];
-const CURRENT = { 'index.html': null, 'rules.html': '/rules', 'sponsor.html': '/sponsor' };
+const PAGES = ['index.html', 'rules.html', 'sponsor.html', 'leaderboard.html'];
+const CURRENT = {
+  'index.html': null,
+  'rules.html': '/rules',
+  'sponsor.html': '/sponsor',
+  'leaderboard.html': '/leaderboard',
+};
 
 function parse(page) {
   const doc = new DOMParser().parseFromString(readFileSync(join(root, page), 'utf8'), 'text/html');
