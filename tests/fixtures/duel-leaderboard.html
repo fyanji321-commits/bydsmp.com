@@ -1,0 +1,22 @@
+<!-- Duel 排行榜 DOM，取自 leaderboard.html；分頁、排序與列表由 leaderboard.js 動態渲染 -->
+<main class="subpage duel-page">
+  <section id="duel-board" class="duel-board" aria-label="Duel 排行榜">
+    <div class="duel-board__controls">
+      <div class="duel-tabs" id="duel-ladders" role="tablist" aria-label="模式"></div>
+      <div class="duel-sorts" id="duel-sorts" role="group" aria-label="排序方式"></div>
+      <form class="duel-search" id="duel-search" role="search" novalidate>
+        <label for="duel-search-input" class="duel-search__label">搜尋玩家</label>
+        <input id="duel-search-input" class="duel-search__input" type="search" name="name" maxlength="16">
+        <button type="submit" class="duel-search__btn">搜尋</button>
+      </form>
+    </div>
+    <p class="duel-board__info" id="duel-info" aria-live="polite"></p>
+    <p class="duel-search__result" id="duel-search-result" role="status" aria-live="polite" hidden></p>
+    <ol class="duel-list" id="duel-list" aria-label="排名列表"></ol>
+    <ol class="duel-list duel-list--pinned" id="duel-pinned" aria-label="搜尋結果" hidden></ol>
+    <div class="duel-state" id="duel-state" hidden>
+      <p class="duel-state__text" id="duel-state-text"></p>
+      <button type="button" class="duel-state__retry" id="duel-retry" hidden>重試</button>
+    </div>
+  </section>
+</main>

@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script>document.documentElement.classList.add('js');</script>
 
     <!-- Primary Meta Tags -->
     <title>BYDSMP - 台灣 Minecraft PvP 伺服器 | 排隊天梯、FFA、MCTiers</title>
@@ -107,12 +106,9 @@
             <span class="brand-text">BYDSMP</span>
         </a>
         <div class="nav-links" id="nav-links">
-            <a href="/#pvp">PvP 競技</a>
-            <a href="/#modes">決鬥模式</a>
-            <a href="/#servers">分流介紹</a>
-            <a href="/#join">加入方式</a>
             <a href="/rules">規則</a>
             <a href="/sponsor">贊助</a>
+            <a href="/leaderboard">排行榜</a>
             <a href="https://discord.gg/2EDqgeRKPs" class="nav-cta" data-config-href="discordLink" target="_blank" rel="noopener noreferrer">
                 <svg class="icon" aria-hidden="true"><use href="assets/images/icons.svg#i-discord"></use></svg>Discord
             </a>
@@ -189,287 +185,6 @@
                 </dl>
             </div>
         </section>
-
-        <!-- 01 PvP 競技 -->
-        <section class="section" id="pvp" aria-labelledby="pvp-title">
-            <div class="container">
-                <header class="section-head" data-reveal>
-                    <p class="eyebrow">01 · PvP 競技分流</p>
-                    <h2 class="section-title" id="pvp-title">為對戰而生的伺服器</h2>
-                    <p class="section-lead">配對、計分、排行與練習全是我們為 PvP 分流自己寫的插件。你只要專心打，剩下的交給伺服器。</p>
-                </header>
-
-                <div class="feature-grid">
-                    <article class="feature-card feature-card--major" data-reveal>
-                        <span class="feature-card__icon"><svg class="icon" aria-hidden="true"><use href="assets/images/icons.svg#i-trophy"></use></svg></span>
-                        <span class="feature-card__tag">ELO · 三戰兩勝</span>
-                        <h3>排隊天梯</h3>
-                        <p>從大廳物品打開排隊選單，一次可以排好幾個模式，哪邊先湊到對手就先開打。排隊局一律三戰兩勝，結果計入 ELO，綜合積分依你在各模式打的場數加權。</p>
-                    </article>
-                    <article class="feature-card feature-card--major" data-reveal style="--reveal-delay: 0.08s">
-                        <span class="feature-card__icon"><svg class="icon" aria-hidden="true"><use href="assets/images/icons.svg#i-crosshair"></use></svg></span>
-                        <span class="feature-card__tag">隨進隨打</span>
-                        <h3>FFA 自由戰場</h3>
-                        <p>在大廳挑好模式，直接傳進戰場並自動套上 Kit，裝備亂了就 <code>/rekit</code>。擊殺、死亡與連殺都會記進個人數據，也能在排行榜上比高下。</p>
-                    </article>
-                    <article class="feature-card feature-card--major" data-reveal style="--reveal-delay: 0.16s">
-                        <span class="feature-card__icon"><svg class="icon" aria-hidden="true"><use href="assets/images/icons.svg#i-backpack"></use></svg></span>
-                        <span class="feature-card__tag">照你的手感</span>
-                        <h3>Kit 編輯器</h3>
-                        <p>每個模式的物品欄都能照自己的習慣重新排列並存下來。End Game 與 Crystal 還能在限制範圍內自由組 Kit。</p>
-                    </article>
-                    <article class="feature-card feature-card--major" data-reveal style="--reveal-delay: 0.24s">
-                        <span class="feature-card__icon"><svg class="icon" aria-hidden="true"><use href="assets/images/icons.svg#i-eye"></use></svg></span>
-                        <span class="feature-card__tag">/party · /spec</span>
-                        <h3>自訂局與觀戰</h3>
-                        <p>用 <code>/party</code> 開房間找朋友打隊伍戰，<code>/spec</code> 觀看任何進行中的對局。排隊局開打時聊天室會公告，點一下 [觀戰] 就能進場。</p>
-                    </article>
-                </div>
-
-                <ul class="mini-grid" aria-label="更多 PvP 系統">
-                    <li class="mini-card" data-reveal>
-                        <svg class="icon" aria-hidden="true"><use href="assets/images/icons.svg#i-list-ordered"></use></svg>
-                        <div>
-                            <h3>排行榜</h3>
-                            <p>依模式、排序與國家篩選，只計算排隊局。</p>
-                        </div>
-                    </li>
-                    <li class="mini-card" data-reveal style="--reveal-delay: 0.05s">
-                        <svg class="icon" aria-hidden="true"><use href="assets/images/icons.svg#i-medal"></use></svg>
-                        <div>
-                            <h3>MCTiers 評級</h3>
-                            <p><code>/tiers</code> 查任何正版玩家的評級，最強的模式直接掛在名牌上。</p>
-                        </div>
-                    </li>
-                    <li class="mini-card" data-reveal style="--reveal-delay: 0.1s">
-                        <svg class="icon" aria-hidden="true"><use href="assets/images/icons.svg#i-target"></use></svg>
-                        <div>
-                            <h3>練習區</h3>
-                            <p><code>/practice</code> 練 Pearl Catch：丟出珍珠、用風彈追上它，個人最佳會留下紀錄。</p>
-                        </div>
-                    </li>
-                    <li class="mini-card" data-reveal style="--reveal-delay: 0.15s">
-                        <svg class="icon" aria-hidden="true"><use href="assets/images/icons.svg#i-shuffle"></use></svg>
-                        <div>
-                            <h3>RTP 配對</h3>
-                            <p><code>/rtpq</code> 湊滿兩人，一起傳送到野外同一個地點直接開打。</p>
-                        </div>
-                    </li>
-                    <li class="mini-card" data-reveal>
-                        <svg class="icon" aria-hidden="true"><use href="assets/images/icons.svg#i-zap"></use></svg>
-                        <div>
-                            <h3>高延遲水晶</h3>
-                            <p>延遲高也能順手打水晶，伺服器即時處理揮擊與連放，可在 <code>/settings</code> 開關。</p>
-                        </div>
-                    </li>
-                    <li class="mini-card" data-reveal style="--reveal-delay: 0.05s">
-                        <svg class="icon" aria-hidden="true"><use href="assets/images/icons.svg#i-users"></use></svg>
-                        <div>
-                            <h3>好友</h3>
-                            <p><code>/friend</code> 看好友是不是在決鬥中，一鍵單挑、觀戰或組隊。</p>
-                        </div>
-                    </li>
-                    <li class="mini-card" data-reveal style="--reveal-delay: 0.1s">
-                        <svg class="icon" aria-hidden="true"><use href="assets/images/icons.svg#i-flag"></use></svg>
-                        <div>
-                            <h3>舉報與戰鬥標記</h3>
-                            <p><code>/report</code> 自動附上座標、延遲與聊天證據；戰鬥中登出直接判死。</p>
-                        </div>
-                    </li>
-                    <li class="mini-card" data-reveal style="--reveal-delay: 0.15s">
-                        <svg class="icon" aria-hidden="true"><use href="assets/images/icons.svg#i-sliders-horizontal"></use></svg>
-                        <div>
-                            <h3>個人設定</h3>
-                            <p><code>/settings</code> 一頁管理決鬥請求、記分板、夜視與提及音效。</p>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </section>
-
-        <!-- 02 決鬥模式 -->
-        <section class="section section--alt" id="modes" aria-labelledby="modes-title">
-            <div class="container">
-                <header class="section-head" data-reveal>
-                    <p class="eyebrow">02 · 決鬥模式</p>
-                    <h2 class="section-title" id="modes-title">挑你的武器</h2>
-                    <p class="section-lead">排隊天梯與 FFA 共用同一套模式，分成三大類。實際開放的模式以遊戲內選單為準。</p>
-                </header>
-
-                <div class="mode-columns">
-                    <article class="mode-group" data-reveal>
-                        <header class="mode-group__head">
-                            <svg class="icon" aria-hidden="true"><use href="assets/images/icons.svg#i-swords"></use></svg>
-                            <div>
-                                <h3>Weapons</h3>
-                                <p>單一武器的基本功</p>
-                            </div>
-                        </header>
-                        <ul class="mode-list">
-                            <li>Sword</li>
-                            <li>Axe &amp; Shield</li>
-                            <li>Spear</li>
-                            <li>Mace</li>
-                            <li>Bow</li>
-                        </ul>
-                    </article>
-                    <article class="mode-group" data-reveal style="--reveal-delay: 0.08s">
-                        <header class="mode-group__head">
-                            <svg class="icon" aria-hidden="true"><use href="assets/images/icons.svg#i-shield"></use></svg>
-                            <div>
-                                <h3>Vanilla</h3>
-                                <p>原版進程的裝備對決</p>
-                            </div>
-                        </header>
-                        <ul class="mode-list">
-                            <li>Early Game</li>
-                            <li>Late Game</li>
-                            <li class="is-custom">End Game</li>
-                        </ul>
-                    </article>
-                    <article class="mode-group" data-reveal style="--reveal-delay: 0.16s">
-                        <header class="mode-group__head">
-                            <svg class="icon" aria-hidden="true"><use href="assets/images/icons.svg#i-flame"></use></svg>
-                            <div>
-                                <h3>Skills</h3>
-                                <p>考驗操作的進階玩法</p>
-                            </div>
-                        </header>
-                        <ul class="mode-list">
-                            <li>Netherite Pot</li>
-                            <li>Pot</li>
-                            <li>Diamond SMP</li>
-                            <li>Creeper</li>
-                            <li>Cart</li>
-                            <li>SMP</li>
-                            <li class="is-custom">Crystal</li>
-                        </ul>
-                    </article>
-                </div>
-                <p class="mode-legend"><span class="mode-legend__mark" aria-hidden="true"></span>可自由組 Kit 的模式</p>
-
-                <div class="arena-strip" data-reveal>
-                    <h3 class="arena-strip__title">
-                        <svg class="icon" aria-hidden="true"><use href="assets/images/icons.svg#i-map-pin"></use></svg>
-                        主題競技場
-                    </h3>
-                    <p class="arena-strip__desc">排隊開打時隨機分配場地，Crystal 則在現場生成的地形上開打。</p>
-                    <ul class="arena-list">
-                        <li>日冕神殿</li>
-                        <li>太極殿</li>
-                        <li>蕈谷</li>
-                        <li>霜牙峽</li>
-                        <li>蔓古遺殿</li>
-                        <li>珊瑚礁</li>
-                        <li>虛空裂隙</li>
-                        <li>霓虹街區</li>
-                        <li>深坑礦場</li>
-                        <li>奧林帕斯</li>
-                        <li>綠洲城</li>
-                        <li>市中心</li>
-                        <li>舷戰甲板</li>
-                        <li>奧術祕境</li>
-                        <li>懸崖村</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- 03 分流介紹 -->
-        <section class="section" id="servers" aria-labelledby="servers-title">
-            <div class="container">
-                <header class="section-head" data-reveal>
-                    <p class="eyebrow">03 · 分流介紹</p>
-                    <h2 class="section-title" id="servers-title">同一個 IP，兩種玩法</h2>
-                    <p class="section-lead">PvP 與 SMP 都從 <code>bydsmp.com</code> 進入，但兩邊的背包、經濟與進度各自獨立、互不相通。</p>
-                </header>
-
-                <div class="server-grid">
-                    <article class="server-card server-card--pvp" data-reveal>
-                        <div class="server-card__media" aria-hidden="true"></div>
-                        <div class="server-card__body">
-                            <div class="server-card__head">
-                                <img src="assets/images/Netherite_Sword.png" alt="" class="server-card__icon" width="56" height="56" loading="lazy">
-                                <div>
-                                    <span class="server-card__tag">近期主力</span>
-                                    <h3>PvP 競技分流</h3>
-                                </div>
-                            </div>
-                            <p class="server-card__desc">打天梯、刷 FFA、練技巧，從大廳一路打到排行榜。</p>
-                            <ul class="server-card__list">
-                                <li>排隊天梯與 ELO 綜合積分</li>
-                                <li>FFA 自由戰場與個人數據</li>
-                                <li>Kit 編輯器、自訂局與觀戰</li>
-                                <li>MCTiers 評級名牌</li>
-                                <li>練習區與 RTP 兩人配對</li>
-                            </ul>
-                            <a href="#pvp" class="server-card__link">看 PvP 系統<svg class="icon" aria-hidden="true"><use href="assets/images/icons.svg#i-arrow-right"></use></svg></a>
-                        </div>
-                    </article>
-
-                    <article class="server-card server-card--smp" data-reveal style="--reveal-delay: 0.1s">
-                        <div class="server-card__media" aria-hidden="true"></div>
-                        <div class="server-card__body">
-                            <div class="server-card__head">
-                                <img src="assets/images/Iron_Pickaxe.png" alt="" class="server-card__icon" width="56" height="56" loading="lazy">
-                                <div>
-                                    <span class="server-card__tag">生存經營</span>
-                                    <h3>SMP 生存分流</h3>
-                                </div>
-                            </div>
-                            <p class="server-card__desc">保留原版探索與生電樂趣，再加上一套自製的生活系統。</p>
-                            <ul class="server-card__list">
-                                <li>領地保護與領地內飛行</li>
-                                <li>玩家拍賣場：定價上架與求購單</li>
-                                <li>月曆簽到與每日、每週、每月任務</li>
-                                <li>玩家自營傳送點與生物捕捉器</li>
-                                <li>掛機池、物品估值與系統收購</li>
-                            </ul>
-                            <a href="/sponsor" class="server-card__link">VIP 福利在 SMP 生效<svg class="icon" aria-hidden="true"><use href="assets/images/icons.svg#i-arrow-right"></use></svg></a>
-                        </div>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <!-- 04 加入方式 -->
-        <section class="section section--alt" id="join" aria-labelledby="join-title">
-            <div class="container">
-                <header class="section-head section-head--center" data-reveal>
-                    <p class="eyebrow">04 · 加入方式</p>
-                    <h2 class="section-title" id="join-title">四步上線開打</h2>
-                </header>
-
-                <ol class="join-steps">
-                    <li class="join-step" data-reveal>
-                        <span class="join-step__num" aria-hidden="true">01</span>
-                        <h3>開啟 Java 版</h3>
-                        <p>使用 Minecraft Java 版，建議版本 1.21.11。</p>
-                    </li>
-                    <li class="join-step" data-reveal style="--reveal-delay: 0.08s">
-                        <span class="join-step__num" aria-hidden="true">02</span>
-                        <h3>新增伺服器</h3>
-                        <p>多人遊戲 → 新增伺服器，位址填入：</p>
-                        <button class="join-step__ip ip-box" type="button" aria-label="複製伺服器 IP：bydsmp.com">
-                            <span data-config-text="serverIP">bydsmp.com</span>
-                            <svg class="icon" aria-hidden="true"><use href="assets/images/icons.svg#i-copy"></use></svg>
-                        </button>
-                    </li>
-                    <li class="join-step" data-reveal style="--reveal-delay: 0.16s">
-                        <span class="join-step__num" aria-hidden="true">03</span>
-                        <h3>讀一遍規則</h3>
-                        <p>外掛零容忍，PvP 中開掛嚴抓。花一分鐘看完再開打。</p>
-                        <a href="/rules" class="join-step__link">伺服器規則<svg class="icon" aria-hidden="true"><use href="assets/images/icons.svg#i-arrow-right"></use></svg></a>
-                    </li>
-                    <li class="join-step" data-reveal style="--reveal-delay: 0.24s">
-                        <span class="join-step__num" aria-hidden="true">04</span>
-                        <h3>加入 Discord</h3>
-                        <p>公告、活動、問題回報與贊助洽詢都在 Discord。</p>
-                        <a href="https://discord.gg/2EDqgeRKPs" class="join-step__link" data-config-href="discordLink" target="_blank" rel="noopener noreferrer">前往 Discord<svg class="icon" aria-hidden="true"><use href="assets/images/icons.svg#i-arrow-right"></use></svg></a>
-                    </li>
-                </ol>
-            </div>
-        </section>
     </main>
 
     <!-- 頁尾：各頁內容一致（tests/unit/sharedLayout.test.js 會檢查） -->
@@ -486,10 +201,9 @@
                 <nav aria-label="頁尾連結">
                     <h2 class="footer-heading">網站</h2>
                     <ul class="footer-links">
-                        <li><a href="/#pvp">PvP 競技</a></li>
-                        <li><a href="/#servers">分流介紹</a></li>
                         <li><a href="/rules">伺服器規則</a></li>
                         <li><a href="/sponsor">贊助支持</a></li>
+                        <li><a href="/leaderboard">Duel 排行榜</a></li>
                     </ul>
                 </nav>
                 <div>
@@ -514,7 +228,6 @@
     <script src="assets/js/config.js"></script>
     <script src="assets/js/modules/navigation.js"></script>
     <script src="assets/js/modules/copyIP.js"></script>
-    <script src="assets/js/modules/reveal.js"></script>
     <script src="assets/js/modules/serverStatus.js"></script>
     <script src="assets/js/main.js"></script>
 </body>
