@@ -1,6 +1,12 @@
 User-agent: *
 Allow: /
+
+# JS 與 CSS 必須放行：Googlebot 需要執行它們才能正確渲染頁面。
+# 封鎖前端資源會讓爬蟲看到空殼頁面，直接傷害排名。
+
+# 內部文件不需索引，但 sponsors.json 是贊助頁排行榜的資料來源，
+# 被 fetch() 於執行期載入（sponsorLeaderboard.js），必須單獨放行。
 Disallow: /docs/
-Disallow: /assets/js/
+Allow: /docs/sponsors.json
 
 Sitemap: https://bydsmp.com/sitemap.xml

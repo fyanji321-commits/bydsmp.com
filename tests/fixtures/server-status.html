@@ -1,0 +1,16 @@
+<!-- 伺服器狀態小工具 DOM，取自 index.html 的 hero 即時資訊列 -->
+<dl class="hero-stats" aria-label="伺服器資訊">
+  <div class="hero-stat hero-stat--live"
+       id="server-status-widget"
+       role="status"
+       aria-live="polite"
+       aria-label="查詢伺服器狀態中">
+    <dt class="hero-stat__label">
+      <span class="status-dot status-dot--loading" id="server-status-dot" aria-hidden="true"></span>
+      <span id="server-status-label">查詢中…</span>
+    </dt>
+    <dd class="hero-stat__value">
+      <span id="server-online-count">—</span><span id="server-max-count" class="hero-stat__max"></span>
+    </dd>
+  </div>
+</dl>

@@ -6,10 +6,11 @@ coverage/
 node_modules/
 package.json
 package-lock.json
-vitest.config.js
+vitest.config.mjs
 *.code-workspace
 *.zip
 *.log
 CLAUDE.md
 README.md
 docs/*.md
+docs/agents/
