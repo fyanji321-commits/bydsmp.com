@@ -136,6 +136,15 @@ describe('sponsorLeaderboard', () => {
       expect(textOf(card('lb-top-single'), '.leaderboard-card__heading')).toBe('最高單筆贊助');
       expect(textOf(card('lb-top-total'), '.leaderboard-card__heading')).toBe('最高贊助總額');
     });
+
+    it('卡片圖示應引用 icons.svg sprite（不再用 Font Awesome）', () => {
+      const iconOf = (id) =>
+        card(id).querySelector('.leaderboard-card__header svg.icon use').getAttribute('href');
+      expect(iconOf('lb-recent')).toBe('assets/images/icons.svg#i-clock');
+      expect(iconOf('lb-top-single')).toBe('assets/images/icons.svg#i-coins');
+      expect(iconOf('lb-top-total')).toBe('assets/images/icons.svg#i-trophy');
+      expect(card('lb-recent').querySelector('i')).toBeNull();
+    });
   });
 
   // ── 頭像 ─────────────────────────────────────────────────
@@ -164,6 +173,12 @@ describe('sponsorLeaderboard', () => {
       const img = card('lb-recent').querySelector('img');
       img.onerror();
       expect(img.getAttribute('src')).toBe('https://minotar.net/avatar/MHF_Steve/48');
+    });
+
+    it('退回後清掉 onerror，後備圖也失敗時不會無限重試', () => {
+      const img = card('lb-recent').querySelector('img');
+      img.onerror();
+      expect(img.onerror).toBeNull();
     });
 
     it('id 含特殊字元時應做 URL 編碼', async () => {
